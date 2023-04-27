@@ -66,8 +66,7 @@ import {
   WeightRange,
   Zone,
 } from '../types/prestashop.type';
-import Base from './base';
-import Customers from './customers';
+import { Base, Customers } from '../classes';
 
 /**
  * Initiliaze and export all endpoints.

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import FormData from 'form-data';
 import { AxiosResponse } from 'axios';
-import { call } from '../';
+import { call } from '../utils/calls';
 
 class Images {
   /**
