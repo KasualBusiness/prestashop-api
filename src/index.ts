@@ -1,5 +1,6 @@
 import * as endpoints from './initializers';
 
+/** Export init and config */
 export * from './config';
 
 /** Export prestashop's type */
