@@ -1,3 +1,7 @@
+/**
+ * All prestashop's webservices endpoints.
+ * See: https://devdocs.prestashop-project.org/8/webservice/resources/
+ */
 export enum Endpoint {
   addresses = 'addresses',
   attachments = 'attachments',
