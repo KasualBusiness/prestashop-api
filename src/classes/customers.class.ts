@@ -1,13 +1,13 @@
 import { AxiosResponse } from 'axios';
 import qs from 'qs';
 import bcrypt from 'bcrypt';
-import { call } from '../';
 import { Customer } from '../types/prestashop.type';
 import { LoginResponse } from '../types/calls.type';
-import Common from './common';
+import { Base } from './';
 import { Endpoint } from '../enums/endpoint.enum';
+import { call } from '../utils/calls';
 
-class Customers extends Common<Customer> {
+export class Customers extends Base<Customer> {
   constructor() {
     super(Endpoint.customers);
   }
@@ -51,5 +51,3 @@ class Customers extends Common<Customer> {
     return { success: false, customer: undefined };
   };
 }
-
-export default Customers;

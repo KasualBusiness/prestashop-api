@@ -16,7 +16,7 @@ export type LoginResponse = {
   customer?: Partial<Customer>;
 };
 
-export type PrestashopNodeAPIResponse<T> = {
+export type PrestashopAPIResponse<T> = {
   data: T | undefined;
   errors: unknown[] | undefined;
 };
