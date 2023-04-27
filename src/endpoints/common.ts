@@ -10,7 +10,6 @@ import { PrestashopNodeAPIResponse } from '../types/calls.type';
 
 class Common<T> {
   endpoint: Endpoint;
-  params: GetAllParams | GetParams | undefined;
 
   constructor(endpoint: Endpoint) {
     this.endpoint = endpoint;
