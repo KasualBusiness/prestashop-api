@@ -1,11 +1,14 @@
-type LanguageValue =
-  | string
-  | {
-      language: {
-        '@id': number;
-        '#text': string;
-      }[];
-    };
+export type LanguageValuesCreate = {
+  language: {
+    '@id': number;
+    '#text': string;
+  }[];
+};
+
+export type LanguageValue = {
+  id: string;
+  value: string;
+};
 
 export type Address = {
   id: number;
@@ -39,8 +42,8 @@ export type Attachment = {
   file_name: string;
   file_size: string;
   mime: string;
-  name: LanguageValue;
-  description: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  description: LanguageValue[] | LanguageValuesCreate;
   associations: {
     products: {
       product: {
@@ -72,7 +75,7 @@ export type Carrier = {
   external_module_name: string;
   need_range: string;
   position: string;
-  delay: LanguageValue;
+  delay: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type CartRule = {
@@ -109,7 +112,7 @@ export type CartRule = {
   active: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Cart = {
@@ -152,12 +155,12 @@ export type Category = {
   position: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue;
-  link_rewrite: LanguageValue;
-  description: LanguageValue;
-  meta_title: LanguageValue;
-  meta_description: LanguageValue;
-  meta_keywords: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  link_rewrite: LanguageValue[] | LanguageValuesCreate;
+  description: LanguageValue[] | LanguageValuesCreate;
+  meta_title: LanguageValue[] | LanguageValuesCreate;
+  meta_description: LanguageValue[] | LanguageValuesCreate;
+  meta_keywords: LanguageValue[] | LanguageValuesCreate;
   associations: {
     categories: {
       id: string;
@@ -213,8 +216,8 @@ export type Contact = {
   id: string;
   email: string;
   customer_service: string;
-  name: LanguageValue;
-  description: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  description: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Content = {
@@ -223,12 +226,12 @@ export type Content = {
   position: string;
   indexation: string;
   active: string;
-  meta_description: LanguageValue;
-  meta_keywords: LanguageValue;
-  meta_title: LanguageValue;
-  head_seo_title: LanguageValue;
-  link_rewrite: LanguageValue;
-  content: LanguageValue;
+  meta_description: LanguageValue[] | LanguageValuesCreate;
+  meta_keywords: LanguageValue[] | LanguageValuesCreate;
+  meta_title: LanguageValue[] | LanguageValuesCreate;
+  head_seo_title: LanguageValue[] | LanguageValuesCreate;
+  link_rewrite: LanguageValue[] | LanguageValuesCreate;
+  content: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type ContentManagementSystem = {
@@ -237,12 +240,12 @@ export type ContentManagementSystem = {
   position: string;
   indexation: string;
   active: string;
-  meta_description: LanguageValue;
-  meta_keywords: LanguageValue;
-  meta_title: LanguageValue;
-  head_seo_title: LanguageValue;
-  link_rewrite: LanguageValue;
-  content: LanguageValue;
+  meta_description: LanguageValue[] | LanguageValuesCreate;
+  meta_keywords: LanguageValue[] | LanguageValuesCreate;
+  meta_title: LanguageValue[] | LanguageValuesCreate;
+  head_seo_title: LanguageValue[] | LanguageValuesCreate;
+  link_rewrite: LanguageValue[] | LanguageValuesCreate;
+  content: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Country = {
@@ -257,14 +260,14 @@ export type Country = {
   need_zip_code: string;
   zip_code_format: string;
   display_tax_label: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Currency = {
   id: string;
-  names: LanguageValue;
+  names: LanguageValue[] | LanguageValuesCreate;
   name: string;
-  symbol: LanguageValue;
+  symbol: LanguageValue[] | LanguageValuesCreate;
   iso_code: string;
   numeric_iso_code: string;
   precision: string;
@@ -273,7 +276,7 @@ export type Currency = {
   active: string;
   unofficial: string;
   modified: string;
-  pattern: LanguageValue;
+  pattern: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type CustomerMessage = {
@@ -421,7 +424,7 @@ export type Group = {
   show_prices: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Guest = {
@@ -474,11 +477,11 @@ export type Manufacturer = {
     name: string;
     date_add: string;
     date_upd: string;
-    description: LanguageValue;
-    short_description: LanguageValue;
-    meta_title: LanguageValue;
-    meta_description: LanguageValue;
-    meta_keywords: LanguageValue;
+    description: LanguageValue[] | LanguageValuesCreate;
+    short_description: LanguageValue[] | LanguageValuesCreate;
+    meta_title: LanguageValue[] | LanguageValuesCreate;
+    meta_description: LanguageValue[] | LanguageValuesCreate;
+    meta_keywords: LanguageValue[] | LanguageValuesCreate;
     associations: {
       addresses: {
         id: string;
@@ -664,8 +667,8 @@ export type OrderState = {
   pdf_delivery: string;
   pdf_invoice: string;
   deleted: string;
-  name: LanguageValue;
-  template: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  template: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Order = {
@@ -749,7 +752,7 @@ export type ProductCustomizationField = {
   required: string;
   is_module: string;
   is_deleted: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type ProductFeatureValue = {
@@ -766,7 +769,7 @@ export type ProductFeatureValue = {
 export type ProductFeature = {
   id: string;
   position: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type ProductOptionValue = {
@@ -774,7 +777,7 @@ export type ProductOptionValue = {
   id_attribute_group: string;
   color: string;
   position: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type ProdutOption = {
@@ -782,8 +785,8 @@ export type ProdutOption = {
   is_color_group: string;
   group_type: string;
   position: string;
-  name: LanguageValue;
-  public_name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  public_name: LanguageValue[] | LanguageValuesCreate;
   associations: {
     product_option_value: {
       id: string;
@@ -805,9 +808,9 @@ export type Product = {
   reference: string;
   price: string;
   state: string;
-  name: LanguageValue;
-  description: LanguageValue;
-  description_short: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  description: LanguageValue[] | LanguageValuesCreate;
+  description_short: LanguageValue[] | LanguageValuesCreate;
   minimal_quantity: string;
   id: string;
   id_manufacturer: string;
@@ -868,7 +871,7 @@ export type Product = {
   meta_description: string;
   meta_keywords: string;
   meta_title: string;
-  link_rewrite: LanguageValue;
+  link_rewrite: LanguageValue[] | LanguageValuesCreate;
   available_now: string;
   available_later: string;
   associations: {
@@ -1010,7 +1013,7 @@ export type StockMovementReason = {
   deleted: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type StockMovement = {
@@ -1025,7 +1028,7 @@ export type StockMovement = {
   id_stock_mvt_reason: string;
   id_order: string;
   id_supply_order: string;
-  product_name: LanguageValue;
+  product_name: LanguageValue[] | LanguageValuesCreate;
   ean13: string;
   upc: string;
   reference: string;
@@ -1057,7 +1060,7 @@ export type Store = {
   id: string;
   id_country: string;
   id_state: string;
-  hours: LanguageValue;
+  hours: LanguageValue[] | LanguageValuesCreate;
   postcode: string;
   city: string;
   latitude: string;
@@ -1068,10 +1071,10 @@ export type Store = {
   active: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue;
-  address1: LanguageValue;
-  address2: LanguageValue;
-  note: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
+  address1: LanguageValue[] | LanguageValuesCreate;
+  address2: LanguageValue[] | LanguageValuesCreate;
+  note: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type Supplier = {
@@ -1081,10 +1084,10 @@ export type Supplier = {
   active: string;
   date_add: string;
   date_upd: string;
-  description: LanguageValue;
-  meta_title: LanguageValue;
-  meta_description: LanguageValue;
-  meta_keywords: LanguageValue;
+  description: LanguageValue[] | LanguageValuesCreate;
+  meta_title: LanguageValue[] | LanguageValuesCreate;
+  meta_description: LanguageValue[] | LanguageValuesCreate;
+  meta_keywords: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type SupplyOrderDetail = {
@@ -1143,7 +1146,7 @@ export type SupplyOrderState = {
   pending_receipt: string;
   enclosed: string;
   color: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type SupplyOrder = {
@@ -1208,12 +1211,12 @@ export type Tax = {
   rate: string;
   active: string;
   deleted: string;
-  name: LanguageValue;
+  name: LanguageValue[] | LanguageValuesCreate;
 };
 
 export type TranslatedConfiguration = {
   id: string;
-  value: LanguageValue;
+  value: LanguageValue[] | LanguageValuesCreate;
   date_add: string;
   date_upd: string;
   name: string;
