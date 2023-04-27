@@ -10,16 +10,97 @@ npm install @kasual-business/prestashop-api
 
 ## Usage/Examples
 
+#### Initialize the connection
+
 ```javascript
-import { init, products } from '@kasual-business/prestashop-api';
+import { init } from "@kasual-business/prestashop-api";
 
-// Init the api url and key (without the / at the end of the url)
-init('https://my-prestashop', 'my-api-key');
+// Init the api url and api key
+init("https://my-prestashop", "my-api-key");
+```
 
-export default () => {
-  // List all products
-  const response = await products.getAll();
-}
+#### Import
+
+```javascript
+import prestashopAPI, { products } from "@kasual/prestashop-api";
+
+await prestashopAPI.products.getAll();
+// or
+await products.getAll();
+```
+
+#### List all
+
+```javascript
+// List all products
+await products.getAll();
+```
+
+#### Filter on name with exact match
+
+```javascript
+// List all products having 1 as id_supplier
+await products.getAll({
+  filters: [{ key: "id_supplier", value: 1 }],
+});
+```
+
+#### Filter on name with containing operator
+
+```javascript
+// List all products containing "orange" in name
+await products.getAll({
+  filters: [{ key: "name", value: "orange", operator: "contains" }],
+});
+```
+
+#### Sort
+
+```javascript
+// List all products and sort on id DESC
+await products.getAll({
+  sort: ["id_DESC"],
+});
+```
+
+#### Display
+
+```javascript
+// List all products and display only id and name
+await products.getAll({
+  display: ["id", "name"],
+});
+```
+
+#### Pagination
+
+```javascript
+// List all products and use skip and limit to paginate
+await products.getAll({
+  skip: 0,
+  limit: 10,
+});
+```
+
+#### Create
+
+```javascript
+// Create a product
+await products.create({
+  name: "name",
+  // ...rest of the mandatory values
+});
+```
+
+#### Update
+
+```javascript
+// Update product with id 1
+await products.update(1, {
+  id: "1", // You need to add the id here too
+  name: "new name",
+  // ...rest of the mandatory values
+});
 ```
 
 ## API Reference
