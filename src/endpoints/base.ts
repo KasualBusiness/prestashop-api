@@ -8,7 +8,7 @@ import {
 import { getAllCall, getCall, postCall, putCall } from '../utils/calls';
 import { PrestashopAPIResponse } from '../types/calls.type';
 
-class Common<T> {
+class Base<T> {
   endpoint: Endpoint;
 
   constructor(endpoint: Endpoint) {
@@ -79,4 +79,4 @@ class Common<T> {
   };
 }
 
-export default Common;
+export default Base;

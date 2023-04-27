@@ -4,10 +4,10 @@ import bcrypt from 'bcrypt';
 import { call } from '../';
 import { Customer } from '../types/prestashop.type';
 import { LoginResponse } from '../types/calls.type';
-import Common from './common';
+import Base from './base';
 import { Endpoint } from '../enums/endpoint.enum';
 
-class Customers extends Common<Customer> {
+class Customers extends Base<Customer> {
   constructor() {
     super(Endpoint.customers);
   }
