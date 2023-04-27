@@ -1,5 +1,6 @@
-import { isAxiosError } from 'axios';
+import axios, { AxiosError, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
+import qs from 'qs';
 import {
   Filter,
   GetAllParams,
@@ -7,10 +8,13 @@ import {
   PostParams,
   PutParams,
 } from '../types/global.type';
-import { call } from '../';
-import qs from 'qs';
 import { Endpoint } from '../enums/endpoint.enum';
-import { PrestashopAPIResponse } from '../types/calls.type';
+import {
+  CallParams,
+  PrestashopAPIResponse,
+  PrestashopErrorResponse,
+} from '../types/calls.type';
+import { config } from '../config/index';
 
 /**
  * Generate url SearchParams.
@@ -110,6 +114,40 @@ export const generateGetAllURLSearchParams = (
   }
 
   return searchParams;
+};
+
+/**
+ * Directly call the prestashop webservices.
+ *
+ * @param param0
+ * @returns
+ */
+export const call = async <T>({
+  method,
+  path,
+  params,
+  body,
+  headers,
+  paramsSerializer,
+}: CallParams) => {
+  const { url, key } = config;
+
+  const response = await axios<Record<Endpoint, T>>({
+    method,
+    url: `${url}/api${path}`,
+    params: {
+      ...params,
+      ws_key: key,
+      output_format: 'JSON',
+    },
+    paramsSerializer,
+    data: body,
+    headers,
+  }).catch((error: AxiosError<PrestashopErrorResponse<T>>) => {
+    return error;
+  });
+
+  return response;
 };
 
 /**
