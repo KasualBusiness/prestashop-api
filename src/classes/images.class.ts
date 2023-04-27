@@ -3,7 +3,7 @@ import FormData from 'form-data';
 import { AxiosResponse } from 'axios';
 import { call } from '../utils/calls';
 
-class Images {
+export class Images {
   /**
    * Create an image.
    * It needs the product id and the path of the file.
@@ -32,5 +32,3 @@ class Images {
     return response;
   };
 }
-
-export default Images;

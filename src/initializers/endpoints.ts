@@ -66,7 +66,7 @@ import {
   WeightRange,
   Zone,
 } from '../types/prestashop.type';
-import { Base, Customers } from '../classes';
+import { Base, Customers, Images } from '../classes';
 
 /**
  * Initiliaze and export all endpoints.
@@ -100,6 +100,7 @@ export const employees = new Base<Employee>(Endpoint.employees);
 export const groups = new Base<Group>(Endpoint.groups);
 export const guests = new Base<Guest>(Endpoint.guests);
 export const imageTypes = new Base<ImageType>(Endpoint.imageTypes);
+export const images = new Images();
 export const languages = new Base<Language>(Endpoint.languages);
 export const manufacturers = new Base<Manufacturer>(Endpoint.manufacturers);
 export const messages = new Base<Message>(Endpoint.messages);
