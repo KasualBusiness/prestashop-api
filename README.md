@@ -680,3 +680,9 @@ const listProducts = async () => {
 ### Operator
 
 Operator can be `'start'`, `'end'`, `'contains'` and `'strict'`.
+
+## Tests
+
+```bash
+npm run test
+```
