@@ -10,7 +10,7 @@ import {
 import { call } from '../';
 import qs from 'qs';
 import { Endpoint } from '../enums/endpoint.enum';
-import { PrestashopNodeAPIResponse } from '../types/calls.type';
+import { PrestashopAPIResponse } from '../types/calls.type';
 
 /**
  * Generate url SearchParams.
@@ -122,7 +122,7 @@ export const generateGetAllURLSearchParams = (
 export const getAllCall = async <T>(
   endpoint: Endpoint,
   params: GetAllParams
-): Promise<PrestashopNodeAPIResponse<T[]>> => {
+): Promise<PrestashopAPIResponse<T[]>> => {
   const response = await call<T[]>({
     method: 'GET',
     path: `/${endpoint}`,
@@ -162,7 +162,7 @@ export const getCall = async <T>(
   endpoint: Endpoint,
   id: number,
   params: GetParams | undefined = undefined
-): Promise<PrestashopNodeAPIResponse<T>> => {
+): Promise<PrestashopAPIResponse<T>> => {
   const searchParams = generateURLSearchParams(params);
 
   const response = await call<T>({
@@ -201,7 +201,7 @@ export const postCall = async <T>(
   endpoint: Endpoint,
   body: Partial<T>,
   params: PostParams | undefined = undefined
-): Promise<PrestashopNodeAPIResponse<T>> => {
+): Promise<PrestashopAPIResponse<T>> => {
   const xml = create({ prestashop: { [endpoint]: body } }).end({
     prettyPrint: true,
   });
@@ -246,7 +246,7 @@ export const putCall = async <T>(
   id: number,
   body: Partial<T>,
   params: PutParams | undefined = undefined
-): Promise<PrestashopNodeAPIResponse<T>> => {
+): Promise<PrestashopAPIResponse<T>> => {
   const xml = create({ prestashop: { [endpoint]: body } }).end({
     prettyPrint: true,
   });
