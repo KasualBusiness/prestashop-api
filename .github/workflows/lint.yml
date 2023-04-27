@@ -1,0 +1,15 @@
+name: Lint
+
+on:
+  push:
+    branches:
+      - main
+      - develop
+
+jobs:
+  run-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: npm ci
+      - run: npm run lint

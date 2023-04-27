@@ -1,0 +1,274 @@
+import { isAxiosError } from 'axios';
+import { create } from 'xmlbuilder2';
+import {
+  Filter,
+  GetAllParams,
+  GetParams,
+  PostParams,
+  PutParams,
+} from '../types/global.type';
+import { call } from '../';
+import qs from 'qs';
+import { Endpoint } from '../enums/endpoint.enum';
+import { PrestashopNodeAPIResponse } from '../types/calls.type';
+
+/**
+ * Handle the listing of entities on prestashop with filtering and pagination.
+ *
+ * @param path
+ * @param params
+ * @returns
+ */
+export const getAllCall = async <T>(
+  endpoint: Endpoint,
+  params: GetAllParams
+): Promise<PrestashopNodeAPIResponse<T[]>> => {
+  const response = await call<T[]>({
+    method: 'GET',
+    path: `/${endpoint}`,
+    paramsSerializer: {
+      serialize: (serializeParams) => {
+        const searchParams = new URLSearchParams();
+
+        /** Display params */
+        if (Array.isArray(params.display)) {
+          searchParams.set('display', `[${params.display.join(',')}]`);
+        } else {
+          searchParams.set('display', params.display || 'full');
+        }
+
+        /** Limit */
+        if (params.limit && params.skip) {
+          searchParams.set('limit', `${params.skip},${params.limit}`);
+        } else if (params.limit) {
+          searchParams.set('limit', params.limit.toString());
+        }
+
+        /** Filters */
+        if (params.filters) {
+          params.filters.forEach((filter: Filter) => {
+            const key = `filter[${filter.key}]`;
+            const filterExists = !!searchParams.get(key);
+
+            /**
+             * If there are multiple filters with the same key we apply the OR operator of prestashop.
+             * Otherwise we set the filter normally.
+             * Example: [{ key: "id", value: 1 }, { key: "id", value: 2 }]
+             * will become filter[id]=[1|2]
+             **/
+            if (filterExists) {
+              searchParams.set(
+                key,
+                `[${searchParams.get(key)?.replace(/\[|\]/g, '')}|${
+                  filter.value
+                }]`
+              );
+            } else {
+              searchParams.set(key, `[${filter.value}]`);
+            }
+
+            /**
+             * If there are no multiple filters with the same key, we apply the operator.
+             * Prestashop's webservices don't handle the combination of % and OR.
+             **/
+            if (!filterExists) {
+              const initializedFilter = searchParams.get(key);
+
+              switch (filter.operator) {
+                case 'start':
+                  searchParams.set(key, `%${initializedFilter}`);
+                  break;
+
+                case 'end':
+                  searchParams.set(key, `${initializedFilter}%`);
+                  break;
+
+                case 'contains':
+                  searchParams.set(key, `%${initializedFilter}%`);
+                  break;
+
+                default:
+                  break;
+              }
+            }
+          });
+        }
+
+        if (params.sort) {
+          searchParams.set('sort', `[${params.sort.toString()}]`);
+        }
+
+        return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
+      },
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data: response.response?.data
+        ? response.response?.data[endpoint]
+        : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data: response.data ? response.data[endpoint] : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the fetch of a single entity on prestashop with params.
+ *
+ * @param path
+ * @param id
+ * @param params
+ * @returns
+ */
+export const getCall = async <T>(
+  endpoint: Endpoint,
+  id: number,
+  params: GetParams
+): Promise<PrestashopNodeAPIResponse<T>> => {
+  let displayParams = '';
+
+  if (params.display) {
+    if (params.display !== 'full') {
+      displayParams = `[${params.display.join(',')}]`;
+    } else {
+      displayParams = params.display;
+    }
+  } else {
+    displayParams = 'full';
+  }
+
+  const response = await call<T>({
+    method: 'GET',
+    path: `/${endpoint}/${id}`,
+    paramsSerializer: {
+      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data: response.response?.data
+        ? response.response?.data[endpoint]
+        : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data: response.data ? response.data[endpoint] : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the creation of an entity on prestashop.
+ *
+ * @param path
+ * @param id
+ * @param params
+ * @returns
+ */
+export const postCall = async <T>(
+  endpoint: Endpoint,
+  body: Partial<T>,
+  params: PostParams | undefined = undefined
+): Promise<PrestashopNodeAPIResponse<T>> => {
+  const xml = create({ prestashop: { [endpoint]: body } }).end({
+    prettyPrint: true,
+  });
+
+  let displayParams = '';
+
+  if (params?.display) {
+    if (params.display !== 'full') {
+      displayParams = `[${params.display.join(',')}]`;
+    } else {
+      displayParams = params.display;
+    }
+  } else {
+    displayParams = 'full';
+  }
+
+  const response = await call<T>({
+    method: 'POST',
+    path: `/${endpoint}`,
+    body: xml,
+    paramsSerializer: {
+      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data: response.response?.data
+        ? response.response?.data[endpoint]
+        : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data: response.data ? response.data[endpoint] : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the update of an entity on prestashop.
+ *
+ * @param path
+ * @param id
+ * @param params
+ * @returns
+ */
+export const putCall = async <T>(
+  endpoint: Endpoint,
+  id: number,
+  body: Partial<T>,
+  params: PutParams | undefined = undefined
+): Promise<PrestashopNodeAPIResponse<T>> => {
+  const xml = create({ prestashop: { [endpoint]: body } }).end({
+    prettyPrint: true,
+  });
+
+  let displayParams = '';
+
+  if (params?.display) {
+    if (params.display !== 'full') {
+      displayParams = `[${params.display.join(',')}]`;
+    } else {
+      displayParams = params.display;
+    }
+  } else {
+    displayParams = 'full';
+  }
+
+  const response = await call<T>({
+    method: 'PUT',
+    path: `/${endpoint}/${id}`,
+    body: xml,
+    paramsSerializer: {
+      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data: response.response?.data
+        ? response.response?.data[endpoint]
+        : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data: response.data ? response.data[endpoint] : undefined,
+    errors: undefined,
+  };
+};
