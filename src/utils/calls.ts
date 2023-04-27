@@ -19,15 +19,17 @@ import { PrestashopNodeAPIResponse } from '../types/calls.type';
  * @returns
  */
 export const generateURLSearchParams = (
-  params: GetAllParams | GetParams | PostParams | PutParams
+  params: GetAllParams | GetParams | PostParams | PutParams | undefined
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
   /** Display params */
-  if (Array.isArray(params.display)) {
+  if (params && Array.isArray(params.display)) {
     searchParams.set('display', `[${params.display.join(',')}]`);
-  } else {
+  } else if (params && !Array.isArray(params.display)) {
     searchParams.set('display', params.display || 'full');
+  } else {
+    searchParams.set('display', 'full');
   }
 
   return searchParams;
@@ -159,25 +161,16 @@ export const getAllCall = async <T>(
 export const getCall = async <T>(
   endpoint: Endpoint,
   id: number,
-  params: GetParams
+  params: GetParams | undefined = undefined
 ): Promise<PrestashopNodeAPIResponse<T>> => {
-  let displayParams = '';
-
-  if (params.display) {
-    if (params.display !== 'full') {
-      displayParams = `[${params.display.join(',')}]`;
-    } else {
-      displayParams = params.display;
-    }
-  } else {
-    displayParams = 'full';
-  }
+  const searchParams = generateURLSearchParams(params);
 
   const response = await call<T>({
     method: 'GET',
     path: `/${endpoint}/${id}`,
     paramsSerializer: {
-      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+      serialize: (params) =>
+        `${qs.stringify(params)}&${searchParams.toString()}`,
     },
   });
 
@@ -213,24 +206,15 @@ export const postCall = async <T>(
     prettyPrint: true,
   });
 
-  let displayParams = '';
-
-  if (params?.display) {
-    if (params.display !== 'full') {
-      displayParams = `[${params.display.join(',')}]`;
-    } else {
-      displayParams = params.display;
-    }
-  } else {
-    displayParams = 'full';
-  }
+  const searchParams = generateURLSearchParams(params);
 
   const response = await call<T>({
     method: 'POST',
     path: `/${endpoint}`,
     body: xml,
     paramsSerializer: {
-      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+      serialize: (params) =>
+        `${qs.stringify(params)}&${searchParams.toString()}`,
     },
   });
 
@@ -267,24 +251,15 @@ export const putCall = async <T>(
     prettyPrint: true,
   });
 
-  let displayParams = '';
-
-  if (params?.display) {
-    if (params.display !== 'full') {
-      displayParams = `[${params.display.join(',')}]`;
-    } else {
-      displayParams = params.display;
-    }
-  } else {
-    displayParams = 'full';
-  }
+  const searchParams = generateURLSearchParams(params);
 
   const response = await call<T>({
     method: 'PUT',
     path: `/${endpoint}/${id}`,
     body: xml,
     paramsSerializer: {
-      serialize: (params) => `${qs.stringify(params)}&display=${displayParams}`,
+      serialize: (params) =>
+        `${qs.stringify(params)}&${searchParams.toString()}`,
     },
   });
 
