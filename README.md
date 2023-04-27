@@ -11,7 +11,7 @@ npm install @kasual-business/prestashop-api
 ## Usage/Examples
 
 ```javascript
-import { init, products } from 'prestashop-node-api';
+import { init, products } from '@kasual-business/prestashop-api';
 
 // Init the api url and key (without the / at the end of the url)
 init('https://my-prestashop', 'my-api-key');
