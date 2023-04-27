@@ -1,6 +1,6 @@
 {
   "name": "@kasual-business/prestashop-api",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Prestashop's webservices calls simplified",
   "repository": {
     "type": "git",
