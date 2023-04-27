@@ -1,4 +1,4 @@
-# Prestcall
+# prestashop-api
 
 Prestashop's webservices calls simplified.
 
