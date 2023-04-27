@@ -6,7 +6,7 @@ import {
   PutParams,
 } from '../types/global.type';
 import { getAllCall, getCall, postCall, putCall } from '../utils/calls';
-import { PrestashopNodeAPIResponse } from '../types/calls.type';
+import { PrestashopAPIResponse } from '../types/calls.type';
 
 class Common<T> {
   endpoint: Endpoint;
@@ -23,7 +23,7 @@ class Common<T> {
    */
   getAll = async (
     params: GetAllParams | undefined = { display: 'full' }
-  ): Promise<PrestashopNodeAPIResponse<T[]>> => {
+  ): Promise<PrestashopAPIResponse<T[]>> => {
     const response = await getAllCall<T>(this.endpoint, params);
 
     return response;
@@ -39,7 +39,7 @@ class Common<T> {
   get = async (
     id: number,
     params: GetParams | undefined = { display: 'full' }
-  ): Promise<PrestashopNodeAPIResponse<T>> => {
+  ): Promise<PrestashopAPIResponse<T>> => {
     const response = await getCall<T>(this.endpoint, id, params);
 
     return response;
@@ -55,7 +55,7 @@ class Common<T> {
   create = async (
     body: Partial<T>,
     params: PostParams | undefined = { display: 'full' }
-  ): Promise<PrestashopNodeAPIResponse<T>> => {
+  ): Promise<PrestashopAPIResponse<T>> => {
     const response = await postCall<T>(this.endpoint, body, params);
 
     return response;
@@ -72,7 +72,7 @@ class Common<T> {
     id: number,
     body: Partial<T>,
     params: PutParams | undefined = { display: 'full' }
-  ): Promise<PrestashopNodeAPIResponse<T>> => {
+  ): Promise<PrestashopAPIResponse<T>> => {
     const response = await putCall<T>(this.endpoint, id, body, params);
 
     return response;
