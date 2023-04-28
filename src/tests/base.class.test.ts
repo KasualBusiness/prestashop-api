@@ -8,6 +8,7 @@ import {
   mockProductsOnlyID,
   mockProductsOnlyIDEquals1,
   mockProductsOnlyNameContainsOra,
+  mockProductsIdDesc,
 } from './mocks';
 
 describe('Base', async () => {
@@ -54,5 +55,14 @@ describe('Base', async () => {
     });
 
     expect(data).toStrictEqual(mockProductsOnlyNameContainsOra);
+  });
+
+  test('Should sort by id DESC', async () => {
+    const products = new Base<Product>(Endpoint.products);
+    const { data } = await products.getAll({
+      sort: ['id_DESC'],
+    });
+
+    expect(data).toStrictEqual(mockProductsIdDesc);
   });
 });
