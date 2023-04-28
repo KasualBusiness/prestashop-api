@@ -7,6 +7,7 @@ import {
   mockHTTPCalls,
   mockProductsOnlyID,
   mockProductsOnlyIDEquals1,
+  mockProductsOnlyNameContainsOra,
 } from './mocks';
 
 describe('Base', async () => {
@@ -44,5 +45,14 @@ describe('Base', async () => {
     });
 
     expect(data).toStrictEqual(mockProductsOnlyIDEquals1);
+  });
+
+  test('Should filter on name containing "ora"', async () => {
+    const products = new Base<Product>(Endpoint.products);
+    const { data } = await products.getAll({
+      filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
+    });
+
+    expect(data).toStrictEqual(mockProductsOnlyNameContainsOra);
   });
 });
