@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { GetAllParams } from '..';
-import { generateGetAllURLSearchParams } from './calls';
+import { generateGetAllURLSearchParams } from '../utils/calls';
 
 describe('Calls', async () => {
   describe('GetAll', () => {
