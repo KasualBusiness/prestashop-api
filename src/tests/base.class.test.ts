@@ -2,7 +2,12 @@ import { describe, test, expect, beforeAll } from 'vitest';
 import { Product } from '..';
 import { Base } from '../classes/base.class';
 import { Endpoint } from '../enums/endpoint.enum';
-import { mockProducts, mockHTTPCalls, mockProductsOnlyID } from './mocks';
+import {
+  mockProducts,
+  mockHTTPCalls,
+  mockProductsOnlyID,
+  mockProductsOnlyIDEquals1,
+} from './mocks';
 
 describe('Base', async () => {
   beforeAll(() => {
@@ -30,5 +35,14 @@ describe('Base', async () => {
     const { data } = await products.getAll({ display: ['id'] });
 
     expect(data).toStrictEqual(mockProductsOnlyID);
+  });
+
+  test('Should filter on id', async () => {
+    const products = new Base<Product>(Endpoint.products);
+    const { data } = await products.getAll({
+      filters: [{ key: 'id', value: 1 }],
+    });
+
+    expect(data).toStrictEqual(mockProductsOnlyIDEquals1);
   });
 });
