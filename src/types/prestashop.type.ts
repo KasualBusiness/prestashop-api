@@ -5,7 +5,7 @@ export type LanguageValuesCreate = {
   }[];
 };
 
-export type LanguageValue = {
+export type PrestashopBasicValueObject = {
   id: string;
   value: string;
 };
@@ -42,8 +42,8 @@ export type Attachment = {
   file_name: string;
   file_size: string;
   mime: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  description: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   associations: {
     products: {
       product: {
@@ -75,7 +75,7 @@ export type Carrier = {
   external_module_name: string;
   need_range: string;
   position: string;
-  delay: LanguageValue[] | LanguageValuesCreate | string;
+  delay: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type CartRule = {
@@ -112,7 +112,7 @@ export type CartRule = {
   active: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Cart = {
@@ -155,12 +155,15 @@ export type Category = {
   position: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  link_rewrite: LanguageValue[] | LanguageValuesCreate | string;
-  description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_title: LanguageValue[] | LanguageValuesCreate | string;
-  meta_description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_keywords: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  link_rewrite: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   associations: {
     categories: {
       id: string;
@@ -188,7 +191,7 @@ export type Combination = {
   weight: string;
   unit_price_impact: string;
   minimal_quantity: string;
-  low_stock_threshold: string;
+  low_stock_threshold: string | null;
   low_stock_alert: string;
   default_on: string;
   available_date: string;
@@ -216,8 +219,8 @@ export type Contact = {
   id: string;
   email: string;
   customer_service: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  description: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Content = {
@@ -226,12 +229,15 @@ export type Content = {
   position: string;
   indexation: string;
   active: string;
-  meta_description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_keywords: LanguageValue[] | LanguageValuesCreate | string;
-  meta_title: LanguageValue[] | LanguageValuesCreate | string;
-  head_seo_title: LanguageValue[] | LanguageValuesCreate | string;
-  link_rewrite: LanguageValue[] | LanguageValuesCreate | string;
-  content: LanguageValue[] | LanguageValuesCreate | string;
+  meta_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  head_seo_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  link_rewrite: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  content: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ContentManagementSystem = {
@@ -240,12 +246,15 @@ export type ContentManagementSystem = {
   position: string;
   indexation: string;
   active: string;
-  meta_description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_keywords: LanguageValue[] | LanguageValuesCreate | string;
-  meta_title: LanguageValue[] | LanguageValuesCreate | string;
-  head_seo_title: LanguageValue[] | LanguageValuesCreate | string;
-  link_rewrite: LanguageValue[] | LanguageValuesCreate | string;
-  content: LanguageValue[] | LanguageValuesCreate | string;
+  meta_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  head_seo_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  link_rewrite: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  content: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Country = {
@@ -260,14 +269,14 @@ export type Country = {
   need_zip_code: string;
   zip_code_format: string;
   display_tax_label: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Currency = {
   id: string;
-  names: LanguageValue[] | LanguageValuesCreate | string;
+  names: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   name: string;
-  symbol: LanguageValue[] | LanguageValuesCreate | string;
+  symbol: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   iso_code: string;
   numeric_iso_code: string;
   precision: string;
@@ -276,7 +285,7 @@ export type Currency = {
   active: string;
   unofficial: string;
   modified: string;
-  pattern: LanguageValue[] | LanguageValuesCreate | string;
+  pattern: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type CustomerMessage = {
@@ -424,7 +433,7 @@ export type Group = {
   show_prices: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Guest = {
@@ -477,11 +486,17 @@ export type Manufacturer = {
     name: string;
     date_add: string;
     date_upd: string;
-    description: LanguageValue[] | LanguageValuesCreate | string;
-    short_description: LanguageValue[] | LanguageValuesCreate | string;
-    meta_title: LanguageValue[] | LanguageValuesCreate | string;
-    meta_description: LanguageValue[] | LanguageValuesCreate | string;
-    meta_keywords: LanguageValue[] | LanguageValuesCreate | string;
+    description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+    short_description:
+      | PrestashopBasicValueObject[]
+      | LanguageValuesCreate
+      | string;
+    meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+    meta_description:
+      | PrestashopBasicValueObject[]
+      | LanguageValuesCreate
+      | string;
+    meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
     associations: {
       addresses: {
         id: string;
@@ -667,8 +682,8 @@ export type OrderState = {
   pdf_delivery: string;
   pdf_invoice: string;
   deleted: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  template: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  template: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Order = {
@@ -752,7 +767,7 @@ export type ProductCustomizationField = {
   required: string;
   is_module: string;
   is_deleted: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ProductFeatureValue = {
@@ -769,7 +784,7 @@ export type ProductFeatureValue = {
 export type ProductFeature = {
   id: string;
   position: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ProductOptionValue = {
@@ -777,7 +792,7 @@ export type ProductOptionValue = {
   id_attribute_group: string;
   color: string;
   position: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ProdutOption = {
@@ -785,8 +800,8 @@ export type ProdutOption = {
   is_color_group: string;
   group_type: string;
   position: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  public_name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  public_name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   associations: {
     product_option_value: {
       id: string;
@@ -808,18 +823,21 @@ export type Product = {
   reference: string;
   price: string;
   state: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  description: LanguageValue[] | LanguageValuesCreate | string;
-  description_short: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  description_short:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
   minimal_quantity: string;
   id: string;
   id_manufacturer: string;
   id_supplier: string;
   id_category_default: string;
-  new: string;
+  new: string | null;
   cache_default_attribute: string;
   id_default_image: string;
-  id_default_combination: string;
+  id_default_combination: string | number;
   id_tax_rules_group: string;
   position_in_category: string | null;
   type: string;
@@ -829,7 +847,7 @@ export type Product = {
   width: string;
   height: string;
   depth: string;
-  weight: number;
+  weight: number | string;
   quantity_discount: string;
   ean13: string;
   isbn: string;
@@ -839,13 +857,13 @@ export type Product = {
   cache_has_attachments: string;
   is_virtual: string;
   additional_delivery_times: string;
-  delivery_in_stock: string;
-  delivery_out_stock: string;
+  delivery_in_stock: string | PrestashopBasicValueObject[];
+  delivery_out_stock: string | PrestashopBasicValueObject[];
   product_type: string;
   on_sale: string;
   online_only: string;
   ecotax: string;
-  low_stock_threshold: string;
+  low_stock_threshold: string | null;
   low_stock_alert: string;
   wholesale_price: string;
   unity: string;
@@ -868,50 +886,46 @@ export type Product = {
   date_add: string;
   date_upd: string;
   pack_stock_type: string;
-  meta_description: string;
-  meta_keywords: string;
-  meta_title: string;
-  link_rewrite: LanguageValue[] | LanguageValuesCreate | string;
-  available_now: string;
-  available_later: string;
-  associations: {
-    categories: {
-      category: {
-        id: number;
-      }[];
-    };
-    images: {
-      id: number;
+  meta_description: string | PrestashopBasicValueObject[];
+  meta_keywords: string | PrestashopBasicValueObject[];
+  meta_title: string | PrestashopBasicValueObject[];
+  link_rewrite: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  available_now: string | PrestashopBasicValueObject[];
+  available_later: string | PrestashopBasicValueObject[];
+  associations?: {
+    categories?: {
+      id: number | string;
     }[];
-    combinations: {
-      id: number;
+    images?: {
+      id: number | string;
     }[];
-    product_option_values: {
-      id: number;
+    combinations?: {
+      id: number | string;
     }[];
-    product_features: {
-      product_feature: {
-        id: number;
-        id_feature_value: number;
-      }[];
-    };
-    tags: {
-      id: number;
+    product_option_values?: {
+      id: number | string;
     }[];
-    stock_availables: {
-      id: number;
-      id_product_attribute: number;
+    product_features?: {
+      id: number | string;
+      id_feature_value: number | string;
     }[];
-    attachments: {
-      id: number;
+    tags?: {
+      id: number | string;
     }[];
-    accessories: {
-      id: number;
+    stock_availables?: {
+      id: number | string;
+      id_product_attribute: number | string;
     }[];
-    product_bundle: {
-      id: number;
-      id_product_attribute: number;
-      quantity: number;
+    attachments?: {
+      id: number | string;
+    }[];
+    accessories?: {
+      id: number | string;
+    }[];
+    product_bundle?: {
+      id: number | string;
+      id_product_attribute: number | string;
+      quantity: number | string;
     }[];
   };
 };
@@ -1013,7 +1027,7 @@ export type StockMovementReason = {
   deleted: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type StockMovement = {
@@ -1028,7 +1042,7 @@ export type StockMovement = {
   id_stock_mvt_reason: string;
   id_order: string;
   id_supply_order: string;
-  product_name: LanguageValue[] | LanguageValuesCreate | string;
+  product_name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   ean13: string;
   upc: string;
   reference: string;
@@ -1060,7 +1074,7 @@ export type Store = {
   id: string;
   id_country: string;
   id_state: string;
-  hours: LanguageValue[] | LanguageValuesCreate | string;
+  hours: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   postcode: string;
   city: string;
   latitude: string;
@@ -1071,10 +1085,10 @@ export type Store = {
   active: string;
   date_add: string;
   date_upd: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
-  address1: LanguageValue[] | LanguageValuesCreate | string;
-  address2: LanguageValue[] | LanguageValuesCreate | string;
-  note: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  address1: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  address2: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  note: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type Supplier = {
@@ -1084,10 +1098,13 @@ export type Supplier = {
   active: string;
   date_add: string;
   date_upd: string;
-  description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_title: LanguageValue[] | LanguageValuesCreate | string;
-  meta_description: LanguageValue[] | LanguageValuesCreate | string;
-  meta_keywords: LanguageValue[] | LanguageValuesCreate | string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type SupplyOrderDetail = {
@@ -1146,7 +1163,7 @@ export type SupplyOrderState = {
   pending_receipt: string;
   enclosed: string;
   color: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type SupplyOrder = {
@@ -1211,12 +1228,12 @@ export type Tax = {
   rate: string;
   active: string;
   deleted: string;
-  name: LanguageValue[] | LanguageValuesCreate | string;
+  name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type TranslatedConfiguration = {
   id: string;
-  value: LanguageValue[] | LanguageValuesCreate | string;
+  value: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   date_add: string;
   date_upd: string;
   name: string;

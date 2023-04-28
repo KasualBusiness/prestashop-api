@@ -1,8 +1,12 @@
 {
   "name": "@kasual-business/prestashop-api",
-  "version": "1.0.6",
-  "description": "Prestashop's webservices calls simplified",
-  "keywords": ["prestashop", "node", "api"],
+  "version": "1.0.7",
+  "description": "Prestashop node API",
+  "keywords": [
+    "prestashop",
+    "node",
+    "api"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/KasualBusiness/prestashop-api.git"
@@ -44,10 +48,10 @@
     "@types/qs": "^6.9.7",
     "@typescript-eslint/eslint-plugin": "^5.57.0",
     "@typescript-eslint/parser": "^5.57.0",
-    "dotenv": "^16.0.3",
     "eslint": "^8.36.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-prettier": "^4.2.1",
+    "nock": "^13.3.1",
     "prettier": "2.8.7",
     "typescript": "^5.0.2",
     "vitest": "^0.29.8"

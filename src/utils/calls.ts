@@ -27,7 +27,7 @@ export const generateURLSearchParams = (
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
-  /** Display params */
+  /** Display */
   if (params && Array.isArray(params.display)) {
     searchParams.set('display', `[${params.display.join(',')}]`);
   } else if (params && !Array.isArray(params.display)) {
@@ -109,6 +109,7 @@ export const generateGetAllURLSearchParams = (
     });
   }
 
+  /** Sort */
   if (params.sort) {
     searchParams.set('sort', `[${params.sort.toString()}]`);
   }
