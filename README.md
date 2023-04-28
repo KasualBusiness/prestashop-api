@@ -19,7 +19,7 @@ import { init } from "@kasual-business/prestashop-api";
 init("https://my-prestashop", "my-api-key");
 ```
 
-#### Import
+#### Use
 
 ```javascript
 import prestashopAPI, { products } from "@kasual/prestashop-api";
