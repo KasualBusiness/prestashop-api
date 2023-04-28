@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeAll, beforeEach } from 'vitest';
+import { describe, test, expect, beforeEach } from 'vitest';
 import { Product } from '..';
 import { Base } from '../classes/base.class';
 import { Endpoint } from '../enums/endpoint.enum';
