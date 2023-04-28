@@ -3,6 +3,7 @@ import { Product } from '../types/prestashop.type';
 import { init } from '../config';
 import { generateGetAllURLSearchParams } from '../utils/calls';
 import { GetAllParams } from '../types/global.type';
+import { Endpoint } from '../enums/endpoint.enum';
 
 const MOCK_URL = 'http://localhost';
 const MOCK_API_KEY = 'api_key';
@@ -181,7 +182,7 @@ export const mockProductsIdDesc = mockProducts.sort(
   (a, b) => parseInt(b.id) - parseInt(a.id)
 );
 
-const mockGetAllQueryParams = (params: GetAllParams): URLSearchParams => {
+const mockQueryParams = (params: GetAllParams): URLSearchParams => {
   const searchParams = generateGetAllURLSearchParams(params);
 
   // Add default query params
@@ -196,37 +197,46 @@ export const mockHTTPCalls = () => {
 
   nock(MOCK_URL)
     .get('/api/products')
-    .query(mockGetAllQueryParams({ display: 'full' }))
-    .reply(200, { products: mockProducts })
+    .query(mockQueryParams({ display: 'full' }))
+    .reply(200, { [Endpoint.products]: mockProducts })
     .get('/api/products')
-    .query(mockGetAllQueryParams({ display: ['id'] }))
-    .reply(200, { products: mockProductsOnlyID })
+    .query(mockQueryParams({ display: ['id'] }))
+    .reply(200, { [Endpoint.products]: mockProductsOnlyID })
     .get('/api/products')
     .query(
-      mockGetAllQueryParams({
+      mockQueryParams({
         filters: [{ key: 'id', value: 1 }],
       })
     )
-    .reply(200, { products: mockProductsOnlyIDEquals1 })
+    .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
     .get('/api/products')
     .query(
-      mockGetAllQueryParams({
+      mockQueryParams({
         filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
       })
     )
-    .reply(200, { products: mockProductsOnlyIDEquals1 })
+    .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
     .get('/api/products')
     .query(
-      mockGetAllQueryParams({
+      mockQueryParams({
         sort: ['id_DESC'],
       })
     )
-    .reply(200, { products: mockProductsIdDesc })
+    .reply(200, { [Endpoint.products]: mockProductsIdDesc })
     .get('/api/products')
     .query(
-      mockGetAllQueryParams({
+      mockQueryParams({
         limit: 10,
       })
     )
-    .reply(200, { products: mockProducts.slice(0, 10) });
+    .reply(200, { [Endpoint.products]: mockProducts.slice(0, 10) })
+    .post('/api/products')
+    .query(mockQueryParams({}))
+    .reply(200, { [Endpoint.products]: { id: '2' } })
+    .put('/api/products/1')
+    .query(mockQueryParams({}))
+    .reply(200, { [Endpoint.products]: { id: '2' } })
+    .get('/api/products/1')
+    .query(mockQueryParams({}))
+    .reply(200, { [Endpoint.products]: { id: '2' } });
 };
