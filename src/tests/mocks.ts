@@ -158,14 +158,17 @@ export const mockProducts: Product[] = Array(50)
     },
   }));
 
+/** Products but only with id */
 export const mockProductsOnlyID = mockProducts.map((item) => ({
   id: item.id,
 }));
 
+/** Products but only with id = 1 */
 export const mockProductsOnlyIDEquals1 = mockProducts.filter(
   (item) => item.id === '1'
 );
 
+/** Products but only with name containing "ora" */
 export const mockProductsOnlyNameContainsOra = mockProducts.filter((item) => {
   if (typeof item.name === 'string') {
     return item.name.includes('ora');
@@ -178,6 +181,7 @@ export const mockProductsOnlyNameContainsOra = mockProducts.filter((item) => {
   return item.name.language.find((item) => item['#text'].includes('ora'));
 });
 
+/** Products sorted by id DESC */
 export const mockProductsIdDesc = mockProducts.sort(
   (a, b) => parseInt(b.id) - parseInt(a.id)
 );
@@ -192,6 +196,7 @@ const mockQueryParams = (params: GetAllParams): URLSearchParams => {
   return searchParams;
 };
 
+/** HTTP calls mocking */
 export const mockHTTPCalls = () => {
   init(MOCK_URL, MOCK_API_KEY);
 
