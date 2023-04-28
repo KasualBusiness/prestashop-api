@@ -1,4 +1,4 @@
-import { describe, test, expect, beforeAll } from 'vitest';
+import { describe, test, expect, beforeAll, beforeEach } from 'vitest';
 import { Product } from '..';
 import { Base } from '../classes/base.class';
 import { Endpoint } from '../enums/endpoint.enum';
@@ -12,36 +12,40 @@ import {
 } from './mocks';
 
 describe('Base', async () => {
-  beforeAll(() => {
+  const products = new Base<Product>(Endpoint.products);
+
+  beforeEach(() => {
     mockHTTPCalls();
   });
 
-  describe('getAll', () => {
-    test('Should have getAll, get, create and update properties', () => {
-      const products = new Base<Product>(Endpoint.products);
+  test('Should have getAll, get, create and update properties', () => {
+    expect(products).toHaveProperty('getAll');
+    expect(products).toHaveProperty('get');
+    expect(products).toHaveProperty('create');
+    expect(products).toHaveProperty('update');
+  });
 
-      expect(products).toHaveProperty('getAll');
-      expect(products).toHaveProperty('get');
-      expect(products).toHaveProperty('create');
-      expect(products).toHaveProperty('update');
+  describe('getAll', () => {
+    test('Should kick endpoint key', async () => {
+      const { data } = await products.getAll();
+
+      expect(data).not.toHaveProperty(Endpoint.products);
     });
 
     test('Should list all products with all properties', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll();
 
+      expect(data).not.toHaveProperty(Endpoint.products);
       expect(data).toStrictEqual(mockProducts);
     });
 
     test('Should list all products id', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll({ display: ['id'] });
 
       expect(data).toStrictEqual(mockProductsOnlyID);
     });
 
     test('Should filter on id', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll({
         filters: [{ key: 'id', value: 1 }],
       });
@@ -50,7 +54,6 @@ describe('Base', async () => {
     });
 
     test('Should filter on name containing "ora"', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll({
         filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
       });
@@ -59,7 +62,6 @@ describe('Base', async () => {
     });
 
     test('Should sort by id DESC', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll({
         sort: ['id_DESC'],
       });
@@ -68,12 +70,35 @@ describe('Base', async () => {
     });
 
     test('Should limit to 10 items', async () => {
-      const products = new Base<Product>(Endpoint.products);
       const { data } = await products.getAll({
         limit: 10,
       });
 
       expect(data?.length).toStrictEqual(10);
+    });
+  });
+
+  describe('get', () => {
+    test('Should kick endpoint key', async () => {
+      const { data } = await products.create({ name: 'orange2' });
+
+      expect(data).not.toHaveProperty(Endpoint.products);
+    });
+  });
+
+  describe('create', () => {
+    test('Should kick endpoint key', async () => {
+      const { data } = await products.update(1, { id: '1', name: 'name' });
+
+      expect(data).not.toHaveProperty(Endpoint.products);
+    });
+  });
+
+  describe('update', () => {
+    test('Should kick endpoint key', async () => {
+      const { data } = await products.get(1);
+
+      expect(data).not.toHaveProperty(Endpoint.products);
     });
   });
 });
