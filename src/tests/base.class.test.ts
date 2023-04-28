@@ -1,6 +1,6 @@
 import { describe, test, expect } from 'vitest';
 import { Product } from '..';
-import { Base } from './base.class';
+import { Base } from '../classes/base.class';
 import { Endpoint } from '../enums/endpoint.enum';
 
 describe('Base', async () => {
