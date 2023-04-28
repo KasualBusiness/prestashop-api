@@ -177,6 +177,10 @@ export const mockProductsOnlyNameContainsOra = mockProducts.filter((item) => {
   return item.name.language.find((item) => item['#text'].includes('ora'));
 });
 
+export const mockProductsIdDesc = mockProducts.sort(
+  (a, b) => parseInt(b.id) - parseInt(a.id)
+);
+
 const mockGetAllQueryParams = (params: GetAllParams): URLSearchParams => {
   const searchParams = generateGetAllURLSearchParams(params);
 
@@ -210,5 +214,12 @@ export const mockHTTPCalls = () => {
         filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
       })
     )
-    .reply(200, { products: mockProductsOnlyIDEquals1 });
+    .reply(200, { products: mockProductsOnlyIDEquals1 })
+    .get('/api/products')
+    .query(
+      mockGetAllQueryParams({
+        sort: ['id_DESC'],
+      })
+    )
+    .reply(200, { products: mockProductsIdDesc });
 };
