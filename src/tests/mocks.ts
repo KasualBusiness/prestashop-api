@@ -109,7 +109,7 @@ export const mockProducts: Product[] = Array(50)
     name: [
       {
         id: '1',
-        value: 'orange',
+        value: i === 0 ? 'orange' : Math.random().toString(36).substring(7), // Random name generator but keep one known (orange)
       },
     ],
     description: [
@@ -165,6 +165,18 @@ export const mockProductsOnlyIDEquals1 = mockProducts.filter(
   (item) => item.id === '1'
 );
 
+export const mockProductsOnlyNameContainsOra = mockProducts.filter((item) => {
+  if (typeof item.name === 'string') {
+    return item.name.includes('ora');
+  }
+
+  if (Array.isArray(item.name)) {
+    return item.name.find((item) => item.value.includes('ora'));
+  }
+
+  return item.name.language.find((item) => item['#text'].includes('ora'));
+});
+
 const mockGetAllQueryParams = (params: GetAllParams): URLSearchParams => {
   const searchParams = generateGetAllURLSearchParams(params);
 
@@ -188,8 +200,14 @@ export const mockHTTPCalls = () => {
     .get('/api/products')
     .query(
       mockGetAllQueryParams({
-        display: 'full',
         filters: [{ key: 'id', value: 1 }],
+      })
+    )
+    .reply(200, { products: mockProductsOnlyIDEquals1 })
+    .get('/api/products')
+    .query(
+      mockGetAllQueryParams({
+        filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
       })
     )
     .reply(200, { products: mockProductsOnlyIDEquals1 });
