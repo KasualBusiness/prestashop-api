@@ -1,6 +1,8 @@
 import nock from 'nock';
 import { Product } from '../types/prestashop.type';
 import { init } from '../config';
+import { generateGetAllURLSearchParams } from '../utils/calls';
+import { GetAllParams } from '../types/global.type';
 
 const MOCK_URL = 'http://localhost';
 const MOCK_API_KEY = 'api_key';
@@ -159,14 +161,36 @@ export const mockProductsOnlyID = mockProducts.map((item) => ({
   id: item.id,
 }));
 
+export const mockProductsOnlyIDEquals1 = mockProducts.filter(
+  (item) => item.id === '1'
+);
+
+const mockGetAllQueryParams = (params: GetAllParams): URLSearchParams => {
+  const searchParams = generateGetAllURLSearchParams(params);
+
+  // Add default query params
+  searchParams.append('ws_key', MOCK_API_KEY);
+  searchParams.append('output_format', 'JSON');
+
+  return searchParams;
+};
+
 export const mockHTTPCalls = () => {
   init(MOCK_URL, MOCK_API_KEY);
 
   nock(MOCK_URL)
     .get('/api/products')
-    .query({ ws_key: MOCK_API_KEY, output_format: 'JSON', display: '[id]' })
+    .query(mockGetAllQueryParams({ display: 'full' }))
+    .reply(200, { products: mockProducts })
+    .get('/api/products')
+    .query(mockGetAllQueryParams({ display: ['id'] }))
     .reply(200, { products: mockProductsOnlyID })
     .get('/api/products')
-    .query({ ws_key: MOCK_API_KEY, output_format: 'JSON', display: 'full' })
-    .reply(200, { products: mockProducts });
+    .query(
+      mockGetAllQueryParams({
+        display: 'full',
+        filters: [{ key: 'id', value: 1 }],
+      })
+    )
+    .reply(200, { products: mockProductsOnlyIDEquals1 });
 };
