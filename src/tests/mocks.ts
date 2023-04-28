@@ -221,5 +221,12 @@ export const mockHTTPCalls = () => {
         sort: ['id_DESC'],
       })
     )
-    .reply(200, { products: mockProductsIdDesc });
+    .reply(200, { products: mockProductsIdDesc })
+    .get('/api/products')
+    .query(
+      mockGetAllQueryParams({
+        limit: 10,
+      })
+    )
+    .reply(200, { products: mockProducts.slice(0, 10) });
 };
