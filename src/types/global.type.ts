@@ -1,14 +1,14 @@
-export type Filter = {
-  key: string;
+export type Filter<T> = {
+  key: keyof T;
   value: string | number;
   operator?: 'start' | 'end' | 'contains' | 'strict';
 };
 
-export type GetAllParams = {
+export type GetAllParams<T> = {
   display?: string[] | 'full';
   limit?: number;
   skip?: number;
-  filters?: Filter[];
+  filters?: Filter<T>[];
   sort?: (`${string}_ASC` | `${string}_DESC`)[];
 };
 
