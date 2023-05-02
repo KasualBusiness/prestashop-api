@@ -186,7 +186,7 @@ export const mockProductsIdDesc = mockProducts.sort(
   (a, b) => parseInt(b.id) - parseInt(a.id)
 );
 
-const mockQueryParams = (params: GetAllParams): URLSearchParams => {
+const mockQueryParams = (params: GetAllParams<Product>): URLSearchParams => {
   const searchParams = generateGetAllURLSearchParams(params);
 
   // Add default query params
