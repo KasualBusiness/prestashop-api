@@ -34,6 +34,13 @@ await products.getAll();
 ```javascript
 // List all products
 await products.getAll();
+
+// Precise custom type
+interface CustomProduct extends Product {
+  custom_key_from_addon: string;
+}
+
+await procuts.getAll<CustomProduct>();
 ```
 
 #### Filter on name with exact match
