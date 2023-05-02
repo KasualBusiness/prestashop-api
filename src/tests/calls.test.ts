@@ -1,10 +1,10 @@
 import { describe, test, expect } from 'vitest';
-import { GetAllParams } from '..';
+import { GetAllParams, Product } from '..';
 import { generateGetAllURLSearchParams } from '../utils/calls';
 
 describe('Calls', async () => {
   describe('GetAll', () => {
-    let params: GetAllParams = {};
+    let params: GetAllParams<Product> = {};
 
     describe('display', () => {
       test('Should default to display full', () => {
