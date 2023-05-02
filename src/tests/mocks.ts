@@ -260,11 +260,11 @@ export const mockHTTPCalls = () => {
     .reply(200, { [Endpoint.products]: mockProducts.slice(0, 10) })
     .post('/api/products')
     .query(mockQueryParams({}))
-    .reply(200, { [Endpoint.products]: { id: '2' } })
+    .reply(200, { [Endpoint.products]: [{ id: '2' }] })
     .put('/api/products/1')
     .query(mockQueryParams({}))
-    .reply(200, { [Endpoint.products]: { id: '2' } })
+    .reply(200, { [Endpoint.products]: [{ id: '2' }] })
     .get('/api/products/1')
     .query(mockQueryParams({}))
-    .reply(200, { [Endpoint.products]: { id: '2' } });
+    .reply(200, { [Endpoint.products]: [{ id: '2' }] });
 };

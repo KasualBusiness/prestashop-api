@@ -133,7 +133,7 @@ export const call = async <T>({
 }: CallParams) => {
   const { url, key } = config;
 
-  const response = await axios<Record<Endpoint, T>>({
+  const response = await axios<Record<Endpoint, T[]>>({
     method,
     url: `${url}/api${path}`,
     params: {
@@ -144,7 +144,7 @@ export const call = async <T>({
     paramsSerializer,
     data: body,
     headers,
-  }).catch((error: AxiosError<PrestashopErrorResponse<T>>) => {
+  }).catch((error: AxiosError<PrestashopErrorResponse<T[]>>) => {
     return error;
   });
 
@@ -162,7 +162,7 @@ export const getAllCall = async <T>(
   endpoint: Endpoint,
   params: GetAllParams<T>
 ): Promise<PrestashopAPIResponse<T[]>> => {
-  const response = await call<T[]>({
+  const response = await call<T>({
     method: 'GET',
     path: `/${endpoint}`,
     paramsSerializer: {
@@ -215,15 +215,19 @@ export const getCall = async <T>(
 
   if (isAxiosError(response)) {
     return {
-      data: response.response?.data
-        ? response.response?.data[endpoint]
-        : undefined,
+      data:
+        response.response?.data && response.response?.data[endpoint].length > 0
+          ? response.response?.data[endpoint][0]
+          : undefined,
       errors: response.response?.data.errors,
     };
   }
 
   return {
-    data: response.data ? response.data[endpoint] : undefined,
+    data:
+      response.data && response.data[endpoint].length > 0
+        ? response.data[endpoint][0]
+        : undefined,
     errors: undefined,
   };
 };
@@ -259,15 +263,19 @@ export const postCall = async <T>(
 
   if (isAxiosError(response)) {
     return {
-      data: response.response?.data
-        ? response.response?.data[endpoint]
-        : undefined,
+      data:
+        response.response?.data && response.response?.data[endpoint].length > 0
+          ? response.response?.data[endpoint][0]
+          : undefined,
       errors: response.response?.data.errors,
     };
   }
 
   return {
-    data: response.data ? response.data[endpoint] : undefined,
+    data:
+      response.data && response.data[endpoint].length > 0
+        ? response.data[endpoint][0]
+        : undefined,
     errors: undefined,
   };
 };
@@ -304,15 +312,19 @@ export const putCall = async <T>(
 
   if (isAxiosError(response)) {
     return {
-      data: response.response?.data
-        ? response.response?.data[endpoint]
-        : undefined,
+      data:
+        response.response?.data && response.response?.data[endpoint].length > 0
+          ? response.response?.data[endpoint][0]
+          : undefined,
       errors: response.response?.data.errors,
     };
   }
 
   return {
-    data: response.data ? response.data[endpoint] : undefined,
+    data:
+      response.data && response.data[endpoint].length > 0
+        ? response.data[endpoint][0]
+        : undefined,
     errors: undefined,
   };
 };
