@@ -9,6 +9,7 @@ import {
   mockProductsOnlyIDEquals1,
   mockProductsOnlyNameContainsOra,
   mockProductsIdDesc,
+  MockCustomProduct,
 } from './mocks';
 
 describe('Base', async () => {
@@ -75,6 +76,16 @@ describe('Base', async () => {
       });
 
       expect(data?.length).toStrictEqual(10);
+    });
+
+    describe('custom type', () => {
+      test('Should accept custom filters', async () => {
+        const response = await products.getAll<MockCustomProduct>({
+          filters: [{ key: 'custom_key', value: 'my_value' }],
+        });
+
+        expect(response.data).not.toBe(undefined);
+      });
     });
   });
 

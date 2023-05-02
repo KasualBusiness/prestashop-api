@@ -21,10 +21,10 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  getAll = async (
-    params: GetAllParams<T> | undefined = { display: 'full' }
-  ): Promise<PrestashopAPIResponse<T[]>> => {
-    const response = await getAllCall<T>(this.endpoint, params);
+  getAll = async <Custom = T>(
+    params: GetAllParams<Custom> | undefined = { display: 'full' }
+  ): Promise<PrestashopAPIResponse<Custom[]>> => {
+    const response = await getAllCall<Custom>(this.endpoint, params);
 
     return response;
   };
@@ -36,11 +36,11 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  get = async (
+  get = async <Custom = T>(
     id: number,
     params: GetParams | undefined = { display: 'full' }
-  ): Promise<PrestashopAPIResponse<T>> => {
-    const response = await getCall<T>(this.endpoint, id, params);
+  ): Promise<PrestashopAPIResponse<Custom>> => {
+    const response = await getCall<Custom>(this.endpoint, id, params);
 
     return response;
   };
@@ -52,11 +52,11 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  create = async (
-    body: Partial<T>,
+  create = async <Custom = T>(
+    body: Partial<Custom>,
     params: PostParams | undefined = { display: 'full' }
-  ): Promise<PrestashopAPIResponse<T>> => {
-    const response = await postCall<T>(this.endpoint, body, params);
+  ): Promise<PrestashopAPIResponse<Custom>> => {
+    const response = await postCall<Custom>(this.endpoint, body, params);
 
     return response;
   };
@@ -68,12 +68,12 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  update = async (
+  update = async <Custom = T>(
     id: number,
-    body: Partial<T>,
+    body: Partial<Custom>,
     params: PutParams | undefined = { display: 'full' }
-  ): Promise<PrestashopAPIResponse<T>> => {
-    const response = await putCall<T>(this.endpoint, id, body, params);
+  ): Promise<PrestashopAPIResponse<Custom>> => {
+    const response = await putCall<Custom>(this.endpoint, id, body, params);
 
     return response;
   };

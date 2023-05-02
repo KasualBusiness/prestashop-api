@@ -8,6 +8,10 @@ import { Endpoint } from '../enums/endpoint.enum';
 const MOCK_URL = 'http://localhost';
 const MOCK_API_KEY = 'api_key';
 
+export interface MockCustomProduct extends Product {
+  custom_key: string;
+}
+
 export const mockProducts: Product[] = Array(50)
   .fill(undefined)
   .map((_, i) => ({
@@ -196,6 +200,18 @@ const mockQueryParams = (params: GetAllParams<Product>): URLSearchParams => {
   return searchParams;
 };
 
+const mockQueryParamsCustom = (
+  params: GetAllParams<MockCustomProduct>
+): URLSearchParams => {
+  const searchParams = generateGetAllURLSearchParams(params);
+
+  // Add default query params
+  searchParams.append('ws_key', MOCK_API_KEY);
+  searchParams.append('output_format', 'JSON');
+
+  return searchParams;
+};
+
 /** HTTP calls mocking */
 export const mockHTTPCalls = () => {
   init(MOCK_URL, MOCK_API_KEY);
@@ -218,6 +234,13 @@ export const mockHTTPCalls = () => {
     .query(
       mockQueryParams({
         filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
+      })
+    )
+    .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
+    .get('/api/products')
+    .query(
+      mockQueryParamsCustom({
+        filters: [{ key: 'custom_key', value: 'my_value' }],
       })
     )
     .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
