@@ -22,7 +22,7 @@ export class Base<T> {
    * @returns
    */
   getAll = async (
-    params: GetAllParams | undefined = { display: 'full' }
+    params: GetAllParams<T> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<T[]>> => {
     const response = await getAllCall<T>(this.endpoint, params);
 
