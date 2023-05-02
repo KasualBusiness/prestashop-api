@@ -21,7 +21,7 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  getAll = async <Custom = T>(
+  getAll = async <Custom extends T>(
     params: GetAllParams<Custom> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom[]>> => {
     const response = await getAllCall<Custom>(this.endpoint, params);
@@ -36,7 +36,7 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  get = async <Custom = T>(
+  get = async <Custom extends T>(
     id: number,
     params: GetParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
@@ -52,7 +52,7 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  create = async <Custom = T>(
+  create = async <Custom extends T>(
     body: Partial<Custom>,
     params: PostParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
@@ -68,7 +68,7 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  update = async <Custom = T>(
+  update = async <Custom extends T>(
     id: number,
     body: Partial<Custom>,
     params: PutParams | undefined = { display: 'full' }
