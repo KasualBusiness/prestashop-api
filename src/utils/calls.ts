@@ -22,8 +22,8 @@ import { config } from '../config/index';
  * @param params
  * @returns
  */
-export const generateURLSearchParams = (
-  params: GetAllParams | GetParams | PostParams | PutParams | undefined
+export const generateURLSearchParams = <T>(
+  params: GetAllParams<T> | GetParams | PostParams | PutParams | undefined
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
@@ -47,8 +47,8 @@ export const generateURLSearchParams = (
  * @param params
  * @returns
  */
-export const generateGetAllURLSearchParams = (
-  params: GetAllParams
+export const generateGetAllURLSearchParams = <T>(
+  params: GetAllParams<T>
 ): URLSearchParams => {
   const searchParams = generateURLSearchParams(params);
 
@@ -61,8 +61,8 @@ export const generateGetAllURLSearchParams = (
 
   /** Filters */
   if (params.filters) {
-    params.filters.forEach((filter: Filter, i: number) => {
-      const key = `filter[${filter.key}]`;
+    params.filters.forEach((filter: Filter<T>, i: number) => {
+      const key = `filter[${filter.key.toString()}]`;
       const hasMultipleFiltersWithTheSameKey =
         (params.filters?.filter((item) => item.key === filter.key) || [])
           .length > 1;
@@ -160,7 +160,7 @@ export const call = async <T>({
  */
 export const getAllCall = async <T>(
   endpoint: Endpoint,
-  params: GetAllParams
+  params: GetAllParams<T>
 ): Promise<PrestashopAPIResponse<T[]>> => {
   const response = await call<T[]>({
     method: 'GET',
