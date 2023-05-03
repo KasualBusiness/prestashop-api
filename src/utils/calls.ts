@@ -220,8 +220,8 @@ export const getCall = async <T>(
     return {
       data:
         response.response?.data &&
-          response.response?.data[endpoint] &&
-          response.response?.data[endpoint].length > 0
+        response.response?.data[endpoint] &&
+        response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -231,8 +231,8 @@ export const getCall = async <T>(
   return {
     data:
       response.data &&
-        response.data[endpoint] &&
-        response.data[endpoint].length > 0
+      response.data[endpoint] &&
+      response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -272,8 +272,8 @@ export const postCall = async <T>(
     return {
       data:
         response.response?.data &&
-          response.response?.data[endpoint] &&
-          response.response?.data[endpoint].length > 0
+        response.response?.data[endpoint] &&
+        response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -283,8 +283,8 @@ export const postCall = async <T>(
   return {
     data:
       response.data &&
-        response.data[endpoint] &&
-        response.data[endpoint].length > 0
+      response.data[endpoint] &&
+      response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -362,8 +362,8 @@ export const putCall = async <T>(
     return {
       data:
         response.response?.data &&
-          response.response?.data[endpoint] &&
-          response.response?.data[endpoint].length > 0
+        response.response?.data[endpoint] &&
+        response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -373,8 +373,8 @@ export const putCall = async <T>(
   return {
     data:
       response.data &&
-        response.data[endpoint] &&
-        response.data[endpoint].length > 0
+      response.data[endpoint] &&
+      response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -437,8 +437,8 @@ export const customCall = async <Response, Body = unknown>({
 }): Promise<Response | undefined> => {
   const xml = body
     ? create({ prestashop: body }).end({
-      prettyPrint: true,
-    })
+        prettyPrint: true,
+      })
     : undefined;
 
   const response = await customCallAction<Response>({
