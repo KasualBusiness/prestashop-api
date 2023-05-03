@@ -119,7 +119,7 @@ await products.delete(1);
 
 #### Custom calls
 
-If you have an addon that add additional routes to the prestashop API, you can call them like this:
+If you have an addon that add additional routes to prestashop's webservices, you can call them like this:
 
 ```javascript
 // list
