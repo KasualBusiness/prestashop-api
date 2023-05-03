@@ -110,6 +110,13 @@ await products.update(1, {
 });
 ```
 
+#### Delete
+
+```javascript
+// Delete product with id 1
+await products.delete(1);
+```
+
 #### Custom calls
 
 If you have an addon that add additional routes to the prestashop API, you can call them like this:
@@ -137,6 +144,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an address by id    |
 | `create` | body, PostParams    | Create an address       |
 | `update` | id, body, PutParams | Update an address by id |
+| `delete` | id, DeleteParams    | Delete an address by id |
 
 #### attachments
 
@@ -146,6 +154,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an attachment by id    |
 | `create` | body, PostParams    | Create an attachment       |
 | `update` | id, body, PutParams | Update an attachment by id |
+| `delete` | id, DeleteParams    | Delete an attachment by id |
 
 #### carriers
 
@@ -155,6 +164,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a carrier by id    |
 | `create` | body, PostParams    | Create a carrier       |
 | `update` | id, body, PutParams | Update a carrier by id |
+| `delete` | id, DeleteParams    | Delete a carrier by id |
 
 #### cartRules
 
@@ -164,6 +174,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a cart rule by id    |
 | `create` | body, PostParams    | Create a cart rule       |
 | `update` | id, body, PutParams | Update a cart rule by id |
+| `delete` | id, DeleteParams    | Delete a cart rule by id |
 
 #### carts
 
@@ -173,6 +184,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a cart by id    |
 | `create` | body, PostParams    | Create a cart       |
 | `update` | id, body, PutParams | Update a cart by id |
+| `delete` | id, DeleteParams    | Delete a cart by id |
 
 #### categories
 
@@ -182,6 +194,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a category by id    |
 | `create` | body, PostParams    | Create a category       |
 | `update` | id, body, PutParams | Update a category by id |
+| `delete` | id, DeleteParams    | Delete a category by id |
 
 #### combinations
 
@@ -191,6 +204,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a combination by id    |
 | `create` | body, PostParams    | Create a combination       |
 | `update` | id, body, PutParams | Update a combination by id |
+| `delete` | id, DeleteParams    | Delete a combination by id |
 
 #### configurations
 
@@ -200,6 +214,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a configuration by id    |
 | `create` | body, PostParams    | Create a configuration       |
 | `update` | id, body, PutParams | Update a configuration by id |
+| `delete` | id, DeleteParams    | Delete a configuration by id |
 
 #### contacts
 
@@ -209,6 +224,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a contact by id    |
 | `create` | body, PostParams    | Create a contact       |
 | `update` | id, body, PutParams | Update a contact by id |
+| `delete` | id, DeleteParams    | Delete a contact by id |
 
 #### contentManagementSystem
 
@@ -218,6 +234,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a content management system by id |
 | `create` | body, PostParams    | Create a content                      |
 | `update` | id, body, PutParams | Update a content by id                |
+| `delete` | id, DeleteParams    | Delete a content by id                |
 
 #### countries
 
@@ -227,6 +244,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a country by id    |
 | `create` | body, PostParams    | Create a country       |
 | `update` | id, body, PutParams | Update a country by id |
+| `delete` | id, DeleteParams    | Delete a country by id |
 
 #### currencies
 
@@ -236,6 +254,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a currency by id    |
 | `create` | body, PostParams    | Create a currency       |
 | `update` | id, body, PutParams | Update a currency by id |
+| `delete` | id, DeleteParams    | Delete a currency by id |
 
 #### customerMessages
 
@@ -245,6 +264,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a customer message by id    |
 | `create` | body, PostParams    | Create a customer message       |
 | `update` | id, body, PutParams | Update a customer message by id |
+| `delete` | id, DeleteParams    | Delete a customer message by id |
 
 #### customerThreads
 
@@ -254,6 +274,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a customer thread by id    |
 | `create` | body, PostParams    | Create a customer thread       |
 | `update` | id, body, PutParams | Update a customer thread by id |
+| `delete` | id, DeleteParams    | Delete a customer thread by id |
 
 #### customers
 
@@ -263,6 +284,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id                  | Get a customer by id                            |
 | `create` | body, PostParams    | Create a customer                               |
 | `update` | id, body, PutParams | Update a customer by id                         |
+| `delete` | id, DeleteParams    | Delete a customer by id                         |
 | `login`  | email, password     | Check a customer email and password combination |
 
 #### customizations
@@ -273,6 +295,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a customization by id    |
 | `create` | body, PostParams    | Create a customization       |
 | `update` | id, body, PutParams | Update a customization by id |
+| `delete` | id, DeleteParams    | Delete a customization by id |
 
 #### deliveries
 
@@ -282,6 +305,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a delivery by id    |
 | `create` | body, PostParams    | Create a delivery       |
 | `update` | id, body, PutParams | Update a delivery by id |
+| `delete` | id, DeleteParams    | Delete a delivery by id |
 
 #### employees
 
@@ -291,6 +315,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an employee by id    |
 | `create` | body, PostParams    | Create an employee       |
 | `update` | id, body, PutParams | Update an employee by id |
+| `delete` | id, DeleteParams    | Delete an employee by id |
 
 #### groups
 
@@ -300,6 +325,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a group by id    |
 | `create` | body, PostParams    | Create a group       |
 | `update` | id, body, PutParams | Update a group by id |
+| `delete` | id, DeleteParams    | Delete a group by id |
 
 #### guests
 
@@ -309,6 +335,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a guest by id    |
 | `create` | body, PostParams    | Create a guest       |
 | `update` | id, body, PutParams | Update a guest by id |
+| `delete` | id, DeleteParams    | Delete a guest by id |
 
 #### imageTypes
 
@@ -318,6 +345,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an image type by id    |
 | `create` | body, PostParams    | Create an image type       |
 | `update` | id, body, PutParams | Update an image type by id |
+| `delete` | id, DeleteParams    | Delete an image type by id |
 
 #### images
 
@@ -333,6 +361,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a language by id    |
 | `create` | body, PostParams    | Create a language       |
 | `update` | id, body, PutParams | Update a language by id |
+| `delete` | id, DeleteParams    | Delete a language by id |
 
 #### manufacturers
 
@@ -342,6 +371,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a manufacturer by id    |
 | `create` | body, PostParams    | Create a manufacturer       |
 | `update` | id, body, PutParams | Update a manufacturer by id |
+| `delete` | id, DeleteParams    | Delete a manufacturer by id |
 
 #### messages
 
@@ -351,6 +381,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a message by id    |
 | `create` | body, PostParams    | Create a message       |
 | `update` | id, body, PutParams | Update a message by id |
+| `delete` | id, DeleteParams    | Delete a message by id |
 
 #### orderCarriers
 
@@ -360,6 +391,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order carrier by id    |
 | `create` | body, PostParams    | Create an order carrier       |
 | `update` | id, body, PutParams | Update an order carrier by id |
+| `delete` | id, DeleteParams    | Delete an order carrier by id |
 
 #### orderCartRules
 
@@ -369,6 +401,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order cart rule by id    |
 | `create` | body, PostParams    | Create an order cart rule       |
 | `update` | id, body, PutParams | Update an order cart rule by id |
+| `delete` | id, DeleteParams    | Delete an order cart rule by id |
 
 #### orderDetails
 
@@ -378,6 +411,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order detail by id    |
 | `create` | body, PostParams    | Create an order detail       |
 | `update` | id, body, PutParams | Update an order detail by id |
+| `delete` | id, DeleteParams    | Delete an order detail by id |
 
 #### orderHistories
 
@@ -387,6 +421,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order history by id    |
 | `create` | body, PostParams    | Create an order history       |
 | `update` | id, body, PutParams | Update an order history by id |
+| `delete` | id, DeleteParams    | Delete an order history by id |
 
 #### orderInvoices
 
@@ -396,6 +431,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order invoice by id    |
 | `create` | body, PostParams    | Create an order invoice       |
 | `update` | id, body, PutParams | Update an order invoice by id |
+| `delete` | id, DeleteParams    | Delete an order invoice by id |
 
 #### orderPayments
 
@@ -405,6 +441,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order payment by id    |
 | `create` | body, PostParams    | Create an order payment       |
 | `update` | id, body, PutParams | Update an order payment by id |
+| `delete` | id, DeleteParams    | Delete an order payment by id |
 
 #### orderSlip
 
@@ -414,6 +451,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order slip by id    |
 | `create` | body, PostParams    | Create an order slip       |
 | `update` | id, body, PutParams | Update an order slip by id |
+| `delete` | id, DeleteParams    | Delete an order slip by id |
 
 #### orderStates
 
@@ -423,6 +461,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order state by id    |
 | `create` | body, PostParams    | Create an order state       |
 | `update` | id, body, PutParams | Update an order state by id |
+| `delete` | id, DeleteParams    | Delete an order state by id |
 
 #### orders
 
@@ -432,6 +471,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get an order by id    |
 | `create` | body, PostParams    | Create an order       |
 | `update` | id, body, PutParams | Update an order by id |
+| `delete` | id, DeleteParams    | Delete an order by id |
 
 #### priceRanges
 
@@ -441,6 +481,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a price range by id    |
 | `create` | body, PostParams    | Create a price range       |
 | `update` | id, body, PutParams | Update a price range by id |
+| `delete` | id, DeleteParams    | Delete a price range by id |
 
 #### productCustomizationFields
 
@@ -450,6 +491,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product customization field by id    |
 | `create` | body, PostParams    | Create a product customization field       |
 | `update` | id, body, PutParams | Update a product customization field by id |
+| `delete` | id, DeleteParams    | Delete a product customization field by id |
 
 #### productFeatureValues
 
@@ -459,6 +501,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product feature value by id    |
 | `create` | body, PostParams    | Create a product feature value       |
 | `update` | id, body, PutParams | Update a product feature value by id |
+| `delete` | id, DeleteParams    | Delete a product feature value by id |
 
 #### productFeatures
 
@@ -468,6 +511,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product feature by id      |
 | `create` | body, PostParams    | Create a product feature         |
 | `update` | id, body, PutParams | Update a product feature by id   |
+| `delete` | id, DeleteParams    | Delete a product feature by id   |
 
 #### productOptionValues
 
@@ -477,6 +521,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product option value by id    |
 | `create` | body, PostParams    | Create a product option value       |
 | `update` | id, body, PutParams | Update a product option value by id |
+| `delete` | id, DeleteParams    | Delete a product option value by id |
 
 #### productOptions
 
@@ -486,6 +531,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product option by id    |
 | `create` | body, PostParams    | Create a product option       |
 | `update` | id, body, PutParams | Update a product option by id |
+| `delete` | id, DeleteParams    | Delete a product option by id |
 
 #### productSuppliers
 
@@ -495,6 +541,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product supplier by id    |
 | `create` | body, PostParams    | Create a product supplier       |
 | `update` | id, body, PutParams | Update a product supplier by id |
+| `delete` | id, DeleteParams    | Delete a product supplier by id |
 
 #### products
 
@@ -504,6 +551,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a product by id    |
 | `create` | body, PostParams    | Create a product       |
 | `update` | id, body, PutParams | Update a product by id |
+| `delete` | id, DeleteParams    | Delete a product by id |
 
 #### shopGroups
 
@@ -513,6 +561,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a shop group by id    |
 | `create` | body, PostParams    | Create a shop group       |
 | `update` | id, body, PutParams | Update a shop group by id |
+| `delete` | id, DeleteParams    | Delete a shop group by id |
 
 #### shopUrls
 
@@ -522,6 +571,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a shop url by id    |
 | `create` | body, PostParams    | Create a shop url       |
 | `update` | id, body, PutParams | Update a shop url by id |
+| `delete` | id, DeleteParams    | Delete a shop url by id |
 
 #### shops
 
@@ -531,6 +581,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a shop by id    |
 | `create` | body, PostParams    | Create a shop       |
 | `update` | id, body, PutParams | Update a shop by id |
+| `delete` | id, DeleteParams    | Delete a shop by id |
 
 #### specificPriceRules
 
@@ -540,6 +591,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a specific price rule by id    |
 | `create` | body, PostParams    | Create a specific price rule       |
 | `update` | id, body, PutParams | Update a specific price rule by id |
+| `delete` | id, DeleteParams    | Delete a specific price rule by id |
 
 #### specificPrices
 
@@ -549,6 +601,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a specific price by id    |
 | `create` | body, PostParams    | Create a specific price       |
 | `update` | id, body, PutParams | Update a specific price by id |
+| `delete` | id, DeleteParams    | Delete a specific price by id |
 
 #### states
 
@@ -558,6 +611,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a state by id    |
 | `create` | body, PostParams    | Create a state       |
 | `update` | id, body, PutParams | Update a state by id |
+| `delete` | id, DeleteParams    | Delete a state by id |
 
 #### stockAvailables
 
@@ -567,6 +621,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a stock available by id    |
 | `create` | body, PostParams    | Create a stock available       |
 | `update` | id, body, PutParams | Update a stock available by id |
+| `delete` | id, DeleteParams    | Delete a stock available by id |
 
 #### stockMovementReasons
 
@@ -576,6 +631,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a stock movement reason by id    |
 | `create` | body, PostParams    | Create a stock movement reason       |
 | `update` | id, body, PutParams | Update a stock movement reason by id |
+| `delete` | id, DeleteParams    | Delete a stock movement reason by id |
 
 #### stockMovements
 
@@ -585,6 +641,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a stock movement by id    |
 | `create` | body, PostParams    | Create a stock movement       |
 | `update` | id, body, PutParams | Update a stock movement by id |
+| `delete` | id, DeleteParams    | Delete a stock movement by id |
 
 #### stocks
 
@@ -594,6 +651,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a stock by id    |
 | `create` | body, PostParams    | Create a stock       |
 | `update` | id, body, PutParams | Update a stock by id |
+| `delete` | id, DeleteParams    | Delete a stock by id |
 
 #### stores
 
@@ -603,6 +661,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a store by id    |
 | `create` | body, PostParams    | Create a store       |
 | `update` | id, body, PutParams | Update a store by id |
+| `delete` | id, DeleteParams    | Delete a store by id |
 
 #### suppliers
 
@@ -612,6 +671,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supplier by id    |
 | `create` | body, PostParams    | Create a supplier       |
 | `update` | id, body, PutParams | Update a supplier by id |
+| `delete` | id, DeleteParams    | Delete a supplier by id |
 
 #### supplyOrderDetails
 
@@ -621,6 +681,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supply order detail by id    |
 | `create` | body, PostParams    | Create a supply order detail       |
 | `update` | id, body, PutParams | Update a supply order detail by id |
+| `delete` | id, DeleteParams    | Delete a supply order detail by id |
 
 #### supplyOrderHistories
 
@@ -630,6 +691,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supply order history by id    |
 | `create` | body, PostParams    | Create a supply order history       |
 | `update` | id, body, PutParams | Update a supply order history by id |
+| `delete` | id, DeleteParams    | Delete a supply order history by id |
 
 #### supplyOrderReceiptHistories
 
@@ -639,6 +701,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supply order receipt history by id |
 | `create` | body, PostParams    | Create a supply order receipt            |
 | `update` | id, body, PutParams | Update a supply order receipt by id      |
+| `delete` | id, DeleteParams    | Delete a supply order receipt by id      |
 
 #### supplyOrderStates
 
@@ -648,6 +711,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supply order state by id    |
 | `create` | body, PostParams    | Create a supply order state       |
 | `update` | id, body, PutParams | Update a supply order state by id |
+| `delete` | id, DeleteParams    | Delete a supply order state by id |
 
 #### supplyOrders
 
@@ -657,6 +721,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a supply order by id    |
 | `create` | body, PostParams    | Create a supply order       |
 | `update` | id, body, PutParams | Update a supply order by id |
+| `delete` | id, DeleteParams    | Delete a supply order by id |
 
 #### tags
 
@@ -666,6 +731,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a tag by id    |
 | `create` | body, PostParams    | Create a tag       |
 | `update` | id, body, PutParams | Update a tag by id |
+| `delete` | id, DeleteParams    | Delete a tag by id |
 
 #### taxRuleGroups
 
@@ -675,6 +741,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a tax rule group by id    |
 | `create` | body, PostParams    | Create a tax rule group       |
 | `update` | id, body, PutParams | Update a tax rule group by id |
+| `delete` | id, DeleteParams    | Delete a tax rule group by id |
 
 #### taxRules
 
@@ -684,6 +751,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a tax rule by id    |
 | `create` | body, PostParams    | Create a tax rule       |
 | `update` | id, body, PutParams | Update a tax rule by id |
+| `delete` | id, DeleteParams    | Delete a tax rule by id |
 
 #### taxes
 
@@ -693,6 +761,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a tax by id    |
 | `create` | body, PostParams    | Create a tax       |
 | `update` | id, body, PutParams | Update a tax by id |
+| `delete` | id, DeleteParams    | Delete a tax by id |
 
 #### translatedConfigurations
 
@@ -702,6 +771,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a translated configuration by id    |
 | `create` | body, PostParams    | Create a translated configuration       |
 | `update` | id, body, PutParams | Update a translated configuration by id |
+| `delete` | id, DeleteParams    | Delete a translated configuration by id |
 
 #### warehouseProductLocations
 
@@ -711,6 +781,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a warehouse product location by id    |
 | `create` | body, PostParams    | Create a warehouse product location       |
 | `update` | id, body, PutParams | Update a warehouse product location by id |
+| `delete` | id, DeleteParams    | Delete a warehouse product location by id |
 
 #### warehouses
 
@@ -720,6 +791,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a warehouse by id    |
 | `create` | body, PostParams    | Create a warehouse       |
 | `update` | id, body, PutParams | Update a warehouse by id |
+| `delete` | id, DeleteParams    | Delete a warehouse by id |
 
 #### weightRanges
 
@@ -729,6 +801,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a weight range by id    |
 | `create` | body, PostParams    | Create a weight range       |
 | `update` | id, body, PutParams | Update a weight range by id |
+| `delete` | id, DeleteParams    | Delete a weight range by id |
 
 #### zones
 
@@ -738,6 +811,7 @@ If you have an addon that add additional routes to the prestashop API, you can c
 | `get`    | id, GetParams       | Get a zone by id    |
 | `create` | body, PostParams    | Create a zone       |
 | `update` | id, body, PutParams | Update a zone by id |
+| `delete` | id, DeleteParams    | Delete a zone by id |
 
 #### custom
 

@@ -5,8 +5,17 @@ import {
   PostParams,
   PutParams,
 } from '../types/global.type';
-import { getAllCall, getCall, postCall, putCall } from '../utils/calls';
-import { PrestashopAPIResponse } from '../types/calls.type';
+import {
+  getAllCall,
+  getCall,
+  postCall,
+  putCall,
+  deleteCall,
+} from '../utils/calls';
+import {
+  PrestashopAPIDeleteResponse,
+  PrestashopAPIResponse,
+} from '../types/calls.type';
 
 export class Base<T> {
   endpoint: Endpoint;
@@ -64,6 +73,7 @@ export class Base<T> {
   /**
    * Update an item from endpoint.
    *
+   * @param id
    * @param body
    * @param params
    * @returns
@@ -74,6 +84,22 @@ export class Base<T> {
     params: PutParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
     const response = await putCall<Custom>(this.endpoint, id, body, params);
+
+    return response;
+  };
+
+  /**
+   * Delete an item from endpoint.
+   *
+   * @param id
+   * @param params
+   * @returns
+   */
+  delete = async (
+    id: number,
+    params: PutParams | undefined = { display: 'full' }
+  ): Promise<PrestashopAPIDeleteResponse> => {
+    const response = await deleteCall(this.endpoint, id, params);
 
     return response;
   };
