@@ -26,3 +26,8 @@ export type PrestashopErrorResponse<T> = {
 } & {
   errors: unknown[];
 };
+
+export type PrestashopAPIDeleteResponse = {
+  success: boolean;
+  errors: unknown[] | undefined;
+};

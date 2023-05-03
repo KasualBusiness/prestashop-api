@@ -24,6 +24,10 @@ export type PutParams = {
   display?: string[] | 'full';
 };
 
+export type DeleteParams = {
+  display?: string[] | 'full';
+};
+
 export type CustomParams = {
   display?: string[] | 'full';
 };
