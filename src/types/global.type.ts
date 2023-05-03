@@ -23,3 +23,7 @@ export type PostParams = {
 export type PutParams = {
   display?: string[] | 'full';
 };
+
+export type CustomParams = {
+  display?: string[] | 'full';
+};
