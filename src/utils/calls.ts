@@ -1,16 +1,19 @@
-import axios, { AxiosError, isAxiosError } from 'axios';
+import axios, { AxiosError, Method, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
+  CustomParams,
+  DeleteParams,
   Filter,
-  GetAllParams,
   GetParams,
+  ListParams,
   PostParams,
   PutParams,
 } from '../types/global.type';
 import { Endpoint } from '../enums/endpoint.enum';
 import {
   CallParams,
+  PrestashopAPIDeleteResponse,
   PrestashopAPIResponse,
   PrestashopErrorResponse,
 } from '../types/calls.type';
@@ -23,7 +26,7 @@ import { config } from '../config/index';
  * @returns
  */
 export const generateURLSearchParams = <T>(
-  params: GetAllParams<T> | GetParams | PostParams | PutParams | undefined
+  params: ListParams<T> | GetParams | PostParams | PutParams | undefined
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
@@ -47,8 +50,8 @@ export const generateURLSearchParams = <T>(
  * @param params
  * @returns
  */
-export const generateGetAllURLSearchParams = <T>(
-  params: GetAllParams<T>
+export const generateListURLSearchParams = <T>(
+  params: ListParams<T>
 ): URLSearchParams => {
   const searchParams = generateURLSearchParams(params);
 
@@ -158,16 +161,16 @@ export const call = async <T>({
  * @param params
  * @returns
  */
-export const getAllCall = async <T>(
+export const listCall = async <T>(
   endpoint: Endpoint,
-  params: GetAllParams<T>
+  params: ListParams<T>
 ): Promise<PrestashopAPIResponse<T[]>> => {
   const response = await call<T>({
     method: 'GET',
     path: `/${endpoint}`,
     paramsSerializer: {
       serialize: (serializeParams) => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
       },
@@ -216,7 +219,9 @@ export const getCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -225,7 +230,9 @@ export const getCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -264,7 +271,9 @@ export const postCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -273,9 +282,48 @@ export const postCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the deletion of an entity on prestashop.
+ *
+ * @param path
+ * @param id
+ * @param params
+ * @returns
+ */
+export const deleteCall = async (
+  endpoint: Endpoint,
+  id: number,
+  params: DeleteParams | undefined = undefined
+): Promise<PrestashopAPIDeleteResponse> => {
+  const searchParams = generateURLSearchParams(params);
+
+  const response = await call({
+    method: 'DELETE',
+    path: `/${endpoint}/${id}`,
+    paramsSerializer: {
+      serialize: (params) =>
+        `${qs.stringify(params)}&${searchParams.toString()}`,
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      success: false,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    success: true,
     errors: undefined,
   };
 };
@@ -313,7 +361,9 @@ export const putCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -322,9 +372,91 @@ export const putCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
   };
+};
+
+/** Custom calls */
+
+/**
+ * Function used by the custom class. It workds like the classic
+ * custom call but we adapt the returned type since we don't know
+ * it.
+ *
+ * @param param0
+ * @returns
+ */
+const customCallAction = async <T>({
+  method,
+  path,
+  params,
+  body,
+  paramsSerializer,
+}: CallParams) => {
+  const { url, key } = config;
+
+  const response = await axios<T>({
+    method,
+    url: `${url}/api${path}`,
+    params: {
+      ...params,
+      ws_key: key,
+      output_format: 'JSON',
+    },
+    paramsSerializer,
+    data: body,
+  }).catch((error: AxiosError<T>) => {
+    return error;
+  });
+
+  return response;
+};
+
+/**
+ * Custom call on endpoint
+ *
+ * @param endpoint
+ * @param params
+ * @returns
+ */
+export const customCall = async <Response, Body = unknown>({
+  method,
+  path,
+  body,
+  params,
+}: {
+  method: Method;
+  path: string;
+  params: CustomParams;
+  body?: Body;
+}): Promise<Response | undefined> => {
+  const xml = body
+    ? create({ prestashop: body }).end({
+      prettyPrint: true,
+    })
+    : undefined;
+
+  const response = await customCallAction<Response>({
+    method,
+    path,
+    body: xml,
+    paramsSerializer: {
+      serialize: (serializeParams) => {
+        const searchParams = generateURLSearchParams(params);
+
+        return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
+      },
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return response.response?.data;
+  }
+
+  return response.data;
 };
