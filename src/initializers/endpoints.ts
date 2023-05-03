@@ -67,6 +67,7 @@ import {
   Zone,
 } from '../types/prestashop.type';
 import { Base, Customers, Images } from '../classes';
+import { Custom } from '../classes/custom.class';
 
 /**
  * Initiliaze and export all endpoints.
@@ -177,3 +178,7 @@ export const warehouseProductLocations = new Base<WarehouseProductLocation>(
 export const warehouses = new Base<Warehouse>(Endpoint.warehouses);
 export const weightRanges = new Base<WeightRange>(Endpoint.weightRanges);
 export const zones = new Base<Zone>(Endpoint.zones);
+
+/** Export Custom class for non-native prestashop api's calls */
+export const custom = <Response>(endpoint: string) =>
+  new Custom<Response>(endpoint);

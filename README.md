@@ -110,6 +110,23 @@ await products.update(1, {
 });
 ```
 
+#### Custom calls
+
+If you have an addon that add additional routes to the prestashop API, you can call them like this:
+
+```javascript
+// getAll
+ await custom<{ items: Item[] }>("my-custom-route").getAll();
+ // get
+ await custom<{ item: Item }>("my-custom-route").get(1);
+ // create
+ await custom<{ item: Item }>("my-custom-route").create<{ name: string }>(1, { name: "My name" });
+ // update
+ await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { name: "My new name" });
+ // delete
+ await custom<{ item: Item }>("my-custom-route").delete(1);
+```
+
 ## API Reference
 
 #### addresses
@@ -722,6 +739,16 @@ await products.update(1, {
 | `create` | body, PostParams    | Create a zone       |
 | `update` | id, body, PutParams | Update a zone by id |
 
+#### custom
+
+| Name     | Parameters             | Description                     |
+| :------- | :--------------------- | :------------------------------ |
+| `getAll` | CustomParams           | List all on custom endpoint     |
+| `get`    | id, CustomParams       | Get on custom endpoint by id    |
+| `create` | body, CustomParams     | Create on custom endpoint       |
+| `update` | id, body, CustomParams | Update on custom endpoint by id |
+| `delete` | id, body, CustomParams | Delete on custom endpoint by id |
+
 ### GetAllParams
 
 | Name      | Value                                                         | Description                              |
@@ -760,6 +787,12 @@ const listProducts = async () => {
 | `display` | 'full' or string[] | Display specific keys |
 
 ### PutParams
+
+| Name      | Value              | Description           |
+| :-------- | :----------------- | :-------------------- |
+| `display` | 'full' or string[] | Display specific keys |
+
+### CustomParams
 
 | Name      | Value              | Description           |
 | :-------- | :----------------- | :-------------------- |

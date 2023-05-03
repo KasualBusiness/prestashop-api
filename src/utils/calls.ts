@@ -1,7 +1,8 @@
-import axios, { AxiosError, isAxiosError } from 'axios';
+import axios, { AxiosError, Method, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
+  CustomParams,
   Filter,
   GetAllParams,
   GetParams,
@@ -327,4 +328,84 @@ export const putCall = async <T>(
         : undefined,
     errors: undefined,
   };
+};
+
+/** Custom calls */
+
+/**
+ * Function used by the custom class. It workds like the classic
+ * custom call but we adapt the returned type since we don't know
+ * it.
+ *
+ * @param param0
+ * @returns
+ */
+const customCallAction = async <T>({
+  method,
+  path,
+  params,
+  body,
+  paramsSerializer,
+}: CallParams) => {
+  const { url, key } = config;
+
+  const response = await axios<T>({
+    method,
+    url: `${url}/api${path}`,
+    params: {
+      ...params,
+      ws_key: key,
+      output_format: 'JSON',
+    },
+    paramsSerializer,
+    data: body,
+  }).catch((error: AxiosError<T>) => {
+    return error;
+  });
+
+  return response;
+};
+
+/**
+ * Custom call on endpoint
+ *
+ * @param endpoint
+ * @param params
+ * @returns
+ */
+export const customCall = async <Response, Body = unknown>({
+  method,
+  path,
+  body,
+  params,
+}: {
+  method: Method;
+  path: string;
+  params: CustomParams;
+  body?: Body;
+}): Promise<Response | undefined> => {
+  const xml = body
+    ? create({ prestashop: body }).end({
+        prettyPrint: true,
+      })
+    : undefined;
+
+  const response = await customCallAction<Response>({
+    method,
+    path,
+    body: xml,
+    paramsSerializer: {
+      serialize: (serializeParams) => {
+        const searchParams = generateURLSearchParams(params);
+
+        return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
+      },
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return response.response?.data;
+  }
+
+  return response.data;
 };
