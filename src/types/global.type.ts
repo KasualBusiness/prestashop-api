@@ -4,7 +4,7 @@ export type Filter<T> = {
   operator?: 'start' | 'end' | 'contains' | 'strict';
 };
 
-export type GetAllParams<T> = {
+export type ListParams<T> = {
   display?: string[] | 'full';
   limit?: number;
   skip?: number;

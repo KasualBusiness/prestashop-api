@@ -1,12 +1,12 @@
 import { Endpoint } from '../enums/endpoint.enum';
 import {
-  GetAllParams,
+  ListParams,
   GetParams,
   PostParams,
   PutParams,
 } from '../types/global.type';
 import {
-  getAllCall,
+  listCall,
   getCall,
   postCall,
   putCall,
@@ -30,10 +30,10 @@ export class Base<T> {
    * @param params
    * @returns
    */
-  getAll = async <Custom extends T>(
-    params: GetAllParams<Custom> | undefined = { display: 'full' }
+  list = async <Custom extends T>(
+    params: ListParams<Custom> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom[]>> => {
-    const response = await getAllCall<Custom>(this.endpoint, params);
+    const response = await listCall<Custom>(this.endpoint, params);
 
     return response;
   };

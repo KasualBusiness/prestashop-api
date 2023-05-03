@@ -14,7 +14,7 @@ export class Custom<Response> {
    * @param params
    * @returns
    */
-  getAll = async (
+  list = async (
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
