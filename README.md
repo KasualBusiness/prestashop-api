@@ -16,7 +16,7 @@ npm install @kasual-business/prestashop-api
 import { init } from "@kasual-business/prestashop-api";
 
 // Init the api url and api key
-init("https://my-prestashop", "my-api-key");
+init("https://my-prestashop.com", "my-api-key");
 ```
 
 #### Use
