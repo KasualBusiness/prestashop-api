@@ -5,8 +5,8 @@ import {
   CustomParams,
   DeleteParams,
   Filter,
-  GetAllParams,
   GetParams,
+  ListParams,
   PostParams,
   PutParams,
 } from '../types/global.type';
@@ -26,7 +26,7 @@ import { config } from '../config/index';
  * @returns
  */
 export const generateURLSearchParams = <T>(
-  params: GetAllParams<T> | GetParams | PostParams | PutParams | undefined
+  params: ListParams<T> | GetParams | PostParams | PutParams | undefined
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
@@ -50,8 +50,8 @@ export const generateURLSearchParams = <T>(
  * @param params
  * @returns
  */
-export const generateGetAllURLSearchParams = <T>(
-  params: GetAllParams<T>
+export const generateListURLSearchParams = <T>(
+  params: ListParams<T>
 ): URLSearchParams => {
   const searchParams = generateURLSearchParams(params);
 
@@ -161,16 +161,16 @@ export const call = async <T>({
  * @param params
  * @returns
  */
-export const getAllCall = async <T>(
+export const listCall = async <T>(
   endpoint: Endpoint,
-  params: GetAllParams<T>
+  params: ListParams<T>
 ): Promise<PrestashopAPIResponse<T[]>> => {
   const response = await call<T>({
     method: 'GET',
     path: `/${endpoint}`,
     paramsSerializer: {
       serialize: (serializeParams) => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
       },
@@ -220,8 +220,8 @@ export const getCall = async <T>(
     return {
       data:
         response.response?.data &&
-        response.response?.data[endpoint] &&
-        response.response?.data[endpoint].length > 0
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -231,8 +231,8 @@ export const getCall = async <T>(
   return {
     data:
       response.data &&
-      response.data[endpoint] &&
-      response.data[endpoint].length > 0
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -272,8 +272,8 @@ export const postCall = async <T>(
     return {
       data:
         response.response?.data &&
-        response.response?.data[endpoint] &&
-        response.response?.data[endpoint].length > 0
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -283,8 +283,8 @@ export const postCall = async <T>(
   return {
     data:
       response.data &&
-      response.data[endpoint] &&
-      response.data[endpoint].length > 0
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -362,8 +362,8 @@ export const putCall = async <T>(
     return {
       data:
         response.response?.data &&
-        response.response?.data[endpoint] &&
-        response.response?.data[endpoint].length > 0
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -373,8 +373,8 @@ export const putCall = async <T>(
   return {
     data:
       response.data &&
-      response.data[endpoint] &&
-      response.data[endpoint].length > 0
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -437,8 +437,8 @@ export const customCall = async <Response, Body = unknown>({
 }): Promise<Response | undefined> => {
   const xml = body
     ? create({ prestashop: body }).end({
-        prettyPrint: true,
-      })
+      prettyPrint: true,
+    })
     : undefined;
 
   const response = await customCallAction<Response>({

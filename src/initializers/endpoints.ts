@@ -71,7 +71,7 @@ import { Custom } from '../classes/custom.class';
 
 /**
  * Initiliaze and export all endpoints.
- * If an endpoint need additional properties in addition to getAll, get,
+ * If an endpoint need additional properties in addition to list, get,
  * create and update, a new class extending Base is created.
  */
 export const addresses = new Base<Address>(Endpoint.addresses);
