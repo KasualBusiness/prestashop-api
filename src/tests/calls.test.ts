@@ -1,14 +1,14 @@
 import { describe, test, expect } from 'vitest';
-import { GetAllParams, Product } from '..';
-import { generateGetAllURLSearchParams } from '../utils/calls';
+import { ListParams, Product } from '..';
+import { generateListURLSearchParams } from '../utils/calls';
 
 describe('Calls', async () => {
-  describe('GetAll', () => {
-    let params: GetAllParams<Product> = {};
+  describe('List', () => {
+    let params: ListParams<Product> = {};
 
     describe('display', () => {
       test('Should default to display full', () => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams).toStrictEqual(
           new URLSearchParams({ display: 'full' })
@@ -18,7 +18,7 @@ describe('Calls', async () => {
       test('Should only contains display full', () => {
         params = { display: ['id', 'name'] };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams).toStrictEqual(
           new URLSearchParams({ display: '[id,name]' })
@@ -28,7 +28,7 @@ describe('Calls', async () => {
 
     describe('limit', () => {
       test('Should not have limit by default', () => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('limit')).toBeNull();
       });
@@ -36,7 +36,7 @@ describe('Calls', async () => {
       test('Should have limit as one', () => {
         params = { limit: 1 };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('limit')).toStrictEqual('1');
       });
@@ -44,7 +44,7 @@ describe('Calls', async () => {
 
     describe('filters', () => {
       test('Should not have filters by default', () => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filters')).toBeNull();
       });
@@ -52,7 +52,7 @@ describe('Calls', async () => {
       test('Should have one filter on id with value as 1', () => {
         params = { filters: [{ key: 'id', value: 1 }] };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filter[id]')).toStrictEqual('[1]');
       });
@@ -65,7 +65,7 @@ describe('Calls', async () => {
           ],
         };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filter[id]')).toStrictEqual('[1|2]');
       });
@@ -78,7 +78,7 @@ describe('Calls', async () => {
           ],
         };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filter[name]')).toStrictEqual('[My|Name]');
       });
@@ -91,7 +91,7 @@ describe('Calls', async () => {
           ],
         };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filter[name]')).toStrictEqual('%[Name]%');
         expect(searchParams.get('filter[location]')).toStrictEqual('%[City]%');
@@ -102,7 +102,7 @@ describe('Calls', async () => {
           filters: [{ key: 'name', value: 'Name', operator: 'contains' }],
         };
 
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('filter[name]')).toStrictEqual('%[Name]%');
       });
@@ -110,14 +110,14 @@ describe('Calls', async () => {
 
     describe('sort', () => {
       test('Should not have sort by default', () => {
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('sort')).toBeNull();
       });
 
       test('Should sort on id_ASC', () => {
         params = { sort: ['id_ASC'] };
-        const searchParams = generateGetAllURLSearchParams(params);
+        const searchParams = generateListURLSearchParams(params);
 
         expect(searchParams.get('sort')).toStrictEqual('[id_ASC]');
       });

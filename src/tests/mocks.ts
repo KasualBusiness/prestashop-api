@@ -1,8 +1,8 @@
 import nock from 'nock';
 import { Product } from '../types/prestashop.type';
 import { init } from '../config';
-import { generateGetAllURLSearchParams } from '../utils/calls';
-import { GetAllParams } from '../types/global.type';
+import { generateListURLSearchParams } from '../utils/calls';
+import { ListParams } from '../types/global.type';
 import { Endpoint } from '../enums/endpoint.enum';
 
 const MOCK_URL = 'http://localhost';
@@ -190,8 +190,8 @@ export const mockProductsIdDesc = mockProducts.sort(
   (a, b) => parseInt(b.id) - parseInt(a.id)
 );
 
-const mockQueryParams = (params: GetAllParams<Product>): URLSearchParams => {
-  const searchParams = generateGetAllURLSearchParams(params);
+const mockQueryParams = (params: ListParams<Product>): URLSearchParams => {
+  const searchParams = generateListURLSearchParams(params);
 
   // Add default query params
   searchParams.append('ws_key', MOCK_API_KEY);
@@ -201,9 +201,9 @@ const mockQueryParams = (params: GetAllParams<Product>): URLSearchParams => {
 };
 
 const mockQueryParamsCustom = (
-  params: GetAllParams<MockCustomProduct>
+  params: ListParams<MockCustomProduct>
 ): URLSearchParams => {
-  const searchParams = generateGetAllURLSearchParams(params);
+  const searchParams = generateListURLSearchParams(params);
 
   // Add default query params
   searchParams.append('ws_key', MOCK_API_KEY);
