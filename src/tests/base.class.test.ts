@@ -19,35 +19,35 @@ describe('Base', async () => {
     mockHTTPCalls();
   });
 
-  test('Should have getAll, get, create and update properties', () => {
-    expect(products).toHaveProperty('getAll');
+  test('Should have list, get, create and update properties', () => {
+    expect(products).toHaveProperty('list');
     expect(products).toHaveProperty('get');
     expect(products).toHaveProperty('create');
     expect(products).toHaveProperty('update');
   });
 
-  describe('getAll', () => {
+  describe('list', () => {
     test('Should kick endpoint key', async () => {
-      const { data } = await products.getAll();
+      const { data } = await products.list();
 
       expect(data).not.toHaveProperty(Endpoint.products);
     });
 
     test('Should list all products with all properties', async () => {
-      const { data } = await products.getAll();
+      const { data } = await products.list();
 
       expect(data).not.toHaveProperty(Endpoint.products);
       expect(data).toStrictEqual(mockProducts);
     });
 
     test('Should list all products id', async () => {
-      const { data } = await products.getAll({ display: ['id'] });
+      const { data } = await products.list({ display: ['id'] });
 
       expect(data).toStrictEqual(mockProductsOnlyID);
     });
 
     test('Should filter on id', async () => {
-      const { data } = await products.getAll({
+      const { data } = await products.list({
         filters: [{ key: 'id', value: 1 }],
       });
 
@@ -55,7 +55,7 @@ describe('Base', async () => {
     });
 
     test('Should filter on name containing "ora"', async () => {
-      const { data } = await products.getAll({
+      const { data } = await products.list({
         filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
       });
 
@@ -63,7 +63,7 @@ describe('Base', async () => {
     });
 
     test('Should sort by id DESC', async () => {
-      const { data } = await products.getAll({
+      const { data } = await products.list({
         sort: ['id_DESC'],
       });
 
@@ -71,7 +71,7 @@ describe('Base', async () => {
     });
 
     test('Should limit to 10 items', async () => {
-      const { data } = await products.getAll({
+      const { data } = await products.list({
         limit: 10,
       });
 
@@ -80,7 +80,7 @@ describe('Base', async () => {
 
     describe('custom type', () => {
       test('Should accept custom filters', async () => {
-        const response = await products.getAll<MockCustomProduct>({
+        const response = await products.list<MockCustomProduct>({
           filters: [{ key: 'custom_key', value: 'my_value' }],
         });
 
