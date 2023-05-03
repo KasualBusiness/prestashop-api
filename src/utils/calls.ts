@@ -3,6 +3,7 @@ import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
   CustomParams,
+  DeleteParams,
   Filter,
   GetAllParams,
   GetParams,
@@ -12,6 +13,7 @@ import {
 import { Endpoint } from '../enums/endpoint.enum';
 import {
   CallParams,
+  PrestashopAPIDeleteResponse,
   PrestashopAPIResponse,
   PrestashopErrorResponse,
 } from '../types/calls.type';
@@ -217,7 +219,9 @@ export const getCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -226,7 +230,9 @@ export const getCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -265,7 +271,9 @@ export const postCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -274,9 +282,48 @@ export const postCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the deletion of an entity on prestashop.
+ *
+ * @param path
+ * @param id
+ * @param params
+ * @returns
+ */
+export const deleteCall = async (
+  endpoint: Endpoint,
+  id: number,
+  params: DeleteParams | undefined = undefined
+): Promise<PrestashopAPIDeleteResponse> => {
+  const searchParams = generateURLSearchParams(params);
+
+  const response = await call({
+    method: 'DELETE',
+    path: `/${endpoint}/${id}`,
+    paramsSerializer: {
+      serialize: (params) =>
+        `${qs.stringify(params)}&${searchParams.toString()}`,
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      success: false,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    success: true,
     errors: undefined,
   };
 };
@@ -314,7 +361,9 @@ export const putCall = async <T>(
   if (isAxiosError(response)) {
     return {
       data:
-        response.response?.data && response.response?.data[endpoint].length > 0
+        response.response?.data &&
+          response.response?.data[endpoint] &&
+          response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
@@ -323,7 +372,9 @@ export const putCall = async <T>(
 
   return {
     data:
-      response.data && response.data[endpoint].length > 0
+      response.data &&
+        response.data[endpoint] &&
+        response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
     errors: undefined,
@@ -386,8 +437,8 @@ export const customCall = async <Response, Body = unknown>({
 }): Promise<Response | undefined> => {
   const xml = body
     ? create({ prestashop: body }).end({
-        prettyPrint: true,
-      })
+      prettyPrint: true,
+    })
     : undefined;
 
   const response = await customCallAction<Response>({
