@@ -820,6 +820,7 @@ export type ProductSupplier = {
 };
 
 export type Product = {
+  id: string | number;
   reference: string;
   price: string;
   state: string;
@@ -830,7 +831,6 @@ export type Product = {
     | LanguageValuesCreate
     | string;
   minimal_quantity: string;
-  id: string;
   id_manufacturer: string;
   id_supplier: string;
   id_category_default: string;
@@ -1284,3 +1284,12 @@ export type Zone = {
   name: string;
   active: string;
 };
+
+export type ImageTypeRoute =
+  | 'general'
+  | 'products'
+  | 'categories'
+  | 'manufacturers'
+  | 'suppliers'
+  | 'stores'
+  | 'customizations';
