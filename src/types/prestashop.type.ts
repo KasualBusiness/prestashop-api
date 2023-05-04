@@ -1284,3 +1284,12 @@ export type Zone = {
   name: string;
   active: string;
 };
+
+export type ImageTypeRoute =
+  | 'general'
+  | 'products'
+  | 'categories'
+  | 'manufacturers'
+  | 'suppliers'
+  | 'stores'
+  | 'customizations';
