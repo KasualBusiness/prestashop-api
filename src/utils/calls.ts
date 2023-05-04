@@ -1,4 +1,4 @@
-import axios, { AxiosError, Method, isAxiosError } from 'axios';
+import axios, { AxiosError, Method, ResponseType, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
@@ -397,6 +397,7 @@ const customCallAction = async <T>({
   params,
   body,
   paramsSerializer,
+  responseType,
 }: CallParams) => {
   const { url, key } = config;
 
@@ -410,6 +411,7 @@ const customCallAction = async <T>({
     },
     paramsSerializer,
     data: body,
+    responseType,
   }).catch((error: AxiosError<T>) => {
     return error;
   });
@@ -429,11 +431,13 @@ export const customCall = async <Response, Body = unknown>({
   path,
   body,
   params,
+  responseType,
 }: {
   method: Method;
   path: string;
-  params: CustomParams;
+  params?: CustomParams;
   body?: Body;
+  responseType?: ResponseType;
 }): Promise<Response | undefined> => {
   const xml = body
     ? create({ prestashop: body }).end({
@@ -452,6 +456,7 @@ export const customCall = async <Response, Body = unknown>({
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
       },
     },
+    responseType,
   });
 
   if (isAxiosError(response)) {

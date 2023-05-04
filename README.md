@@ -16,7 +16,7 @@ npm install @kasual-business/prestashop-api
 import { init } from "@kasual-business/prestashop-api";
 
 // Init the api url and api key
-init("https://my-prestashop", "my-api-key");
+init("https://my-prestashop.com", "my-api-key");
 ```
 
 #### Use
@@ -119,7 +119,7 @@ await products.delete(1);
 
 #### Custom calls
 
-If you have an addon that add additional routes to the prestashop API, you can call them like this:
+If you have an addon that add additional routes to prestashop's webservices, you can call them like this:
 
 ```javascript
 // list
@@ -349,9 +349,10 @@ If you have an addon that add additional routes to the prestashop API, you can c
 
 #### images
 
-| Name     | Parameters      | Description                   |
-| :------- | :-------------- | :---------------------------- |
-| `create` | productId, path | Create an image for a product |
+| Name     | Parameters                      | Description     |
+| :------- | :------------------------------ | :-------------- |
+| `create` | ImageTypeRoute, productId, path | Create an image |
+| `get`    | ImageTypeRoute, productId, path | Get an image    |
 
 #### languages
 
