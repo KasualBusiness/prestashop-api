@@ -1,4 +1,9 @@
-import { Method, ParamsSerializerOptions, RawAxiosRequestHeaders } from 'axios';
+import type {
+  Method,
+  ParamsSerializerOptions,
+  RawAxiosRequestHeaders,
+  ResponseType,
+} from 'axios';
 import { Customer } from './prestashop.type';
 import { Endpoint } from '../enums/endpoint.enum';
 
@@ -9,6 +14,7 @@ export type CallParams = {
   body?: unknown | undefined;
   headers?: Partial<RawAxiosRequestHeaders>;
   paramsSerializer?: ParamsSerializerOptions;
+  responseType?: ResponseType;
 };
 
 export type LoginResponse = {
