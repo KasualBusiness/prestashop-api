@@ -892,38 +892,38 @@ export type Product = {
   available_later: string | PrestashopBasicValueObject[];
   associations?: {
     categories?: {
-      id: number | string;
+      id: string;
     }[];
     images?: {
-      id: number | string;
+      id: string;
     }[];
     combinations?: {
-      id: number | string;
+      id: string;
     }[];
     product_option_values?: {
-      id: number | string;
+      id: string;
     }[];
     product_features?: {
-      id: number | string;
-      id_feature_value: number | string;
+      id: string;
+      id_feature_value: string;
     }[];
     tags?: {
-      id: number | string;
+      id: string;
     }[];
     stock_availables?: {
-      id: number | string;
-      id_product_attribute: number | string;
+      id: string;
+      id_product_attribute: string;
     }[];
     attachments?: {
-      id: number | string;
+      id: string;
     }[];
     accessories?: {
-      id: number | string;
+      id: string;
     }[];
     product_bundle?: {
-      id: number | string;
-      id_product_attribute: number | string;
-      quantity: number | string;
+      id: string;
+      id_product_attribute: string;
+      quantity: string;
     }[];
   };
 };
