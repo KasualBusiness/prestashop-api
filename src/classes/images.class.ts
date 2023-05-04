@@ -14,7 +14,7 @@ export class Images {
    */
   create = async (
     type: ImageTypeRoute,
-    productId: number,
+    itemId: number,
     path: string
   ): Promise<AxiosResponse> => {
     const formData = new FormData();
@@ -27,7 +27,7 @@ export class Images {
 
     const response: AxiosResponse = await call({
       method: 'POST',
-      path: `/images/${type}/${productId}`,
+      path: `/images/${type}/${itemId}`,
       body: formData,
       headers: formData.getHeaders(),
     }).catch((error) => {
