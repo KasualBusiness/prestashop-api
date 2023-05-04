@@ -6,7 +6,7 @@ export type LanguageValuesCreate = {
 };
 
 export type PrestashopBasicValueObject = {
-  id: string;
+  id: number;
   value: string;
 };
 
@@ -37,7 +37,7 @@ export type Address = {
 };
 
 export type Attachment = {
-  id: string;
+  id: number;
   file: string;
   file_name: string;
   file_size: string;
@@ -54,7 +54,7 @@ export type Attachment = {
 };
 
 export type Carrier = {
-  id: string;
+  id: number;
   deleted: string;
   is_module: string;
   id_tax_rules_group: string;
@@ -79,7 +79,7 @@ export type Carrier = {
 };
 
 export type CartRule = {
-  id: string;
+  id: number;
   id_customer: string;
   date_from: string;
   date_to: string;
@@ -116,7 +116,7 @@ export type CartRule = {
 };
 
 export type Cart = {
-  id: string;
+  id: number;
   id_address_delivery: string;
   id_address_invoice: string;
   id_currency: string;
@@ -147,7 +147,7 @@ export type Cart = {
 };
 
 export type Category = {
-  id: string;
+  id: number;
   id_parent: string;
   active: string;
   id_shop_default: string;
@@ -175,7 +175,7 @@ export type Category = {
 };
 
 export type Combination = {
-  id: string;
+  id: number;
   id_product: string;
   location: string;
   ean13: string;
@@ -206,7 +206,7 @@ export type Combination = {
 };
 
 export type Configuration = {
-  id: string;
+  id: number;
   value: string;
   name: string;
   id_shop_group: string;
@@ -216,7 +216,7 @@ export type Configuration = {
 };
 
 export type Contact = {
-  id: string;
+  id: number;
   email: string;
   customer_service: string;
   name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
@@ -224,7 +224,7 @@ export type Contact = {
 };
 
 export type Content = {
-  id: string;
+  id: number;
   id_cms_category: string;
   position: string;
   indexation: string;
@@ -241,7 +241,7 @@ export type Content = {
 };
 
 export type ContentManagementSystem = {
-  id: string;
+  id: number;
   id_cms_category: string;
   position: string;
   indexation: string;
@@ -258,7 +258,7 @@ export type ContentManagementSystem = {
 };
 
 export type Country = {
-  id: string;
+  id: number;
   id_zone: string;
   id_currency: string;
   call_prefix: string;
@@ -273,7 +273,7 @@ export type Country = {
 };
 
 export type Currency = {
-  id: string;
+  id: number;
   names: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   name: string;
   symbol: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
@@ -289,7 +289,7 @@ export type Currency = {
 };
 
 export type CustomerMessage = {
-  id: string;
+  id: number;
   id_employee: string;
   id_customer_thread: string;
   ip_address: string;
@@ -303,7 +303,7 @@ export type CustomerMessage = {
 };
 
 export type CustomerThread = {
-  id: string;
+  id: number;
   id_lang: string;
   id_shop: string;
   id_customer: string;
@@ -323,7 +323,7 @@ export type CustomerThread = {
 };
 
 export type Customer = {
-  id: string;
+  id: number;
   id_default_group: string;
   id_lang: string;
   newsletter_date_add: string;
@@ -364,7 +364,7 @@ export type Customer = {
 };
 
 export type Customization = {
-  id: string;
+  id: number;
   id_address_delivery: string;
   id_cart: string;
   id_product: string;
@@ -386,7 +386,7 @@ export type Customization = {
 };
 
 export type Delivery = {
-  id: string;
+  id: number;
   id_carrier: string;
   id_range_price: string;
   id_range_weight: string;
@@ -397,7 +397,7 @@ export type Delivery = {
 };
 
 export type Employee = {
-  id: string;
+  id: number;
   id_lang: string;
   last_passwd_gen: string;
   stats_date_from: string;
@@ -427,7 +427,7 @@ export type Employee = {
 };
 
 export type Group = {
-  id: string;
+  id: number;
   reduction: string;
   price_display_method: string;
   show_prices: string;
@@ -437,7 +437,7 @@ export type Group = {
 };
 
 export type Guest = {
-  id: string;
+  id: number;
   id_customer: string;
   id_operating_system: string;
   id_web_browser: string;
@@ -456,7 +456,7 @@ export type Guest = {
 };
 
 export type ImageType = {
-  id: string;
+  id: number;
   name: string;
   width: string;
   height: string;
@@ -468,7 +468,7 @@ export type ImageType = {
 };
 
 export type Language = {
-  id: string;
+  id: number;
   name: string;
   iso_code: string;
   locale: string;
@@ -480,33 +480,31 @@ export type Language = {
 };
 
 export type Manufacturer = {
-  manufacturer: {
-    id: string;
-    active: string;
-    name: string;
-    date_add: string;
-    date_upd: string;
-    description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
-    short_description:
-      | PrestashopBasicValueObject[]
-      | LanguageValuesCreate
-      | string;
-    meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
-    meta_description:
-      | PrestashopBasicValueObject[]
-      | LanguageValuesCreate
-      | string;
-    meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
-    associations: {
-      addresses: {
-        id: string;
-      }[];
-    };
+  id: number;
+  active: string;
+  name: string;
+  date_add: string;
+  date_upd: string;
+  description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  short_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_description:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  associations: {
+    addresses: {
+      id: string;
+    }[];
   };
 };
 
 export type Message = {
-  id: string;
+  id: number;
   id_cart: string;
   id_order: string;
   id_customer: string;
@@ -517,7 +515,7 @@ export type Message = {
 };
 
 export type OrderCarrier = {
-  id: string;
+  id: number;
   id_order: string;
   id_carrier: string;
   id_order_invoice: string;
@@ -529,7 +527,7 @@ export type OrderCarrier = {
 };
 
 export type OrderCartRule = {
-  id: string;
+  id: number;
   id_order: string;
   id_cart_rule: string;
   id_order_invoice: string;
@@ -541,7 +539,7 @@ export type OrderCartRule = {
 };
 
 export type OrderDetail = {
-  id: string;
+  id: number;
   id_order: string;
   product_id: string;
   product_attribute_id: string;
@@ -596,7 +594,7 @@ export type OrderDetail = {
 };
 
 export type OrderHistory = {
-  id: string;
+  id: number;
   id_employee: string;
   id_order_state: string;
   id_order: string;
@@ -604,7 +602,7 @@ export type OrderHistory = {
 };
 
 export type OrderInvoice = {
-  id: string;
+  id: number;
   id_order: string;
   number: string;
   delivery_number: string;
@@ -626,7 +624,7 @@ export type OrderInvoice = {
 };
 
 export type OrderPayment = {
-  id: string;
+  id: number;
   order_reference: string;
   id_currency: string;
   amount: string;
@@ -641,7 +639,7 @@ export type OrderPayment = {
 };
 
 export type OrderSlip = {
-  id: string;
+  id: number;
   id_customer: string;
   id_order: string;
   conversion_rate: string;
@@ -668,7 +666,7 @@ export type OrderSlip = {
 };
 
 export type OrderState = {
-  id: string;
+  id: number;
   unremovable: string;
   delivery: string;
   hidden: string;
@@ -687,7 +685,7 @@ export type OrderState = {
 };
 
 export type Order = {
-  id: string;
+  id: number;
   id_address_delivery: string;
   id_address_invoice: string;
   id_cart: string;
@@ -754,14 +752,14 @@ export type Order = {
 };
 
 export type PriceRange = {
-  id: string;
+  id: number;
   id_carrier: string;
   delimiter1: string;
   delimiter2: string;
 };
 
 export type ProductCustomizationField = {
-  id: string;
+  id: number;
   id_product: string;
   type: string;
   required: string;
@@ -782,13 +780,13 @@ export type ProductFeatureValue = {
 };
 
 export type ProductFeature = {
-  id: string;
+  id: number;
   position: string;
   name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ProductOptionValue = {
-  id: string;
+  id: number;
   id_attribute_group: string;
   color: string;
   position: string;
@@ -796,7 +794,7 @@ export type ProductOptionValue = {
 };
 
 export type ProdutOption = {
-  id: string;
+  id: number;
   is_color_group: string;
   group_type: string;
   position: string;
@@ -810,7 +808,7 @@ export type ProdutOption = {
 };
 
 export type ProductSupplier = {
-  id: string;
+  id: number;
   id_product: string;
   id_product_attribute: string;
   id_supplier: string;
@@ -820,7 +818,7 @@ export type ProductSupplier = {
 };
 
 export type Product = {
-  id: string | number;
+  id: number;
   reference: string;
   price: string;
   state: string;
@@ -931,7 +929,7 @@ export type Product = {
 };
 
 export type ShopGroup = {
-  id: string;
+  id: number;
   name: string;
   color: string;
   share_customer: string;
@@ -942,7 +940,7 @@ export type ShopGroup = {
 };
 
 export type ShopUrl = {
-  id: string;
+  id: number;
   id_shop: string;
   active: string;
   main: string;
@@ -953,7 +951,7 @@ export type ShopUrl = {
 };
 
 export type Shop = {
-  id: string;
+  id: number;
   id_shop_group: string;
   id_category: string;
   active: string;
@@ -964,7 +962,7 @@ export type Shop = {
 };
 
 export type SpecificPriceRule = {
-  id: string;
+  id: number;
   id_shop: string;
   id_country: string;
   id_currency: string;
@@ -980,7 +978,7 @@ export type SpecificPriceRule = {
 };
 
 export type SpecificPrice = {
-  id: string;
+  id: number;
   id_shop_group: string;
   id_shop: string;
   id_cart: string;
@@ -1001,7 +999,7 @@ export type SpecificPrice = {
 };
 
 export type State = {
-  id: string;
+  id: number;
   id_zone: string;
   id_country: string;
   iso_code: string;
@@ -1010,7 +1008,7 @@ export type State = {
 };
 
 export type StockAvailable = {
-  id: string;
+  id: number;
   id_product: string;
   id_product_attribute: string;
   id_shop: string;
@@ -1022,7 +1020,7 @@ export type StockAvailable = {
 };
 
 export type StockMovementReason = {
-  id: string;
+  id: number;
   sign: string;
   deleted: string;
   date_add: string;
@@ -1031,7 +1029,7 @@ export type StockMovementReason = {
 };
 
 export type StockMovement = {
-  id: string;
+  id: number;
   id_product: string;
   id_product_attribute: string;
   id_warehouse: string;
@@ -1056,7 +1054,7 @@ export type StockMovement = {
 };
 
 export type Stock = {
-  id: string;
+  id: number;
   id_warehouse: string;
   id_product: string;
   id_product_attribute: string;
@@ -1071,7 +1069,7 @@ export type Stock = {
 };
 
 export type Store = {
-  id: string;
+  id: number;
   id_country: string;
   id_state: string;
   hours: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
@@ -1092,7 +1090,7 @@ export type Store = {
 };
 
 export type Supplier = {
-  id: string;
+  id: number;
   link_rewrite: string;
   name: string;
   active: string;
@@ -1108,7 +1106,7 @@ export type Supplier = {
 };
 
 export type SupplyOrderDetail = {
-  id: string;
+  id: number;
   id_supply_order: string;
   id_product: string;
   id_product_attribute: string;
@@ -1135,7 +1133,7 @@ export type SupplyOrderDetail = {
 };
 
 export type SupplyOrderHistory = {
-  id: string;
+  id: number;
   id_supply_order: string;
   id_employee: string;
   id_state: string;
@@ -1145,7 +1143,7 @@ export type SupplyOrderHistory = {
 };
 
 export type SupplyOrderReceiptHistory = {
-  id: string;
+  id: number;
   id_supply_order_detail: string;
   id_employee: string;
   id_supply_order_state: string;
@@ -1156,7 +1154,7 @@ export type SupplyOrderReceiptHistory = {
 };
 
 export type SupplyOrderState = {
-  id: string;
+  id: number;
   delivery_note: string;
   editable: string;
   receipt_state: string;
@@ -1167,7 +1165,7 @@ export type SupplyOrderState = {
 };
 
 export type SupplyOrder = {
-  id: string;
+  id: number;
   id_supplier: string;
   id_lang: string;
   id_warehouse: string;
@@ -1197,13 +1195,13 @@ export type SupplyOrder = {
 };
 
 export type Tag = {
-  id: string;
+  id: number;
   id_lang: string;
   name: string;
 };
 
 export type TaxRuleGroup = {
-  id: string;
+  id: number;
   name: string;
   active: string;
   deleted: string;
@@ -1212,7 +1210,7 @@ export type TaxRuleGroup = {
 };
 
 export type TaxRule = {
-  id: string;
+  id: number;
   id_tax_rules_group: string;
   id_state: string;
   id_country: string;
@@ -1224,7 +1222,7 @@ export type TaxRule = {
 };
 
 export type Tax = {
-  id: string;
+  id: number;
   rate: string;
   active: string;
   deleted: string;
@@ -1232,7 +1230,7 @@ export type Tax = {
 };
 
 export type TranslatedConfiguration = {
-  id: string;
+  id: number;
   value: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   date_add: string;
   date_upd: string;
@@ -1242,7 +1240,7 @@ export type TranslatedConfiguration = {
 };
 
 export type WarehouseProductLocation = {
-  id: string;
+  id: number;
   id_product: string;
   id_product_attribute: string;
   id_warehouse: string;
@@ -1250,7 +1248,7 @@ export type WarehouseProductLocation = {
 };
 
 export type Warehouse = {
-  id: string;
+  id: number;
   id_address: string;
   id_employee: string;
   id_currency: string;
@@ -1273,14 +1271,14 @@ export type Warehouse = {
 };
 
 export type WeightRange = {
-  id: string;
+  id: number;
   id_carrier: string;
   delimiter1: string;
   delimiter2: string;
 };
 
 export type Zone = {
-  id: string;
+  id: number;
   name: string;
   active: string;
 };
