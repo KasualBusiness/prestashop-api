@@ -349,9 +349,10 @@ If you have an addon that add additional routes to prestashop's webservices, you
 
 #### images
 
-| Name     | Parameters      | Description                   |
-| :------- | :-------------- | :---------------------------- |
-| `create` | productId, path | Create an image for a product |
+| Name     | Parameters                      | Description     |
+| :------- | :------------------------------ | :-------------- |
+| `create` | ImageTypeRoute, productId, path | Create an image |
+| `get`    | ImageTypeRoute, productId, path | Get an image    |
 
 #### languages
 
