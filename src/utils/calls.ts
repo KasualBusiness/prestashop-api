@@ -456,7 +456,7 @@ export const customCall = async <Response, Body = unknown>({
         const searchParams = generateURLSearchParams(params);
 
         // Merge custom query params with search params.
-        if (isCustomGetParams(params) && params?.customSearchParams) {
+        if (params && isCustomGetParams(params) && params?.customSearchParams) {
           for (const [key, value] of params.customSearchParams.entries()) {
             searchParams.append(key, value);
           }
