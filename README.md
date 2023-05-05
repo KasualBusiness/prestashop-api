@@ -127,7 +127,7 @@ If you have an addon that add additional routes to prestashop's webservices, you
  // get
  await custom<{ item: Item }>("my-custom-route").get(1);
  // create
- await custom<{ item: Item }>("my-custom-route").create<{ name: string }>(1, { name: "My name" });
+ await custom<{ item: Item }>("my-custom-route").create<{ name: string }>({ name: "My name" });
  // update
  await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { name: "My new name" });
  // delete
