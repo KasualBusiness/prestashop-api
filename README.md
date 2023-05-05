@@ -22,7 +22,7 @@ init("https://my-prestashop.com", "my-api-key");
 #### Use
 
 ```javascript
-import prestashopAPI, { products } from "@kasual/prestashop-api";
+import prestashopAPI, { products } from "@kasual-business/prestashop-api";
 
 await prestashopAPI.products.list();
 // or
