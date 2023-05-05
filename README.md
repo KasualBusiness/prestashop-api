@@ -123,15 +123,28 @@ If you have an addon that add additional routes to prestashop's webservices, you
 
 ```javascript
 // list
- await custom<{ items: Item[] }>("my-custom-route").list();
- // get
- await custom<{ item: Item }>("my-custom-route").get(1);
- // create
- await custom<{ item: Item }>("my-custom-route").create<{ name: string }>(1, { name: "My name" });
- // update
- await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { name: "My new name" });
- // delete
- await custom<{ item: Item }>("my-custom-route").delete(1);
+await custom<{ items: Item[] }>("my-custom-route").list();
+
+// get
+await custom<{ item: Item }>("my-custom-route").get(1);
+
+// create
+await custom<{ item: Item }>("my-custom-route").create<{ name: string }>({ name: "My name" });
+
+// update
+await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { name: "My new name" });
+
+// delete
+await custom<{ item: Item }>("my-custom-route").delete(1);
+
+// list with custom query params
+const searchParams = new URLSearchParams();
+
+searchParams.append('myCustomId', '1');
+
+await custom<{ items: Item[] }>('my-custom-route').list({
+  customSearchParams: searchParams,
+});
 ```
 
 ## API Reference
@@ -818,8 +831,8 @@ If you have an addon that add additional routes to prestashop's webservices, you
 
 | Name     | Parameters             | Description                     |
 | :------- | :--------------------- | :------------------------------ |
-| `list`   | CustomParams           | List all on custom endpoint     |
-| `get`    | id, CustomParams       | Get on custom endpoint by id    |
+| `list`   | CustomGetParams        | List all on custom endpoint     |
+| `get`    | id, CustomGetParams    | Get on custom endpoint by id    |
 | `create` | body, CustomParams     | Create on custom endpoint       |
 | `update` | id, body, CustomParams | Update on custom endpoint by id |
 | `delete` | id, body, CustomParams | Delete on custom endpoint by id |
@@ -872,6 +885,13 @@ const listProducts = async () => {
 | Name      | Value              | Description           |
 | :-------- | :----------------- | :-------------------- |
 | `display` | 'full' or string[] | Display specific keys |
+
+### CustomGetParams
+
+| Name                 | Value              | Description              |
+| :------------------- | :----------------- | :----------------------- |
+| `display`            | 'full' or string[] | Display specific keys    |
+| `customSearchParams` | URLSearchParams    | Add custom search params |
 
 ### Operator
 
