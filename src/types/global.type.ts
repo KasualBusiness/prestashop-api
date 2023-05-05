@@ -31,3 +31,15 @@ export type DeleteParams = {
 export type CustomParams = {
   display?: string[] | 'full';
 };
+
+export type CustomGetParams = {
+  display?: string[] | 'full';
+} & {
+  customSearchParams?: URLSearchParams;
+};
+
+/** User defined type guards */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const isCustomGetParams = (value: any): value is CustomGetParams => {
+  return value.customSearchParams !== undefined;
+};
