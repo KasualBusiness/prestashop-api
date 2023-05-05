@@ -2,6 +2,7 @@ import axios, { AxiosError, Method, ResponseType, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
+  CustomGetParams,
   CustomParams,
   DeleteParams,
   Filter,
@@ -9,6 +10,7 @@ import {
   ListParams,
   PostParams,
   PutParams,
+  isCustomGetParams,
 } from '../types/global.type';
 import { Endpoint } from '../enums/endpoint.enum';
 import {
@@ -435,7 +437,7 @@ export const customCall = async <Response, Body = unknown>({
 }: {
   method: Method;
   path: string;
-  params?: CustomParams;
+  params?: CustomParams | CustomGetParams;
   body?: Body;
   responseType?: ResponseType;
 }): Promise<Response | undefined> => {
@@ -452,6 +454,13 @@ export const customCall = async <Response, Body = unknown>({
     paramsSerializer: {
       serialize: (serializeParams) => {
         const searchParams = generateURLSearchParams(params);
+
+        // Merge custom query params with search params.
+        if (isCustomGetParams(params) && params?.customSearchParams) {
+          for (const [key, value] of params.customSearchParams.entries()) {
+            searchParams.append(key, value);
+          }
+        }
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
       },
