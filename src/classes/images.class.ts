@@ -6,11 +6,15 @@ import { ImageTypeRoute } from '../types/prestashop.type';
 
 export class Images {
   /**
+   *  /**
    * Create an image.
-   * It needs the product id and the path of the file.
+   * It needs the category of the image, the item id and
+   * the path to the file.
    *
-   * @param productId
-   * @param formData
+   * @param type
+   * @param itemId
+   * @param path
+   * @returns
    */
   create = async (
     type: ImageTypeRoute,
@@ -37,6 +41,16 @@ export class Images {
     return response;
   };
 
+  /**
+   * Get an image.
+   * It needs the category of the image, the item id and
+   * the image id.
+   *
+   * @param type
+   * @param itemId
+   * @param imageId
+   * @returns
+   */
   get = async (
     type: ImageTypeRoute,
     itemId: number,

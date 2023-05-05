@@ -1,4 +1,4 @@
-import { CustomParams } from '../types/global.type';
+import { CustomGetParams, CustomParams } from '../types/global.type';
 import { customCall } from '../utils/calls';
 
 export class Custom<Response> {
@@ -15,7 +15,7 @@ export class Custom<Response> {
    * @returns
    */
   list = async (
-    params: CustomParams | undefined = { display: 'full' }
+    params: CustomGetParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
       method: 'GET',
@@ -35,7 +35,7 @@ export class Custom<Response> {
    */
   get = async (
     id: number,
-    params: CustomParams | undefined = { display: 'full' }
+    params: CustomGetParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
       method: 'GET',
