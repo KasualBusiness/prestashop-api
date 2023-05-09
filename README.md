@@ -1,6 +1,8 @@
 # prestashop-api
 
-Prestashop's webservices calls simplified.
+Simplified and typed calls to Prestashop webservices.
+
+Access all endpoints offered by Prestashop webservices as well as custom routes added by addons.
 
 ## Installation
 
