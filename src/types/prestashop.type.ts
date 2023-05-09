@@ -771,12 +771,7 @@ export type ProductCustomizationField = {
 export type ProductFeatureValue = {
   id_feature: number;
   custom: number;
-  value: {
-    language: {
-      '@id': number;
-      '#text': string;
-    }[];
-  };
+  value: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
 export type ProductFeature = {
