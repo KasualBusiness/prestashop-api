@@ -684,6 +684,22 @@ export type OrderState = {
   template: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
+export type OrderRow = {
+  id: string;
+  product_id: string;
+  product_attribute_id: string;
+  product_quantity: string;
+  product_name: string;
+  product_reference: string;
+  product_ean13: string;
+  product_isbn: string;
+  product_upc: string;
+  product_price: string;
+  id_customization: string;
+  unit_price_tax_incl: string;
+  unit_price_tax_excl: string;
+};
+
 export type Order = {
   id: number;
   id_address_delivery: string;
@@ -733,21 +749,7 @@ export type Order = {
   conversion_rate: string;
   reference: string;
   associations: {
-    order_rows: {
-      id: string;
-      product_id: string;
-      product_attribute_id: string;
-      product_quantity: string;
-      product_name: string;
-      product_reference: string;
-      product_ean13: string;
-      product_isbn: string;
-      product_upc: string;
-      product_price: string;
-      id_customization: string;
-      unit_price_tax_incl: string;
-      unit_price_tax_excl: string;
-    }[];
+    order_rows: OrderRow[];
   };
 };
 
