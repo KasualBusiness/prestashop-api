@@ -99,7 +99,7 @@ describe('Base', async () => {
 
   describe('create', () => {
     test('Should kick endpoint key', async () => {
-      const { data } = await products.update(1, { id: '1', name: 'name' });
+      const { data } = await products.update(1, { id: 1, name: 'name' });
 
       expect(data).not.toHaveProperty(Endpoint.products);
     });
