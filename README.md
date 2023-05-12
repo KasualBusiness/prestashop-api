@@ -31,7 +31,7 @@ await prestashopAPI.products.list();
 await products.list();
 ```
 
-#### List all
+#### List
 
 ```javascript
 // List all products
