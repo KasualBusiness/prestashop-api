@@ -34,12 +34,12 @@ export class Custom<Response> {
    * @returns
    */
   get = async (
-    id: number,
+    id: number | null | undefined,
     params: CustomGetParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
       method: 'GET',
-      path: `/${this.endpoint}/${id}`,
+      path: `/${this.endpoint}${id ? `/${id}` : ''}`,
       params,
     });
 
