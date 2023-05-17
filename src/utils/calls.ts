@@ -520,12 +520,13 @@ export const customCall = async <Response, Body = unknown>({
     body: xml,
     paramsSerializer: {
       serialize: (serializeParams) => {
-        const searchParams = isCustomGetParams(params)
-          ? generateListCustomURLSearchParams(params)
-          : generateURLSearchParams(params);
+        const searchParams =
+          params && isCustomGetParams(params)
+            ? generateListCustomURLSearchParams(params)
+            : generateURLSearchParams(params);
 
         // Merge custom query params with search params.
-        if (params && isCustomGetParams(params) && params?.customSearchParams) {
+        if (params && isCustomGetParams(params) && params.customSearchParams) {
           for (const [key, value] of params.customSearchParams.entries()) {
             searchParams.append(key, value);
           }
