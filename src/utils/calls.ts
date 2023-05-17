@@ -2,6 +2,7 @@ import axios, { AxiosError, Method, ResponseType, isAxiosError } from 'axios';
 import { create } from 'xmlbuilder2';
 import qs from 'qs';
 import {
+  CustomFilter,
   CustomGetParams,
   CustomParams,
   DeleteParams,
@@ -117,6 +118,72 @@ export const generateListURLSearchParams = <T>(
   /** Sort */
   if (params.sort) {
     searchParams.set('sort', `[${params.sort.toString()}]`);
+  }
+
+  return searchParams;
+};
+
+/**
+ * Format display, limit, skip, filters and sort into
+ * a URLSearchParams that will be usable by prestashop's
+ * web services.
+ *
+ * @param params
+ * @returns
+ */
+export const generateListCustomURLSearchParams = (
+  params: CustomGetParams
+): URLSearchParams => {
+  const searchParams = generateURLSearchParams(params);
+
+  /** Filters */
+  if (params.filters) {
+    params.filters.forEach((filter: CustomFilter, i: number) => {
+      const key = `filter[${filter.key.toString()}]`;
+      const hasMultipleFiltersWithTheSameKey =
+        (params.filters?.filter((item) => item.key === filter.key) || [])
+          .length > 1;
+
+      /**
+       * If there are multiple filters with the same key we apply the OR operator of prestashop.
+       * Otherwise we set the filter normally.
+       * Example: [{ key: "id", value: 1 }, { key: "id", value: 2 }]
+       * will become filter[id]=[1|2]
+       **/
+      if (hasMultipleFiltersWithTheSameKey && i > 0) {
+        searchParams.set(
+          key,
+          `[${searchParams.get(key)?.replace(/\[|\]/g, '')}|${filter.value}]`
+        );
+      } else {
+        searchParams.set(key, `[${filter.value}]`);
+      }
+
+      /**
+       * If there are no multiple filters with the same key, we apply the operator.
+       * Prestashop's webservices don't handle the combination of % and OR.
+       **/
+      if (!hasMultipleFiltersWithTheSameKey) {
+        const initializedFilter = searchParams.get(key);
+
+        switch (filter.operator) {
+          case 'start':
+            searchParams.set(key, `%${initializedFilter}`);
+            break;
+
+          case 'end':
+            searchParams.set(key, `${initializedFilter}%`);
+            break;
+
+          case 'contains':
+            searchParams.set(key, `%${initializedFilter}%`);
+            break;
+
+          default:
+            break;
+        }
+      }
+    });
   }
 
   return searchParams;
@@ -453,7 +520,9 @@ export const customCall = async <Response, Body = unknown>({
     body: xml,
     paramsSerializer: {
       serialize: (serializeParams) => {
-        const searchParams = generateURLSearchParams(params);
+        const searchParams = isCustomGetParams(params)
+          ? generateListCustomURLSearchParams(params)
+          : generateURLSearchParams(params);
 
         // Merge custom query params with search params.
         if (params && isCustomGetParams(params) && params?.customSearchParams) {
