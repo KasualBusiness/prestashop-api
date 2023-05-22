@@ -1,6 +1,6 @@
 {
   "name": "@kasual-business/prestashop-api",
-  "version": "1.2.12",
+  "version": "1.3.0",
   "description": "Prestashop node API",
   "keywords": [
     "prestashop",
