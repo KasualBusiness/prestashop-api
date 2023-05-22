@@ -853,8 +853,14 @@ export type Product = {
   cache_has_attachments: string;
   is_virtual: string;
   additional_delivery_times: string;
-  delivery_in_stock: string | PrestashopBasicValueObject[];
-  delivery_out_stock: string | PrestashopBasicValueObject[];
+  delivery_in_stock:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
+  delivery_out_stock:
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate
+    | string;
   product_type: string;
   on_sale: string;
   online_only: string;
@@ -882,12 +888,15 @@ export type Product = {
   date_add: string;
   date_upd: string;
   pack_stock_type: string;
-  meta_description: string | PrestashopBasicValueObject[];
-  meta_keywords: string | PrestashopBasicValueObject[];
-  meta_title: string | PrestashopBasicValueObject[];
+  meta_description:
+    | string
+    | PrestashopBasicValueObject[]
+    | LanguageValuesCreate;
+  meta_keywords: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  meta_title: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   link_rewrite: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
-  available_now: string | PrestashopBasicValueObject[];
-  available_later: string | PrestashopBasicValueObject[];
+  available_now: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
+  available_later: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   associations?: {
     categories?: {
       id: string;
