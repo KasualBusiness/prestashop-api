@@ -791,7 +791,7 @@ export type ProductOptionValue = {
   name: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
-export type ProdutOption = {
+export type ProductOption = {
   id: number;
   is_color_group: string;
   group_type: string;
