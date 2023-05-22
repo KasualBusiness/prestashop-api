@@ -46,9 +46,7 @@ export type Attachment = {
   description: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
   associations: {
     products: {
-      product: {
-        id: string;
-      };
+      id: string;
     }[];
   };
 };
