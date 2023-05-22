@@ -772,8 +772,8 @@ export type ProductCustomizationField = {
 
 export type ProductFeatureValue = {
   id: number;
-  id_feature: number;
-  custom: number;
+  id_feature: string;
+  custom: string;
   value: PrestashopBasicValueObject[] | LanguageValuesCreate | string;
 };
 
