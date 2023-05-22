@@ -6,7 +6,7 @@ export type LanguageValuesCreate = {
 };
 
 export type PrestashopBasicValueObject = {
-  id: number;
+  id: string;
   value: string;
 };
 
