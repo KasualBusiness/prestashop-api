@@ -16,6 +16,7 @@ import {
   PrestashopAPIDeleteResponse,
   PrestashopAPIResponse,
 } from '../types/calls.type';
+import { handleBodyCreateUpdateAssociations } from '../utils/handlers';
 
 export class Base<T> {
   endpoint: Endpoint;
@@ -65,49 +66,9 @@ export class Base<T> {
     body: Partial<Custom>,
     params: PostParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
-    // If associations is present, we have to add a key to be accepted by the prestashop api.
-    const { associations } = body as unknown as {
-      associations: Record<string, Record<string, unknown>[]> | undefined;
-    };
+    const newBody = handleBodyCreateUpdateAssociations(body);
 
-    if (associations) {
-      body = {
-        ...body,
-        associations: Object.fromEntries(
-          Object.entries(associations).map(([key, value]) => {
-            let newKey = key.slice(0, -1);
-
-            if (key === 'categories') {
-              newKey = 'category';
-            }
-
-            if (key === 'addresses') {
-              newKey = 'address';
-            }
-
-            if (key === 'taxes') {
-              newKey = 'tax';
-            }
-
-            if (key === 'product_option_value') {
-              newKey = 'product_option_value';
-            }
-
-            if (key === 'accessories') {
-              newKey = 'accessory';
-            }
-
-            if (key === 'product_bundle') {
-              newKey = 'product_bundle';
-            }
-
-            return [key, { [newKey]: value }];
-          })
-        ),
-      };
-    }
-
-    const response = await postCall<Custom>(this.endpoint, body, params);
+    const response = await postCall<Custom>(this.endpoint, newBody, params);
 
     return response;
   };
@@ -125,7 +86,9 @@ export class Base<T> {
     body: Partial<Custom>,
     params: PutParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
-    const response = await putCall<Custom>(this.endpoint, id, body, params);
+    const newBody = handleBodyCreateUpdateAssociations(body);
+
+    const response = await putCall<Custom>(this.endpoint, id, newBody, params);
 
     return response;
   };
