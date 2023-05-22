@@ -30,6 +30,7 @@ export type DeleteParams = {
 
 export type CustomParams = {
   display?: string[] | 'full';
+  json?: boolean;
 };
 
 export type CustomFilter = {

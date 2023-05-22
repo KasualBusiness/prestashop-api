@@ -508,16 +508,21 @@ export const customCall = async <Response, Body = unknown>({
   body?: Body;
   responseType?: ResponseType;
 }): Promise<Response | undefined> => {
-  const xml = body
-    ? create({ prestashop: body }).end({
-        prettyPrint: true,
-      })
-    : undefined;
+  let newBody: Body | string | undefined = body;
+
+  // Transform to xml if json param is false
+  if (!isCustomGetParams(params) && !params?.json) {
+    newBody = body
+      ? create({ prestashop: body }).end({
+          prettyPrint: true,
+        })
+      : undefined;
+  }
 
   const response = await customCallAction<Response>({
     method,
     path,
-    body: xml,
+    body: newBody,
     paramsSerializer: {
       serialize: (serializeParams) => {
         const searchParams =
