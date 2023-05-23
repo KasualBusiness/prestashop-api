@@ -4,7 +4,7 @@ import type {
   RawAxiosRequestHeaders,
   ResponseType,
 } from 'axios';
-import { Customer } from './prestashop.type';
+import { Customer, StockMovement } from './prestashop.type';
 import { Endpoint } from '../enums/endpoint.enum';
 
 export type CallParams = {
@@ -15,11 +15,6 @@ export type CallParams = {
   headers?: Partial<RawAxiosRequestHeaders>;
   paramsSerializer?: ParamsSerializerOptions;
   responseType?: ResponseType;
-};
-
-export type LoginResponse = {
-  success: boolean;
-  customer?: Partial<Customer>;
 };
 
 export type PrestashopAPIResponse<T> = {
@@ -36,4 +31,14 @@ export type PrestashopErrorResponse<T> = {
 export type PrestashopAPIDeleteResponse = {
   success: boolean;
   errors: unknown[] | undefined;
+};
+
+export type LoginResponse = {
+  success: boolean;
+  customer?: Partial<Customer>;
+};
+
+export type StockMovementsResponse = {
+  stock_movements?: StockMovement[];
+  errors?: unknown[];
 };
