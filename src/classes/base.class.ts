@@ -4,6 +4,7 @@ import {
   GetParams,
   PostParams,
   PutParams,
+  DeleteParams,
 } from '../types/global.type';
 import {
   listCall,
@@ -102,7 +103,7 @@ export class Base<T> {
    */
   delete = async (
     id: number,
-    params: PutParams | undefined = { display: 'full' }
+    params: DeleteParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIDeleteResponse> => {
     const response = await deleteCall(this.endpoint, id, params);
 
