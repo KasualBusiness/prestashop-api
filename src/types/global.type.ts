@@ -48,5 +48,7 @@ export type CustomGetParams = {
 /** User defined type guards */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const isCustomGetParams = (value: any): value is CustomGetParams => {
-  return value.filters !== undefined || value.customSearchParams !== undefined;
+  return (
+    value?.filters !== undefined || value?.customSearchParams !== undefined
+  );
 };
