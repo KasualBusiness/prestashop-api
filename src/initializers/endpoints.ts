@@ -47,7 +47,6 @@ import {
   State,
   Stock,
   StockAvailable,
-  StockMovement,
   StockMovementReason,
   Store,
   Supplier,
@@ -68,6 +67,7 @@ import {
 } from '../types/prestashop.type';
 import { Base, Customers, Images } from '../classes';
 import { Custom } from '../classes/custom.class';
+import { StockMovements } from '../classes/stock-movements.class';
 
 /**
  * Initiliaze and export all endpoints.
@@ -148,7 +148,7 @@ export const stockAvailables = new Base<StockAvailable>(
 export const stockMovementReasons = new Base<StockMovementReason>(
   Endpoint.stockMovementReasons
 );
-export const stockMovements = new Base<StockMovement>(Endpoint.stockMovements);
+export const stockMovements = new StockMovements();
 export const stocks = new Base<Stock>(Endpoint.stocks);
 export const stores = new Base<Store>(Endpoint.stores);
 export const suppliers = new Base<Supplier>(Endpoint.suppliers);
