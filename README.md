@@ -147,6 +147,10 @@ searchParams.append('myCustomId', '1');
 await custom<{ items: Item[] }>('my-custom-route').list({
   customSearchParams: searchParams,
 });
+
+// send body as json instead of xml
+await custom<{ item: Item }>("my-custom-route").create<{ name: string }>({ name: "My name" }, { json: true });
+await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { name: "My new name" }, { json: true });
 ```
 
 ## API Reference
