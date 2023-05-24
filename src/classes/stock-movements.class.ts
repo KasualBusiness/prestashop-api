@@ -1,5 +1,4 @@
 import { StockMovement } from '../types/prestashop.type';
-import { Endpoint } from '../enums/endpoint.enum';
 import {
   DeleteParams,
   GetParams,
@@ -14,8 +13,6 @@ import {
 import { customCall } from '../utils/calls';
 
 export class StockMovements {
-  endpoint = Endpoint.stockMvt;
-
   /**
    * List all stock movements from endpoint.
    *
