@@ -4,7 +4,7 @@ import type {
   RawAxiosRequestHeaders,
   ResponseType,
 } from 'axios';
-import { Customer, StockMovement } from './prestashop.type';
+import { Customer, Stock, StockMovement } from './prestashop.type';
 import { Endpoint } from '../enums/endpoint.enum';
 
 export type CallParams = {
@@ -40,5 +40,10 @@ export type LoginResponse = {
 
 export type StockMovementsResponse = {
   stock_movements?: StockMovement[];
+  errors?: unknown[];
+};
+
+export type StocksResponse = {
+  stocks?: Stock[];
   errors?: unknown[];
 };

@@ -1063,14 +1063,21 @@ export type Stock = {
   id_warehouse: string;
   id_product: string;
   id_product_attribute: string;
+  real_quantity: number;
   reference: string;
   ean13: string;
   isbn: string;
   upc: string;
-  mpn: string;
   physical_quantity: string;
   usable_quantity: string;
+  location: string;
   price_te: string;
+  minimal_quantity: string;
+  low_stock_threshold: string;
+  low_stock_alert: string;
+  available_date: string;
+  date_add: string;
+  date_upd: string;
 };
 
 export type Store = {
