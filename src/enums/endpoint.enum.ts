@@ -57,6 +57,7 @@ export enum Endpoint {
   stockMovements = 'stock_movements',
   stockMvt = 'stock_mvt',
   stocks = 'stocks',
+  stock = 'stock',
   stores = 'stores',
   suppliers = 'suppliers',
   supplyOrderDetails = 'supply_order_details',
