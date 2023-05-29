@@ -1,4 +1,3 @@
-import fs from 'fs';
 import FormData from 'form-data';
 import { AxiosResponse } from 'axios';
 import { call, customCall } from '../utils/calls';
@@ -20,15 +19,11 @@ export class Images {
   create = async (
     type: ImageTypeRoute,
     itemId: number,
-    path: string
+    file: Buffer
   ): Promise<AxiosResponse> => {
     const formData = new FormData();
 
-    const file = fs.readFileSync(path);
-
-    formData.append('image', file, {
-      filepath: path,
-    });
+    formData.append('image', file);
 
     const response: AxiosResponse = await call({
       method: 'POST',
