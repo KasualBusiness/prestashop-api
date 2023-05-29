@@ -12,6 +12,7 @@ import {
   ContentManagementSystem,
   Country,
   Currency,
+  Customer,
   CustomerMessage,
   CustomerThread,
   Customization,
@@ -64,7 +65,7 @@ import {
   WeightRange,
   Zone,
 } from '../types/prestashop.type';
-import { Base, Customers, Images } from '../classes';
+import { Base, Images } from '../classes';
 import { Custom } from '../classes/custom.class';
 import { StockMovements } from '../classes/stock-movements.class';
 import { Stocks } from '../classes/stocks.class';
@@ -94,7 +95,7 @@ export const customerMessages = new Base<CustomerMessage>(
 export const customerThreads = new Base<CustomerThread>(
   Endpoint.customerThreads
 );
-export const customers = new Customers();
+export const customers = new Base<Customer>(Endpoint.customers);
 export const customizations = new Base<Customization>(Endpoint.customizations);
 export const deliveries = new Base<Delivery>(Endpoint.deliveries);
 export const employees = new Base<Employee>(Endpoint.employees);
