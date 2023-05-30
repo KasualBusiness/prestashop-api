@@ -1,4 +1,3 @@
-import FormData from 'form-data';
 import { AxiosResponse } from 'axios';
 import { call, customCall } from '../utils/calls';
 import { ImageTypeRoute } from '../types/prestashop.type';
@@ -21,20 +20,38 @@ export class Images {
     itemId: number,
     file: Buffer
   ): Promise<AxiosResponse> => {
-    const formData = new FormData();
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      const formData = new FormData();
+      const blob = new Blob([file]);
 
-    formData.append('image', file);
+      formData.append('image', blob);
 
-    const response: AxiosResponse = await call({
-      method: 'POST',
-      path: `/images/${type}/${itemId}`,
-      body: formData,
-      headers: formData.getHeaders(),
-    }).catch((error) => {
-      return error.response;
-    });
+      const response: AxiosResponse = await call({
+        method: 'POST',
+        path: `/images/${type}/${itemId}`,
+        body: formData,
+      }).catch((error) => {
+        return error.response;
+      });
 
-    return response;
+      return response;
+    } else {
+      const FormData = await import('form-data');
+      const formData = new FormData.default();
+
+      formData.append('image', file);
+
+      const response: AxiosResponse = await call({
+        method: 'POST',
+        path: `/images/${type}/${itemId}`,
+        body: formData,
+        headers: formData.getHeaders(),
+      }).catch((error) => {
+        return error.response;
+      });
+
+      return response;
+    }
   };
 
   /**
