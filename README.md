@@ -297,14 +297,13 @@ await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { na
 
 #### customers
 
-| Name     | Parameters          | Description                                     |
-| :------- | :------------------ | :---------------------------------------------- |
-| `list`   | ListParams          | List all customers                              |
-| `get`    | id                  | Get a customer by id                            |
-| `create` | body, PostParams    | Create a customer                               |
-| `update` | id, body, PutParams | Update a customer by id                         |
-| `delete` | id, DeleteParams    | Delete a customer by id                         |
-| `login`  | email, password     | Check a customer email and password combination |
+| Name     | Parameters          | Description             |
+| :------- | :------------------ | :---------------------- |
+| `list`   | ListParams          | List all customers      |
+| `get`    | id                  | Get a customer by id    |
+| `create` | body, PostParams    | Create a customer       |
+| `update` | id, body, PutParams | Update a customer by id |
+| `delete` | id, DeleteParams    | Delete a customer by id |
 
 #### customizations
 
@@ -368,10 +367,10 @@ await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { na
 
 #### images
 
-| Name     | Parameters                      | Description     |
-| :------- | :------------------------------ | :-------------- |
-| `create` | ImageTypeRoute, productId, path | Create an image |
-| `get`    | ImageTypeRoute, productId, path | Get an image    |
+| Name     | Parameters                                  | Description     |
+| :------- | :------------------------------------------ | :-------------- |
+| `create` | ImageTypeRoute, productId, buffer, filename | Create an image |
+| `get`    | ImageTypeRoute, productId, path             | Get an image    |
 
 #### languages
 
