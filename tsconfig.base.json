@@ -1,5 +1,4 @@
 {
-  "extends": "@tsconfig/recommended/tsconfig.json",
   "compilerOptions": {
     "strict": true,
     "esModuleInterop": true,
@@ -11,6 +10,5 @@
     "declarationMap": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["./src"],
-  "exclude": ["./src/**/*.test.ts", "./src/tests"]
+  "files": ["./src/index.ts"]
 }
