@@ -18,7 +18,8 @@ export class Images {
   create = async (
     type: ImageTypeRoute,
     itemId: number,
-    file: Buffer
+    file: Buffer,
+    filename: string
   ): Promise<AxiosResponse> => {
     if (typeof window !== 'undefined' && typeof document !== 'undefined') {
       const formData = new FormData();
@@ -36,10 +37,10 @@ export class Images {
 
       return response;
     } else {
-      const FormData = await import('form-data');
-      const formData = new FormData.default();
+      const { default: FormData } = await import('form-data');
+      const formData = new FormData();
 
-      formData.append('image', file);
+      formData.append('image', file, { filename: filename });
 
       const response: AxiosResponse = await call({
         method: 'POST',
