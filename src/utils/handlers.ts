@@ -1,3 +1,8 @@
+import {
+  LanguageValuesCreate,
+  PrestashopMultiLanguageString,
+} from '../types/prestashop.type';
+
 export const handleBodyCreateUpdateAssociations = <T>(body: T) => {
   let newBody = body;
 
@@ -42,6 +47,62 @@ export const handleBodyCreateUpdateAssociations = <T>(body: T) => {
       ),
     };
   }
+
+  return newBody;
+};
+
+const isPrestashopMultiLanguageString = (
+  value: unknown
+): value is PrestashopMultiLanguageString => {
+  if (Array.isArray(value) && value.length > 0) {
+    const keys = Object.keys(value[0]);
+
+    return (
+      Array.isArray(value) &&
+      value.length > 0 &&
+      keys.length === 2 &&
+      keys.includes('id') &&
+      keys.includes('value')
+    );
+  }
+
+  return false;
+};
+
+/**
+ * Transform PrestashopBasicValueObject to LanguageValuesCreate.
+ *
+ * @param body
+ * @returns
+ */
+export const handleCreateUpdateMultilanguagesFields = <T>(body: T) => {
+  let newBody = body;
+
+  const keys = Object.keys(newBody as Record<string, unknown>) as Array<
+    keyof T
+  >;
+
+  const valuesToTransform = keys.filter((key) =>
+    isPrestashopMultiLanguageString(newBody[key])
+  );
+
+  valuesToTransform.forEach((key) => {
+    const oldValue = newBody[key];
+
+    if (isPrestashopMultiLanguageString(oldValue) && Array.isArray(oldValue)) {
+      const newValue: LanguageValuesCreate = {
+        language: oldValue.map((item) => ({
+          '@id': parseInt(item.id),
+          '#text': item.value,
+        })),
+      };
+
+      newBody = {
+        ...newBody,
+        [key]: newValue,
+      };
+    }
+  });
 
   return newBody;
 };
