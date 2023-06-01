@@ -19,7 +19,7 @@ import {
 } from '../types/calls.type';
 import {
   handleBodyCreateUpdateAssociations,
-  handleCreateUpdateMultilanguagesFields,
+  handleCreateUpdateMultiLanguagesFields,
 } from '../utils/handlers';
 
 export class Base<T> {
@@ -72,7 +72,7 @@ export class Base<T> {
   ): Promise<PrestashopAPIResponse<Custom>> => {
     const bodyWithUpdatedAssociations =
       handleBodyCreateUpdateAssociations(body);
-    const newBody = handleCreateUpdateMultilanguagesFields(
+    const newBody = handleCreateUpdateMultiLanguagesFields(
       bodyWithUpdatedAssociations
     );
 
@@ -96,7 +96,7 @@ export class Base<T> {
   ): Promise<PrestashopAPIResponse<Custom>> => {
     const bodyWithUpdatedAssociations =
       handleBodyCreateUpdateAssociations(body);
-    const newBody = handleCreateUpdateMultilanguagesFields(
+    const newBody = handleCreateUpdateMultiLanguagesFields(
       bodyWithUpdatedAssociations
     );
 
