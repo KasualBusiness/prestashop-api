@@ -75,7 +75,7 @@ const isPrestashopMultiLanguageString = (
  * @param body
  * @returns
  */
-export const handleCreateUpdateMultilanguagesFields = <T>(body: T) => {
+export const handleCreateUpdateMultiLanguagesFields = <T>(body: T) => {
   let newBody = body;
 
   const keys = Object.keys(newBody as Record<string, unknown>) as Array<
