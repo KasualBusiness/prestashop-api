@@ -17,7 +17,10 @@ import {
   PrestashopAPIDeleteResponse,
   PrestashopAPIResponse,
 } from '../types/calls.type';
-import { handleBodyCreateUpdateAssociations } from '../utils/handlers';
+import {
+  handleBodyCreateUpdateAssociations,
+  handleCreateUpdateMultiLanguagesFields,
+} from '../utils/handlers';
 
 export class Base<T> {
   endpoint: Endpoint;
@@ -67,7 +70,11 @@ export class Base<T> {
     body: Partial<Custom>,
     params: PostParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
-    const newBody = handleBodyCreateUpdateAssociations(body);
+    const bodyWithUpdatedAssociations =
+      handleBodyCreateUpdateAssociations(body);
+    const newBody = handleCreateUpdateMultiLanguagesFields(
+      bodyWithUpdatedAssociations
+    );
 
     const response = await postCall<Custom>(this.endpoint, newBody, params);
 
@@ -87,7 +94,11 @@ export class Base<T> {
     body: Partial<Custom>,
     params: PutParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
-    const newBody = handleBodyCreateUpdateAssociations(body);
+    const bodyWithUpdatedAssociations =
+      handleBodyCreateUpdateAssociations(body);
+    const newBody = handleCreateUpdateMultiLanguagesFields(
+      bodyWithUpdatedAssociations
+    );
 
     const response = await putCall<Custom>(this.endpoint, id, newBody, params);
 
