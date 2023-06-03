@@ -65,10 +65,7 @@ import {
   WeightRange,
   Zone,
 } from '../types/prestashop.type';
-import { Base, Images } from '../classes';
-import { Custom } from '../classes/custom.class';
-import { StockMovements } from '../classes/stock-movements.class';
-import { Stocks } from '../classes/stocks.class';
+import { Base, Custom, Images, StockMovements, Stocks } from '../classes';
 
 /**
  * Initiliaze and export all endpoints.
