@@ -103,8 +103,8 @@ await products.create({
 // Create a product with multiple languages
 await products.create({
   name: [
-    { id: "1", value: "My Name 1" },
-    { id: "2", value: "My Name 2" },
+    { id: 1, value: "My Name 1" },
+    { id: 2, value: "My Name 2" },
   ],
   // ...rest of the mandatory values
 });
@@ -115,17 +115,17 @@ await products.create({
 ```javascript
 // Update product with id 1
 await products.update(1, {
-  id: "1", // You need to add the id here too
+  id: 1, // You need to add the id here too
   name: "new name",
   // ...rest of the mandatory values
 });
 
 // Update a product with id 1 with multiple languages
 await products.update(1, {
-  id: "1", // You need to add the id here too
+  id: 1, // You need to add the id here too
   name: [
-    { id: "1", value: "My Name 1" },
-    { id: "2", value: "My Name 2" },
+    { id: 1, value: "My Name 1" },
+    { id: 2, value: "My Name 2" },
   ],
   // ...rest of the mandatory values
 });
