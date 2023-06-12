@@ -115,19 +115,15 @@ await products.create({
 ```javascript
 // Update product with id 1
 await products.update(1, {
-  id: "1", // You need to add the id here too
   name: "new name",
-  // ...rest of the mandatory values
 });
 
-// Update a product with id 1 with multiple languages
+// Update the name of product with id 1 with multiple languages
 await products.update(1, {
-  id: "1", // You need to add the id here too
   name: [
     { id: "1", value: "My Name 1" },
     { id: "2", value: "My Name 2" },
   ],
-  // ...rest of the mandatory values
 });
 ```
 
@@ -173,6 +169,73 @@ await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { na
 ```
 
 ## API Reference
+
+### ListParams
+
+| Name      | Value                                                         | Description                              |
+| :-------- | :------------------------------------------------------------ | :--------------------------------------- |
+| `display` | 'full' or string[]                                            | Display specific keys                    |
+| `filters` | {key: string; value: string OR number, operator?: Operator}[] | Filter on one or many params             |
+| `limit`   | number                                                        | Limit the number of items                |
+| `skip`    | number                                                        | Skip to the index (should specify limit) |
+| `sort`    | (`${string}_ASC` OR `${string}_DESC`)[]                       | Sort ASC or DESC on one several keys     |
+
+Note: In order to do an OR operator while filtering on a key, just append the same key multiple times.
+
+```javascript
+import { products } from "@kasual-business/prestashop-api";
+
+const listProducts = async () => {
+  const response = await products.list({
+    filters: [
+      { key: "id", value: 1 },
+      { key: "id", value: 2 },
+    ],
+  });
+};
+```
+
+### GetParams
+
+| Name      | Value              | Description           |
+| :-------- | :----------------- | :-------------------- |
+| `display` | 'full' or string[] | Display specific keys |
+
+### PostParams
+
+| Name      | Value              | Description           |
+| :-------- | :----------------- | :-------------------- |
+| `display` | 'full' or string[] | Display specific keys |
+
+### PutParams
+
+| Name            | Value              | Description               |
+| :-------------- | :----------------- | :------------------------ |
+| `display`       | 'full' or string[] | Display specific keys     |
+| `keysToExclude` | string[]           | Keys to exclude from body |
+
+### CustomParams
+
+| Name      | Value              | Description           |
+| :-------- | :----------------- | :-------------------- |
+| `display` | 'full' or string[] | Display specific keys |
+
+### CustomGetParams
+
+| Name                 | Value              | Description              |
+| :------------------- | :----------------- | :----------------------- |
+| `display`            | 'full' or string[] | Display specific keys    |
+| `customSearchParams` | URLSearchParams    | Add custom search params |
+
+### Operator
+
+Operator can be `'start'`, `'end'`, `'contains'` and `'strict'`.
+
+## Tests
+
+```bash
+npm run test
+```
 
 #### addresses
 
@@ -860,69 +923,3 @@ await custom<{ item: Item }>("my-custom-route").update<{ name: string }>(1, { na
 | `create` | body, CustomParams     | Create on custom endpoint       |
 | `update` | id, body, CustomParams | Update on custom endpoint by id |
 | `delete` | id, body, CustomParams | Delete on custom endpoint by id |
-
-### ListParams
-
-| Name      | Value                                                         | Description                              |
-| :-------- | :------------------------------------------------------------ | :--------------------------------------- |
-| `display` | 'full' or string[]                                            | Display specific keys                    |
-| `filters` | {key: string; value: string OR number, operator?: Operator}[] | Filter on one or many params             |
-| `limit`   | number                                                        | Limit the number of items                |
-| `skip`    | number                                                        | Skip to the index (should specify limit) |
-| `sort`    | (`${string}_ASC` OR `${string}_DESC`)[]                       | Sort ASC or DESC on one several keys     |
-
-Note: In order to do an OR operator while filtering on a key, just append the same key multiple times.
-
-```javascript
-import { products } from "@kasual-business/prestashop-api";
-
-const listProducts = async () => {
-  const response = await products.list({
-    filters: [
-      { key: "id", value: 1 },
-      { key: "id", value: 2 },
-    ],
-  });
-};
-```
-
-### GetParams
-
-| Name      | Value              | Description           |
-| :-------- | :----------------- | :-------------------- |
-| `display` | 'full' or string[] | Display specific keys |
-
-### PostParams
-
-| Name      | Value              | Description           |
-| :-------- | :----------------- | :-------------------- |
-| `display` | 'full' or string[] | Display specific keys |
-
-### PutParams
-
-| Name      | Value              | Description           |
-| :-------- | :----------------- | :-------------------- |
-| `display` | 'full' or string[] | Display specific keys |
-
-### CustomParams
-
-| Name      | Value              | Description           |
-| :-------- | :----------------- | :-------------------- |
-| `display` | 'full' or string[] | Display specific keys |
-
-### CustomGetParams
-
-| Name                 | Value              | Description              |
-| :------------------- | :----------------- | :----------------------- |
-| `display`            | 'full' or string[] | Display specific keys    |
-| `customSearchParams` | URLSearchParams    | Add custom search params |
-
-### Operator
-
-Operator can be `'start'`, `'end'`, `'contains'` and `'strict'`.
-
-## Tests
-
-```bash
-npm run test
-```

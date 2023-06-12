@@ -20,8 +20,9 @@ export type PostParams = {
   display?: string[] | 'full';
 };
 
-export type PutParams = {
+export type PutParams<T> = {
   display?: string[] | 'full';
+  keysToExclude?: (keyof T)[];
 };
 
 export type DeleteParams = {
