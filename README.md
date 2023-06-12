@@ -125,6 +125,15 @@ await products.update(1, {
     { id: 2, value: "My Name 2" },
   ],
 });
+
+// Update the name and the reference
+await products.update(1, {
+  name: [
+    { id: 1, value: "My Name 1" },
+    { id: 2, value: "My Name 2" },
+  ],
+  reference: "my-ref",
+});
 ```
 
 #### Delete
