@@ -106,7 +106,7 @@ export class StockMovements {
   update = async (
     id: number,
     body: Partial<StockMovement>,
-    params: PutParams | undefined = { display: 'full' }
+    params: PutParams<StockMovement> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<StockMovement>> => {
     const response = await customCall<StockMovementsResponse>({
       method: 'PUT',
