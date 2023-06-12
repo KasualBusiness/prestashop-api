@@ -29,7 +29,7 @@ import { config } from '../config/index';
  * @returns
  */
 export const generateURLSearchParams = <T>(
-  params: ListParams<T> | GetParams | PostParams | PutParams | undefined
+  params: ListParams<T> | GetParams | PostParams | PutParams<T> | undefined
 ): URLSearchParams => {
   const searchParams = new URLSearchParams();
 
@@ -226,7 +226,7 @@ export const call = async <T>({
 /**
  * Handle the listing of entities on prestashop with filtering and pagination.
  *
- * @param path
+ * @param endpoint
  * @param params
  * @returns
  */
@@ -264,7 +264,7 @@ export const listCall = async <T>(
 /**
  * Handle the fetch of a single entity on prestashop with params.
  *
- * @param path
+ * @param endpoint
  * @param id
  * @param params
  * @returns
@@ -291,7 +291,45 @@ export const getCall = async <T>(
         response.response?.data &&
         response.response?.data[endpoint] &&
         response.response?.data[endpoint].length > 0
-          ? response.response?.data[endpoint][0]
+          ? response.response.data[endpoint][0]
+          : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data:
+      response.data &&
+      response.data[endpoint] &&
+      response.data[endpoint].length > 0
+        ? response.data[endpoint][0]
+        : undefined,
+    errors: undefined,
+  };
+};
+
+/**
+ * Handle the fetch of a single entity on prestashop with params.
+ *
+ * @param endpoint
+ * @returns
+ */
+export const getSchemaCall = async <T>(
+  endpoint: Endpoint
+): Promise<PrestashopAPIResponse<T>> => {
+  const response = await call<T>({
+    method: 'GET',
+    path: `/${endpoint}`,
+    params: { schema: 'blank', display: 'full' },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data:
+        response.response?.data &&
+        response.response?.data[endpoint] &&
+        response.response?.data[endpoint].length > 0
+          ? response.response.data[endpoint][0]
           : undefined,
       errors: response.response?.data.errors,
     };
@@ -311,7 +349,7 @@ export const getCall = async <T>(
 /**
  * Handle the creation of an entity on prestashop.
  *
- * @param path
+ * @param endpoint
  * @param id
  * @param params
  * @returns
@@ -363,7 +401,7 @@ export const postCall = async <T>(
 /**
  * Handle the deletion of an entity on prestashop.
  *
- * @param path
+ * @param endpoint
  * @param id
  * @param params
  * @returns
@@ -400,7 +438,7 @@ export const deleteCall = async (
 /**
  * Handle the update of an entity on prestashop.
  *
- * @param path
+ * @param endpoint
  * @param id
  * @param params
  * @returns
@@ -409,7 +447,7 @@ export const putCall = async <T>(
   endpoint: Endpoint,
   id: number,
   body: Partial<T>,
-  params: PutParams | undefined = undefined
+  params: PutParams<T> | undefined = undefined
 ): Promise<PrestashopAPIResponse<T>> => {
   const xml = create({ prestashop: { [endpoint]: body } }).end({
     prettyPrint: true,
