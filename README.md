@@ -103,8 +103,8 @@ await products.create({
 // Create a product with multiple languages
 await products.create({
   name: [
-    { id: "1", value: "My Name 1" },
-    { id: "2", value: "My Name 2" },
+    { id: 1, value: "My Name 1" },
+    { id: 2, value: "My Name 2" },
   ],
   // ...rest of the mandatory values
 });
@@ -121,8 +121,8 @@ await products.update(1, {
 // Update the name of product with id 1 with multiple languages
 await products.update(1, {
   name: [
-    { id: "1", value: "My Name 1" },
-    { id: "2", value: "My Name 2" },
+    { id: 1, value: "My Name 1" },
+    { id: 2, value: "My Name 2" },
   ],
 });
 ```
