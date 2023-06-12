@@ -96,7 +96,9 @@ export class Base<T> {
     body: Partial<Custom>,
     params: PutParams<Custom> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
+    // Get the item to update
     const { data: itemToUpdate, errors } = await this.get<Custom>(id);
+    // Get the blank schema in order to get the updatable keys
     const { data: schema } = await getSchemaCall<Custom>(this.endpoint);
 
     if (itemToUpdate && schema && typeof schema === 'object') {
