@@ -543,13 +543,23 @@ export const customCall = async <Response, Body = unknown>({
   method: Method;
   path: string;
   params?: CustomParams | CustomGetParams;
-  body?: Body;
+  body?: Body | FormData;
   responseType?: ResponseType;
 }): Promise<Response | undefined> => {
-  let newBody: Body | string | undefined = body;
+  let newBody: Body | FormData | string | undefined = body;
 
-  // Transform to xml if json param is false
-  if (!isCustomGetParams(params) && !params?.json) {
+  let isInstanceOfFormData = false;
+
+  // If run in browser
+  if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+    isInstanceOfFormData = body instanceof FormData;
+  } else {
+    const { default: FormData } = await import('form-data');
+    isInstanceOfFormData = body instanceof FormData;
+  }
+
+  // Transform to xml if json param is false and is not form data
+  if (!isInstanceOfFormData && !isCustomGetParams(params) && !params?.json) {
     newBody = body
       ? create({ prestashop: body }).end({
           prettyPrint: true,
