@@ -15,7 +15,7 @@ export interface MockCustomProduct extends Product {
 export const mockProducts: Product[] = Array(50)
   .fill(undefined)
   .map((_, i) => ({
-    id: (i + 1).toString(),
+    id: i + 1,
     id_manufacturer: (i + 1).toString(),
     id_supplier: (i + 1).toString(),
     id_category_default: '0',
@@ -169,7 +169,7 @@ export const mockProductsOnlyID = mockProducts.map((item) => ({
 
 /** Products but only with id = 1 */
 export const mockProductsOnlyIDEquals1 = mockProducts.filter(
-  (item) => item.id === '1'
+  (item) => item.id === 1
 );
 
 /** Products but only with name containing "ora" */
@@ -178,17 +178,11 @@ export const mockProductsOnlyNameContainsOra = mockProducts.filter((item) => {
     return item.name.includes('ora');
   }
 
-  if (Array.isArray(item.name)) {
-    return item.name.find((item) => item.value.includes('ora'));
-  }
-
-  return item.name.language.find((item) => item['#text'].includes('ora'));
+  return item.name.find((item) => item.value.includes('ora'));
 });
 
 /** Products sorted by id DESC */
-export const mockProductsIdDesc = mockProducts.sort(
-  (a, b) => parseInt(b.id) - parseInt(a.id)
-);
+export const mockProductsIdDesc = mockProducts.sort((a, b) => b.id - a.id);
 
 const mockQueryParams = (params: ListParams<Product>): URLSearchParams => {
   const searchParams = generateListURLSearchParams(params);

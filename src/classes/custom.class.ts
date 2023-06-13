@@ -54,7 +54,7 @@ export class Custom<Response> {
    * @returns
    */
   create = async <Body>(
-    body: Body,
+    body: Body | FormData,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
@@ -76,7 +76,7 @@ export class Custom<Response> {
    */
   update = async <Body>(
     id: number,
-    body: Body,
+    body: Body | FormData,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response, Body>({
