@@ -750,7 +750,7 @@ export type Order = {
   round_type: string;
   conversion_rate: string;
   reference: string;
-  associations: {
+  associations?: {
     order_rows: OrderRow[];
   };
 };
