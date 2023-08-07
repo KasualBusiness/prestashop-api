@@ -42,7 +42,7 @@ export class StockMovements {
    * @returns
    */
   get = async (
-    id: number,
+    id: number | string,
     params: GetParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<StockMovement>> => {
     const response = await customCall<StockMovementsResponse>({
@@ -104,7 +104,7 @@ export class StockMovements {
    * @returns
    */
   update = async (
-    id: number,
+    id: number | string,
     body: Partial<StockMovement>,
     params: PutParams<StockMovement> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<StockMovement>> => {
@@ -136,7 +136,7 @@ export class StockMovements {
    * @returns
    */
   delete = async (
-    id: number,
+    id: number | string,
     params: DeleteParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<StockMovement>> => {
     const response = await customCall<StockMovementsResponse>({
