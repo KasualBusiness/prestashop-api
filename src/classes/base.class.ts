@@ -53,7 +53,7 @@ export class Base<T> {
    * @returns
    */
   get = async <Custom extends T>(
-    id: number,
+    id: number | string,
     params: GetParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
     const response = await getCall<Custom>(this.endpoint, id, params);
@@ -92,7 +92,7 @@ export class Base<T> {
    * @returns
    */
   update = async <Custom extends T>(
-    id: number,
+    id: number | string,
     body: Partial<Custom>,
     params: PutParams<Custom> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom>> => {
@@ -150,7 +150,7 @@ export class Base<T> {
    * @returns
    */
   delete = async (
-    id: number,
+    id: number | string,
     params: DeleteParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIDeleteResponse> => {
     const response = await deleteCall(this.endpoint, id, params);
