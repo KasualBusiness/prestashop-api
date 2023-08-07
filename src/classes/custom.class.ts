@@ -34,7 +34,7 @@ export class Custom<Response> {
    * @returns
    */
   get = async (
-    id: number | null | undefined,
+    id: number | string | null | undefined,
     params: CustomGetParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response>({
@@ -75,7 +75,7 @@ export class Custom<Response> {
    * @returns
    */
   update = async <Body>(
-    id: number,
+    id: number | string,
     body: Body | FormData,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
@@ -97,7 +97,7 @@ export class Custom<Response> {
    * @returns
    */
   delete = async (
-    id: number,
+    id: number | string,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response, Body>({
