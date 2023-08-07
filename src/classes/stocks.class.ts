@@ -39,7 +39,7 @@ export class Stocks {
    * @returns
    */
   get = async (
-    id: number,
+    id: number | string,
     params: GetParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Stock>> => {
     const response = await customCall<StocksResponse>({
@@ -101,7 +101,7 @@ export class Stocks {
    * @returns
    */
   update = async (
-    id: number,
+    id: number | string,
     body: Partial<Stock>,
     params: PutParams<Stock> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Stock>> => {
@@ -133,7 +133,7 @@ export class Stocks {
    * @returns
    */
   delete = async (
-    id: number,
+    id: number | string,
     params: DeleteParams | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Stock>> => {
     const response = await customCall<StocksResponse>({
