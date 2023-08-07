@@ -14,6 +14,8 @@ npm install @kasual-business/prestashop-api
 
 #### Initialize the connection
 
+You only need to initialize the api url and api key once.
+
 ```javascript
 import { init } from "@kasual-business/prestashop-api";
 
