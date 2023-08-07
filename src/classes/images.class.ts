@@ -17,7 +17,7 @@ export class Images {
    */
   create = async (
     type: ImageTypeRoute,
-    itemId: number,
+    itemId: number | string,
     file: Buffer,
     filename: string
   ): Promise<AxiosResponse> => {
@@ -67,8 +67,8 @@ export class Images {
    */
   get = async (
     type: ImageTypeRoute,
-    itemId: number,
-    imageId: number
+    itemId: number | string,
+    imageId: number | string
   ): Promise<ArrayBuffer | undefined> => {
     const response = await customCall<ArrayBuffer>({
       method: 'GET',
@@ -91,8 +91,8 @@ export class Images {
    */
   delete = async (
     type: ImageTypeRoute,
-    itemId: number,
-    imageId: number
+    itemId: number | string,
+    imageId: number | string
   ): Promise<PrestashopAPIDeleteResponse | undefined> => {
     const response = await customCall<PrestashopAPIDeleteResponse>({
       method: 'DELETE',

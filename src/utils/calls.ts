@@ -271,7 +271,7 @@ export const listCall = async <T>(
  */
 export const getCall = async <T>(
   endpoint: Endpoint,
-  id: number,
+  id: number | string,
   params: GetParams | undefined = undefined
 ): Promise<PrestashopAPIResponse<T>> => {
   const searchParams = generateURLSearchParams(params);
@@ -408,7 +408,7 @@ export const postCall = async <T>(
  */
 export const deleteCall = async (
   endpoint: Endpoint,
-  id: number,
+  id: number | string,
   params: DeleteParams | undefined = undefined
 ): Promise<PrestashopAPIDeleteResponse> => {
   const searchParams = generateURLSearchParams(params);
@@ -445,7 +445,7 @@ export const deleteCall = async (
  */
 export const putCall = async <T>(
   endpoint: Endpoint,
-  id: number,
+  id: number | string,
   body: Partial<T>,
   params: PutParams<T> | undefined = undefined
 ): Promise<PrestashopAPIResponse<T>> => {
