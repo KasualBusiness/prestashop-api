@@ -75,13 +75,13 @@ export class Custom<Response> {
    * @returns
    */
   update = async <Body>(
-    id: number | string,
+    id: number | string | undefined,
     body: Body | FormData,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response, Body>({
       method: 'PUT',
-      path: `/${this.endpoint}/${id}`,
+      path: `/${this.endpoint}${id ? `/${id}` : ''}`,
       body,
       params,
     });
@@ -97,12 +97,12 @@ export class Custom<Response> {
    * @returns
    */
   delete = async (
-    id: number | string,
+    id: number | string | undefined,
     params: CustomParams | undefined = { display: 'full' }
   ): Promise<Response | undefined> => {
     const response = await customCall<Response, Body>({
       method: 'DELETE',
-      path: `/${this.endpoint}/${id}`,
+      path: `/${this.endpoint}${id ? `/${id}` : ''}`,
       params,
     });
 
