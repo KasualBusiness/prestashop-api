@@ -93,6 +93,21 @@ await products.list({
 });
 ```
 
+#### Find
+
+It works like list except it only returns the first item of the list.
+It can be useful when working with ean13 for example.
+
+```javascript
+// Returns the first product
+await products.find();
+
+// Returns the first product having his ean13 equals to 123
+await products.find({
+  filters: [{ key: "ean13", value: "123" }],
+});
+```
+
 #### Create
 
 ```javascript
@@ -253,6 +268,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all addresses      |
+| `find`   | ListParams          | Find the first address  |
 | `get`    | id, GetParams       | Get an address by id    |
 | `create` | body, PostParams    | Create an address       |
 | `update` | id, body, PutParams | Update an address by id |
@@ -263,6 +279,7 @@ npm run test
 | Name     | Parameters          | Description                |
 | :------- | :------------------ | :------------------------- |
 | `list`   | ListParams          | List all attachments       |
+| `find`   | ListParams          | Find the first attachment  |
 | `get`    | id, GetParams       | Get an attachment by id    |
 | `create` | body, PostParams    | Create an attachment       |
 | `update` | id, body, PutParams | Update an attachment by id |
@@ -273,6 +290,7 @@ npm run test
 | Name     | Parameters          | Description            |
 | :------- | :------------------ | :--------------------- |
 | `list`   | ListParams          | List all carriers      |
+| `find`   | ListParams          | Find the first carrier |
 | `get`    | id, GetParams       | Get a carrier by id    |
 | `create` | body, PostParams    | Create a carrier       |
 | `update` | id, body, PutParams | Update a carrier by id |
@@ -283,6 +301,7 @@ npm run test
 | Name     | Parameters          | Description              |
 | :------- | :------------------ | :----------------------- |
 | `list`   | ListParams          | List all cart rules      |
+| `find`   | ListParams          | Find the first rule      |
 | `get`    | id, GetParams       | Get a cart rule by id    |
 | `create` | body, PostParams    | Create a cart rule       |
 | `update` | id, body, PutParams | Update a cart rule by id |
@@ -293,6 +312,7 @@ npm run test
 | Name     | Parameters          | Description         |
 | :------- | :------------------ | :------------------ |
 | `list`   | ListParams          | List all carts      |
+| `find`   | ListParams          | Find the first cart |
 | `get`    | id, GetParams       | Get a cart by id    |
 | `create` | body, PostParams    | Create a cart       |
 | `update` | id, body, PutParams | Update a cart by id |
@@ -303,6 +323,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all categories     |
+| `find`   | ListParams          | Find the first category |
 | `get`    | id, GetParams       | Get a category by id    |
 | `create` | body, PostParams    | Create a category       |
 | `update` | id, body, PutParams | Update a category by id |
@@ -313,6 +334,7 @@ npm run test
 | Name     | Parameters          | Description                |
 | :------- | :------------------ | :------------------------- |
 | `list`   | ListParams          | List all combinations      |
+| `find`   | ListParams          | Find the first combination |
 | `get`    | id, GetParams       | Get a combination by id    |
 | `create` | body, PostParams    | Create a combination       |
 | `update` | id, body, PutParams | Update a combination by id |
@@ -323,6 +345,7 @@ npm run test
 | Name     | Parameters          | Description                  |
 | :------- | :------------------ | :--------------------------- |
 | `list`   | ListParams          | List all configurations      |
+| `find`   | ListParams          | Find the first configuration |
 | `get`    | id, GetParams       | Get a configuration by id    |
 | `create` | body, PostParams    | Create a configuration       |
 | `update` | id, body, PutParams | Update a configuration by id |
@@ -333,6 +356,7 @@ npm run test
 | Name     | Parameters          | Description            |
 | :------- | :------------------ | :--------------------- |
 | `list`   | ListParams          | List all contacts      |
+| `find`   | ListParams          | Find the first contact |
 | `get`    | id, GetParams       | Get a contact by id    |
 | `create` | body, PostParams    | Create a contact       |
 | `update` | id, body, PutParams | Update a contact by id |
@@ -343,6 +367,7 @@ npm run test
 | Name     | Parameters          | Description                           |
 | :------- | :------------------ | :------------------------------------ |
 | `list`   | ListParams          | List all content management systems   |
+| `find`   | ListParams          | Find the first management sytem       |
 | `get`    | id, GetParams       | Get a content management system by id |
 | `create` | body, PostParams    | Create a content                      |
 | `update` | id, body, PutParams | Update a content by id                |
@@ -353,6 +378,7 @@ npm run test
 | Name     | Parameters          | Description            |
 | :------- | :------------------ | :--------------------- |
 | `list`   | ListParams          | List all countries     |
+| `find`   | ListParams          | Find the first country |
 | `get`    | id, GetParams       | Get a country by id    |
 | `create` | body, PostParams    | Create a country       |
 | `update` | id, body, PutParams | Update a country by id |
@@ -363,6 +389,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all currencies     |
+| `find`   | ListParams          | Find the first currency |
 | `get`    | id, GetParams       | Get a currency by id    |
 | `create` | body, PostParams    | Create a currency       |
 | `update` | id, body, PutParams | Update a currency by id |
@@ -372,7 +399,8 @@ npm run test
 
 | Name     | Parameters          | Description                     |
 | :------- | :------------------ | :------------------------------ |
-| `list`   | ListParams          | List all customerMessages       |
+| `list`   | ListParams          | List all customer messages      |
+| `find`   | ListParams          | Find the first customer message |
 | `get`    | id, GetParams       | Get a customer message by id    |
 | `create` | body, PostParams    | Create a customer message       |
 | `update` | id, body, PutParams | Update a customer message by id |
@@ -383,6 +411,7 @@ npm run test
 | Name     | Parameters          | Description                    |
 | :------- | :------------------ | :----------------------------- |
 | `list`   | ListParams          | List all customer threads      |
+| `find`   | ListParams          | Find the first customer thread |
 | `get`    | id, GetParams       | Get a customer thread by id    |
 | `create` | body, PostParams    | Create a customer thread       |
 | `update` | id, body, PutParams | Update a customer thread by id |
@@ -393,6 +422,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all customers      |
+| `find`   | ListParams          | Find the first customer |
 | `get`    | id                  | Get a customer by id    |
 | `create` | body, PostParams    | Create a customer       |
 | `update` | id, body, PutParams | Update a customer by id |
@@ -403,6 +433,7 @@ npm run test
 | Name     | Parameters          | Description                  |
 | :------- | :------------------ | :--------------------------- |
 | `list`   | ListParams          | List all customizations      |
+| `find`   | ListParams          | Find the first customization |
 | `get`    | id, GetParams       | Get a customization by id    |
 | `create` | body, PostParams    | Create a customization       |
 | `update` | id, body, PutParams | Update a customization by id |
@@ -413,6 +444,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all deliveries     |
+| `find`   | ListParams          | Find the first delivery |
 | `get`    | id, GetParams       | Get a delivery by id    |
 | `create` | body, PostParams    | Create a delivery       |
 | `update` | id, body, PutParams | Update a delivery by id |
@@ -423,6 +455,7 @@ npm run test
 | Name     | Parameters          | Description              |
 | :------- | :------------------ | :----------------------- |
 | `list`   | ListParams          | List all employees       |
+| `find`   | ListParams          | Find the first employee  |
 | `get`    | id, GetParams       | Get an employee by id    |
 | `create` | body, PostParams    | Create an employee       |
 | `update` | id, body, PutParams | Update an employee by id |
@@ -433,6 +466,7 @@ npm run test
 | Name     | Parameters          | Description          |
 | :------- | :------------------ | :------------------- |
 | `list`   | ListParams          | List all groups      |
+| `find`   | ListParams          | Find the first group |
 | `get`    | id, GetParams       | Get a group by id    |
 | `create` | body, PostParams    | Create a group       |
 | `update` | id, body, PutParams | Update a group by id |
@@ -443,6 +477,7 @@ npm run test
 | Name     | Parameters          | Description          |
 | :------- | :------------------ | :------------------- |
 | `list`   | ListParams          | List all guests      |
+| `find`   | ListParams          | Find the first guest |
 | `get`    | id, GetParams       | Get a guest by id    |
 | `create` | body, PostParams    | Create a guest       |
 | `update` | id, body, PutParams | Update a guest by id |
@@ -453,6 +488,7 @@ npm run test
 | Name     | Parameters          | Description                |
 | :------- | :------------------ | :------------------------- |
 | `list`   | ListParams          | List all image types       |
+| `find`   | ListParams          | Find the first image type  |
 | `get`    | id, GetParams       | Get an image type by id    |
 | `create` | body, PostParams    | Create an image type       |
 | `update` | id, body, PutParams | Update an image type by id |
@@ -470,6 +506,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all languages      |
+| `find`   | ListParams          | Find the first language |
 | `get`    | id, GetParams       | Get a language by id    |
 | `create` | body, PostParams    | Create a language       |
 | `update` | id, body, PutParams | Update a language by id |
@@ -480,6 +517,7 @@ npm run test
 | Name     | Parameters          | Description                 |
 | :------- | :------------------ | :-------------------------- |
 | `list`   | ListParams          | List all manufacturers      |
+| `find`   | ListParams          | Find the first manufacturer |
 | `get`    | id, GetParams       | Get a manufacturer by id    |
 | `create` | body, PostParams    | Create a manufacturer       |
 | `update` | id, body, PutParams | Update a manufacturer by id |
@@ -490,6 +528,7 @@ npm run test
 | Name     | Parameters          | Description            |
 | :------- | :------------------ | :--------------------- |
 | `list`   | ListParams          | List all messages      |
+| `find`   | ListParams          | Find the first message |
 | `get`    | id, GetParams       | Get a message by id    |
 | `create` | body, PostParams    | Create a message       |
 | `update` | id, body, PutParams | Update a message by id |
@@ -499,7 +538,8 @@ npm run test
 
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
-| `list`   | ListParams          | List all orderCarriers        |
+| `list`   | ListParams          | List all order carriers       |
+| `find`   | ListParams          | Find the first order carrier  |
 | `get`    | id, GetParams       | Get an order carrier by id    |
 | `create` | body, PostParams    | Create an order carrier       |
 | `update` | id, body, PutParams | Update an order carrier by id |
@@ -509,7 +549,8 @@ npm run test
 
 | Name     | Parameters          | Description                     |
 | :------- | :------------------ | :------------------------------ |
-| `list`   | ListParams          | List all orderCartRules         |
+| `list`   | ListParams          | List all order cart rules       |
+| `find`   | ListParams          | Find the first order cart rule  |
 | `get`    | id, GetParams       | Get an order cart rule by id    |
 | `create` | body, PostParams    | Create an order cart rule       |
 | `update` | id, body, PutParams | Update an order cart rule by id |
@@ -520,6 +561,7 @@ npm run test
 | Name     | Parameters          | Description                  |
 | :------- | :------------------ | :--------------------------- |
 | `list`   | ListParams          | List all order details       |
+| `find`   | ListParams          | Find the first order detail  |
 | `get`    | id, GetParams       | Get an order detail by id    |
 | `create` | body, PostParams    | Create an order detail       |
 | `update` | id, body, PutParams | Update an order detail by id |
@@ -530,6 +572,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all order histories      |
+| `find`   | ListParams          | Find the first order history  |
 | `get`    | id, GetParams       | Get an order history by id    |
 | `create` | body, PostParams    | Create an order history       |
 | `update` | id, body, PutParams | Update an order history by id |
@@ -540,6 +583,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all order invoices       |
+| `find`   | ListParams          | Find the first order invoice  |
 | `get`    | id, GetParams       | Get an order invoice by id    |
 | `create` | body, PostParams    | Create an order invoice       |
 | `update` | id, body, PutParams | Update an order invoice by id |
@@ -550,6 +594,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all order payments       |
+| `find`   | ListParams          | Find the first order payment  |
 | `get`    | id, GetParams       | Get an order payment by id    |
 | `create` | body, PostParams    | Create an order payment       |
 | `update` | id, body, PutParams | Update an order payment by id |
@@ -560,6 +605,7 @@ npm run test
 | Name     | Parameters          | Description                |
 | :------- | :------------------ | :------------------------- |
 | `list`   | ListParams          | List all order slips       |
+| `find`   | ListParams          | Find the first order slip  |
 | `get`    | id, GetParams       | Get an order slip by id    |
 | `create` | body, PostParams    | Create an order slip       |
 | `update` | id, body, PutParams | Update an order slip by id |
@@ -570,6 +616,7 @@ npm run test
 | Name     | Parameters          | Description                 |
 | :------- | :------------------ | :-------------------------- |
 | `list`   | ListParams          | List all order states       |
+| `find`   | ListParams          | Find the first order state  |
 | `get`    | id, GetParams       | Get an order state by id    |
 | `create` | body, PostParams    | Create an order state       |
 | `update` | id, body, PutParams | Update an order state by id |
@@ -580,6 +627,7 @@ npm run test
 | Name     | Parameters          | Description           |
 | :------- | :------------------ | :-------------------- |
 | `list`   | ListParams          | List all orders       |
+| `find`   | ListParams          | Find the first order  |
 | `get`    | id, GetParams       | Get an order by id    |
 | `create` | body, PostParams    | Create an order       |
 | `update` | id, body, PutParams | Update an order by id |
@@ -590,6 +638,7 @@ npm run test
 | Name     | Parameters          | Description                |
 | :------- | :------------------ | :------------------------- |
 | `list`   | ListParams          | List all price ranges      |
+| `find`   | ListParams          | Find the first price range |
 | `get`    | id, GetParams       | Get a price range by id    |
 | `create` | body, PostParams    | Create a price range       |
 | `update` | id, body, PutParams | Update a price range by id |
@@ -600,6 +649,7 @@ npm run test
 | Name     | Parameters          | Description                                |
 | :------- | :------------------ | :----------------------------------------- |
 | `list`   | ListParams          | List all product customization fields      |
+| `find`   | ListParams          | Find the first product customization field |
 | `get`    | id, GetParams       | Get a product customization field by id    |
 | `create` | body, PostParams    | Create a product customization field       |
 | `update` | id, body, PutParams | Update a product customization field by id |
@@ -610,6 +660,7 @@ npm run test
 | Name     | Parameters          | Description                          |
 | :------- | :------------------ | :----------------------------------- |
 | `list`   | ListParams          | List all product feature values      |
+| `find`   | ListParams          | Find the first product feature value |
 | `get`    | id, GetParams       | Get a product feature value by id    |
 | `create` | body, PostParams    | Create a product feature value       |
 | `update` | id, body, PutParams | Update a product feature value by id |
@@ -617,19 +668,21 @@ npm run test
 
 #### productFeatures
 
-| Name     | Parameters          | Description                      |
-| :------- | :------------------ | :------------------------------- |
-| `list`   | ListParams          | List all product features fields |
-| `get`    | id, GetParams       | Get a product feature by id      |
-| `create` | body, PostParams    | Create a product feature         |
-| `update` | id, body, PutParams | Update a product feature by id   |
-| `delete` | id, DeleteParams    | Delete a product feature by id   |
+| Name     | Parameters          | Description                          |
+| :------- | :------------------ | :----------------------------------- |
+| `list`   | ListParams          | List all product features fields     |
+| `find`   | ListParams          | Find the first product feature field |
+| `get`    | id, GetParams       | Get a product feature by id          |
+| `create` | body, PostParams    | Create a product feature             |
+| `update` | id, body, PutParams | Update a product feature by id       |
+| `delete` | id, DeleteParams    | Delete a product feature by id       |
 
 #### productOptionValues
 
 | Name     | Parameters          | Description                         |
 | :------- | :------------------ | :---------------------------------- |
 | `list`   | ListParams          | List all product option values      |
+| `find`   | ListParams          | Find the first product option value |
 | `get`    | id, GetParams       | Get a product option value by id    |
 | `create` | body, PostParams    | Create a product option value       |
 | `update` | id, body, PutParams | Update a product option value by id |
@@ -640,6 +693,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all product options      |
+| `find`   | ListParams          | Find the first product option |
 | `get`    | id, GetParams       | Get a product option by id    |
 | `create` | body, PostParams    | Create a product option       |
 | `update` | id, body, PutParams | Update a product option by id |
@@ -650,6 +704,7 @@ npm run test
 | Name     | Parameters          | Description                     |
 | :------- | :------------------ | :------------------------------ |
 | `list`   | ListParams          | List all product suppliers      |
+| `find`   | ListParams          | Find the first product supplier |
 | `get`    | id, GetParams       | Get a product supplier by id    |
 | `create` | body, PostParams    | Create a product supplier       |
 | `update` | id, body, PutParams | Update a product supplier by id |
@@ -660,6 +715,7 @@ npm run test
 | Name     | Parameters          | Description            |
 | :------- | :------------------ | :--------------------- |
 | `list`   | ListParams          | List all products      |
+| `find`   | ListParams          | Find the first product |
 | `get`    | id, GetParams       | Get a product by id    |
 | `create` | body, PostParams    | Create a product       |
 | `update` | id, body, PutParams | Update a product by id |
@@ -670,6 +726,7 @@ npm run test
 | Name     | Parameters          | Description               |
 | :------- | :------------------ | :------------------------ |
 | `list`   | ListParams          | List all shop groups      |
+| `find`   | ListParams          | Find the first shop group |
 | `get`    | id, GetParams       | Get a shop group by id    |
 | `create` | body, PostParams    | Create a shop group       |
 | `update` | id, body, PutParams | Update a shop group by id |
@@ -680,6 +737,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all shop urls      |
+| `find`   | ListParams          | Find the first shop url |
 | `get`    | id, GetParams       | Get a shop url by id    |
 | `create` | body, PostParams    | Create a shop url       |
 | `update` | id, body, PutParams | Update a shop url by id |
@@ -690,6 +748,7 @@ npm run test
 | Name     | Parameters          | Description         |
 | :------- | :------------------ | :------------------ |
 | `list`   | ListParams          | List all shops      |
+| `find`   | ListParams          | Find the first shop |
 | `get`    | id, GetParams       | Get a shop by id    |
 | `create` | body, PostParams    | Create a shop       |
 | `update` | id, body, PutParams | Update a shop by id |
@@ -700,6 +759,7 @@ npm run test
 | Name     | Parameters          | Description                        |
 | :------- | :------------------ | :--------------------------------- |
 | `list`   | ListParams          | List all specific price rules      |
+| `find`   | ListParams          | Find the first specific price rule |
 | `get`    | id, GetParams       | Get a specific price rule by id    |
 | `create` | body, PostParams    | Create a specific price rule       |
 | `update` | id, body, PutParams | Update a specific price rule by id |
@@ -710,6 +770,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all specific prices      |
+| `find`   | ListParams          | Find the first specific price |
 | `get`    | id, GetParams       | Get a specific price by id    |
 | `create` | body, PostParams    | Create a specific price       |
 | `update` | id, body, PutParams | Update a specific price by id |
@@ -720,6 +781,7 @@ npm run test
 | Name     | Parameters          | Description          |
 | :------- | :------------------ | :------------------- |
 | `list`   | ListParams          | List all states      |
+| `find`   | ListParams          | Find the first state |
 | `get`    | id, GetParams       | Get a state by id    |
 | `create` | body, PostParams    | Create a state       |
 | `update` | id, body, PutParams | Update a state by id |
@@ -730,6 +792,7 @@ npm run test
 | Name     | Parameters          | Description                    |
 | :------- | :------------------ | :----------------------------- |
 | `list`   | ListParams          | List all stock availables      |
+| `find`   | ListParams          | Find the first stock available |
 | `get`    | id, GetParams       | Get a stock available by id    |
 | `create` | body, PostParams    | Create a stock available       |
 | `update` | id, body, PutParams | Update a stock available by id |
@@ -740,6 +803,7 @@ npm run test
 | Name     | Parameters          | Description                          |
 | :------- | :------------------ | :----------------------------------- |
 | `list`   | ListParams          | List all stock movement reasons      |
+| `find`   | ListParams          | Find the first stock movement reason |
 | `get`    | id, GetParams       | Get a stock movement reason by id    |
 | `create` | body, PostParams    | Create a stock movement reason       |
 | `update` | id, body, PutParams | Update a stock movement reason by id |
@@ -750,6 +814,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all stock movements      |
+| `find`   | ListParams          | Find the first stock movement |
 | `get`    | id, GetParams       | Get a stock movement by id    |
 | `create` | body, PostParams    | Create a stock movement       |
 | `update` | id, body, PutParams | Update a stock movement by id |
@@ -760,6 +825,7 @@ npm run test
 | Name     | Parameters          | Description          |
 | :------- | :------------------ | :------------------- |
 | `list`   | ListParams          | List all stocks      |
+| `find`   | ListParams          | Find the first stock |
 | `get`    | id, GetParams       | Get a stock by id    |
 | `create` | body, PostParams    | Create a stock       |
 | `update` | id, body, PutParams | Update a stock by id |
@@ -770,6 +836,7 @@ npm run test
 | Name     | Parameters          | Description          |
 | :------- | :------------------ | :------------------- |
 | `list`   | ListParams          | List all stores      |
+| `find`   | ListParams          | Find the first store |
 | `get`    | id, GetParams       | Get a store by id    |
 | `create` | body, PostParams    | Create a store       |
 | `update` | id, body, PutParams | Update a store by id |
@@ -780,6 +847,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all suppliers      |
+| `find`   | ListParams          | Find the first supplier |
 | `get`    | id, GetParams       | Get a supplier by id    |
 | `create` | body, PostParams    | Create a supplier       |
 | `update` | id, body, PutParams | Update a supplier by id |
@@ -790,6 +858,7 @@ npm run test
 | Name     | Parameters          | Description                        |
 | :------- | :------------------ | :--------------------------------- |
 | `list`   | ListParams          | List all supply order details      |
+| `find`   | ListParams          | Find the first supply order detail |
 | `get`    | id, GetParams       | Get a supply order detail by id    |
 | `create` | body, PostParams    | Create a supply order detail       |
 | `update` | id, body, PutParams | Update a supply order detail by id |
@@ -800,6 +869,7 @@ npm run test
 | Name     | Parameters          | Description                         |
 | :------- | :------------------ | :---------------------------------- |
 | `list`   | ListParams          | List all supply order histories     |
+| `find`   | ListParams          | Find the first supply order history |
 | `get`    | id, GetParams       | Get a supply order history by id    |
 | `create` | body, PostParams    | Create a supply order history       |
 | `update` | id, body, PutParams | Update a supply order history by id |
@@ -807,19 +877,21 @@ npm run test
 
 #### supplyOrderReceiptHistories
 
-| Name     | Parameters          | Description                              |
-| :------- | :------------------ | :--------------------------------------- |
-| `list`   | ListParams          | List all supply order receipt histories  |
-| `get`    | id, GetParams       | Get a supply order receipt history by id |
-| `create` | body, PostParams    | Create a supply order receipt            |
-| `update` | id, body, PutParams | Update a supply order receipt by id      |
-| `delete` | id, DeleteParams    | Delete a supply order receipt by id      |
+| Name     | Parameters          | Description                                 |
+| :------- | :------------------ | :------------------------------------------ |
+| `list`   | ListParams          | List all supply order receipt histories     |
+| `find`   | ListParams          | Find the first supply order receipt history |
+| `get`    | id, GetParams       | Get a supply order receipt history by id    |
+| `create` | body, PostParams    | Create a supply order receipt               |
+| `update` | id, body, PutParams | Update a supply order receipt by id         |
+| `delete` | id, DeleteParams    | Delete a supply order receipt by id         |
 
 #### supplyOrderStates
 
 | Name     | Parameters          | Description                       |
 | :------- | :------------------ | :-------------------------------- |
 | `list`   | ListParams          | List all supply order states      |
+| `find`   | ListParams          | Find the first supply order state |
 | `get`    | id, GetParams       | Get a supply order state by id    |
 | `create` | body, PostParams    | Create a supply order state       |
 | `update` | id, body, PutParams | Update a supply order state by id |
@@ -830,6 +902,7 @@ npm run test
 | Name     | Parameters          | Description                 |
 | :------- | :------------------ | :-------------------------- |
 | `list`   | ListParams          | List all supply orders      |
+| `find`   | ListParams          | Find the first supply order |
 | `get`    | id, GetParams       | Get a supply order by id    |
 | `create` | body, PostParams    | Create a supply order       |
 | `update` | id, body, PutParams | Update a supply order by id |
@@ -840,6 +913,7 @@ npm run test
 | Name     | Parameters          | Description        |
 | :------- | :------------------ | :----------------- |
 | `list`   | ListParams          | List all tags      |
+| `find`   | ListParams          | Find the first tag |
 | `get`    | id, GetParams       | Get a tag by id    |
 | `create` | body, PostParams    | Create a tag       |
 | `update` | id, body, PutParams | Update a tag by id |
@@ -850,6 +924,7 @@ npm run test
 | Name     | Parameters          | Description                   |
 | :------- | :------------------ | :---------------------------- |
 | `list`   | ListParams          | List all tax rule groups      |
+| `find`   | ListParams          | Find the first tax rule group |
 | `get`    | id, GetParams       | Get a tax rule group by id    |
 | `create` | body, PostParams    | Create a tax rule group       |
 | `update` | id, body, PutParams | Update a tax rule group by id |
@@ -860,6 +935,7 @@ npm run test
 | Name     | Parameters          | Description             |
 | :------- | :------------------ | :---------------------- |
 | `list`   | ListParams          | List all tax rules      |
+| `find`   | ListParams          | Find the first tax rule |
 | `get`    | id, GetParams       | Get a tax rule by id    |
 | `create` | body, PostParams    | Create a tax rule       |
 | `update` | id, body, PutParams | Update a tax rule by id |
@@ -870,6 +946,7 @@ npm run test
 | Name     | Parameters          | Description        |
 | :------- | :------------------ | :----------------- |
 | `list`   | ListParams          | List all taxes     |
+| `find`   | ListParams          | Find the first tax |
 | `get`    | id, GetParams       | Get a tax by id    |
 | `create` | body, PostParams    | Create a tax       |
 | `update` | id, body, PutParams | Update a tax by id |
@@ -880,6 +957,7 @@ npm run test
 | Name     | Parameters          | Description                             |
 | :------- | :------------------ | :-------------------------------------- |
 | `list`   | ListParams          | List all translated configurations      |
+| `find`   | ListParams          | Find the first translated configuration |
 | `get`    | id, GetParams       | Get a translated configuration by id    |
 | `create` | body, PostParams    | Create a translated configuration       |
 | `update` | id, body, PutParams | Update a translated configuration by id |
@@ -890,6 +968,7 @@ npm run test
 | Name     | Parameters          | Description                               |
 | :------- | :------------------ | :---------------------------------------- |
 | `list`   | ListParams          | List all warehouse product locations      |
+| `find`   | ListParams          | Find the first warehouse product location |
 | `get`    | id, GetParams       | Get a warehouse product location by id    |
 | `create` | body, PostParams    | Create a warehouse product location       |
 | `update` | id, body, PutParams | Update a warehouse product location by id |
@@ -900,6 +979,7 @@ npm run test
 | Name     | Parameters          | Description              |
 | :------- | :------------------ | :----------------------- |
 | `list`   | ListParams          | List all warehouses      |
+| `find`   | ListParams          | Find the first warehouse |
 | `get`    | id, GetParams       | Get a warehouse by id    |
 | `create` | body, PostParams    | Create a warehouse       |
 | `update` | id, body, PutParams | Update a warehouse by id |
@@ -910,6 +990,7 @@ npm run test
 | Name     | Parameters          | Description                 |
 | :------- | :------------------ | :-------------------------- |
 | `list`   | ListParams          | List all weight ranges      |
+| `find`   | ListParams          | Find the first weight range |
 | `get`    | id, GetParams       | Get a weight range by id    |
 | `create` | body, PostParams    | Create a weight range       |
 | `update` | id, body, PutParams | Update a weight range by id |
@@ -920,6 +1001,7 @@ npm run test
 | Name     | Parameters          | Description         |
 | :------- | :------------------ | :------------------ |
 | `list`   | ListParams          | List all zones      |
+| `find`   | ListParams          | Find the first zone |
 | `get`    | id, GetParams       | Get a zone by id    |
 | `create` | body, PostParams    | Create a zone       |
 | `update` | id, body, PutParams | Update a zone by id |
