@@ -96,7 +96,8 @@ await products.list({
 #### Find
 
 It works like list except it only returns the first item of the list.
-It can be useful when working with ean13 for example.
+This can be useful when searching by EAN13, for example.
+It avoids having to manipulate the returned array in order to obtain the first element.
 
 ```javascript
 // Returns the first product
