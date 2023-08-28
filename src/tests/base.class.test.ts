@@ -21,6 +21,7 @@ describe('Base', async () => {
 
   test('Should have list, get, create and update properties', () => {
     expect(products).toHaveProperty('list');
+    expect(products).toHaveProperty('find');
     expect(products).toHaveProperty('get');
     expect(products).toHaveProperty('create');
     expect(products).toHaveProperty('update');
@@ -86,6 +87,20 @@ describe('Base', async () => {
 
         expect(response.data).not.toBe(undefined);
       });
+    });
+  });
+
+  describe('find', () => {
+    test('Should kick endpoint key', async () => {
+      const { data } = await products.find();
+
+      expect(data).not.toHaveProperty(Endpoint.products);
+    });
+
+    test('Should return first item from the list of products', async () => {
+      const { data } = await products.find();
+
+      expect(data?.id).toStrictEqual(mockProducts[0].id);
     });
   });
 
