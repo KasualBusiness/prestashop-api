@@ -13,6 +13,7 @@ import {
   putCall,
   deleteCall,
   getSchemaCall,
+  findCall,
 } from '../utils/calls';
 import {
   PrestashopAPIDeleteResponse,
@@ -41,6 +42,20 @@ export class Base<T> {
     params: ListParams<Custom> | undefined = { display: 'full' }
   ): Promise<PrestashopAPIResponse<Custom[]>> => {
     const response = await listCall<Custom>(this.endpoint, params);
+
+    return response;
+  };
+
+  /**
+   * Returns first item from list from endpoint.
+   *
+   * @param params
+   * @returns
+   */
+  find = async <Custom extends T>(
+    params: ListParams<Custom> | undefined = { display: 'full' }
+  ): Promise<PrestashopAPIResponse<Custom>> => {
+    const response = await findCall<Custom>(this.endpoint, params);
 
     return response;
   };
