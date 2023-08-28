@@ -260,6 +260,51 @@ export const listCall = async <T>(
     errors: undefined,
   };
 };
+/**
+ * Handle the listing of entities on prestashop with filtering and pagination.
+ *
+ * @param endpoint
+ * @param params
+ * @returns
+ */
+export const findCall = async <T>(
+  endpoint: Endpoint,
+  params: GetParams
+): Promise<PrestashopAPIResponse<T>> => {
+  const response = await call<T>({
+    method: 'GET',
+    path: `/${endpoint}`,
+    paramsSerializer: {
+      serialize: (serializeParams) => {
+        const searchParams = generateListURLSearchParams(params);
+
+        return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
+      },
+    },
+  });
+
+  if (isAxiosError(response)) {
+    return {
+      data:
+        response.response?.data &&
+        response.response?.data[endpoint] &&
+        response.response?.data[endpoint].length > 0
+          ? response.response.data[endpoint][0]
+          : undefined,
+      errors: response.response?.data.errors,
+    };
+  }
+
+  return {
+    data:
+      response.data &&
+      response.data[endpoint] &&
+      response.data[endpoint].length > 0
+        ? response.data[endpoint][0]
+        : undefined,
+    errors: undefined,
+  };
+};
 
 /**
  * Handle the fetch of a single entity on prestashop with params.
