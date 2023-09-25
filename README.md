@@ -258,11 +258,7 @@ const listProducts = async () => {
 
 Operator can be `'start'`, `'end'`, `'contains'` and `'strict'`.
 
-## Tests
-
-```bash
-npm run test
-```
+### References
 
 #### addresses
 
@@ -1017,3 +1013,9 @@ npm run test
 | `create` | body, CustomParams     | Create on custom endpoint       |
 | `update` | id, body, CustomParams | Update on custom endpoint by id |
 | `delete` | id, body, CustomParams | Delete on custom endpoint by id |
+
+## Tests
+
+```bash
+npm run test
+```
