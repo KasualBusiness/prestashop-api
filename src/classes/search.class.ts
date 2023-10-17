@@ -12,7 +12,7 @@ export class Search {
    * @param params
    * @returns
    */
-  find = async (
+  list = async (
     params: SearchParams | undefined = {
       value: '',
       languageId: -1
