@@ -4,7 +4,7 @@ import {
   GetParams,
   ListParams,
   PostParams,
-  PutParams,
+  PutParams
 } from '../types/global.type';
 import { PrestashopAPIResponse, StocksResponse } from '../types/calls.type';
 import { customCall } from '../utils/calls';
@@ -22,12 +22,12 @@ export class Stocks {
     const response = await customCall<Partial<StocksResponse>>({
       method: 'GET',
       path: '/stock',
-      params,
+      params
     });
 
     return {
       data: response?.stocks || [],
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -45,19 +45,19 @@ export class Stocks {
     const response = await customCall<StocksResponse>({
       method: 'GET',
       path: `/stock/${id}`,
-      params,
+      params
     });
 
     if (response?.stocks && response?.stocks.length > 0) {
       return {
         data: response?.stocks[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -76,19 +76,19 @@ export class Stocks {
       method: 'POST',
       path: '/stock',
       body: { stock: body },
-      params,
+      params
     });
 
     if (response?.stocks && response?.stocks.length > 0) {
       return {
         data: response?.stocks[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -109,19 +109,19 @@ export class Stocks {
       method: 'PUT',
       path: `/stock/${id}`,
       body: { stock: body },
-      params,
+      params
     });
 
     if (response?.stocks && response?.stocks.length > 0) {
       return {
         data: response?.stocks[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -139,19 +139,19 @@ export class Stocks {
     const response = await customCall<StocksResponse>({
       method: 'DELETE',
       path: `/stock/${id}`,
-      params,
+      params
     });
 
     if (response?.stocks && response?.stocks.length > 0) {
       return {
         data: response?.stocks[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 }

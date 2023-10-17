@@ -49,14 +49,14 @@ export const mockProducts: Product[] = Array(50)
     delivery_in_stock: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     delivery_out_stock: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     product_type: '',
     on_sale: '0',
@@ -90,81 +90,81 @@ export const mockProducts: Product[] = Array(50)
     meta_description: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     meta_keywords: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     meta_title: [
       {
         id: '1',
-        value: 'meta-title',
-      },
+        value: 'meta-title'
+      }
     ],
     link_rewrite: [
       {
         id: '1',
-        value: 'link-orange',
-      },
+        value: 'link-orange'
+      }
     ],
     name: [
       {
         id: '1',
-        value: i === 0 ? 'orange' : Math.random().toString(36).substring(7), // Random name generator but keep one known (orange)
-      },
+        value: i === 0 ? 'orange' : Math.random().toString(36).substring(7) // Random name generator but keep one known (orange)
+      }
     ],
     description: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     description_short: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     available_now: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     available_later: [
       {
         id: '1',
-        value: '',
-      },
+        value: ''
+      }
     ],
     associations: {
       categories: [
         {
-          id: '1',
-        },
+          id: '1'
+        }
       ],
       product_features: [
         {
           id: '1',
-          id_feature_value: '1',
-        },
+          id_feature_value: '1'
+        }
       ],
       stock_availables: [
         {
           id: '1',
-          id_product_attribute: '0',
-        },
-      ],
-    },
+          id_product_attribute: '0'
+        }
+      ]
+    }
   }));
 
 /** Products but only with id */
 export const mockProductsOnlyID = mockProducts.map((item) => ({
-  id: item.id,
+  id: item.id
 }));
 
 /** Products but only with id = 1 */
@@ -220,35 +220,35 @@ export const mockHTTPCalls = () => {
     .get('/api/products')
     .query(
       mockQueryParams({
-        filters: [{ key: 'id', value: 1 }],
+        filters: [{ key: 'id', value: 1 }]
       })
     )
     .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
     .get('/api/products')
     .query(
       mockQueryParams({
-        filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
+        filters: [{ key: 'name', value: 'ora', operator: 'contains' }]
       })
     )
     .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
     .get('/api/products')
     .query(
       mockQueryParamsCustom({
-        filters: [{ key: 'custom_key', value: 'my_value' }],
+        filters: [{ key: 'custom_key', value: 'my_value' }]
       })
     )
     .reply(200, { [Endpoint.products]: mockProductsOnlyIDEquals1 })
     .get('/api/products')
     .query(
       mockQueryParams({
-        sort: ['id_DESC'],
+        sort: ['id_DESC']
       })
     )
     .reply(200, { [Endpoint.products]: mockProductsIdDesc })
     .get('/api/products')
     .query(
       mockQueryParams({
-        limit: 10,
+        limit: 10
       })
     )
     .reply(200, { [Endpoint.products]: mockProducts.slice(0, 10) })

@@ -1,6 +1,6 @@
 import {
   LanguageValuesCreate,
-  PrestashopMultiLanguageString,
+  PrestashopMultiLanguageString
 } from '../types/prestashop.type';
 
 export const handleBodyCreateUpdateAssociations = <T>(body: T) => {
@@ -44,7 +44,7 @@ export const handleBodyCreateUpdateAssociations = <T>(body: T) => {
 
           return [key, { [newKey]: value }];
         })
-      ),
+      )
     };
   }
 
@@ -93,13 +93,13 @@ export const handleCreateUpdateMultiLanguagesFields = <T>(body: T) => {
       const newValue: LanguageValuesCreate = {
         language: oldValue.map((item) => ({
           '@id': parseInt(item.id),
-          '#text': item.value,
-        })),
+          '#text': item.value
+        }))
       };
 
       newBody = {
         ...newBody,
-        [key]: newValue,
+        [key]: newValue
       };
     }
   });
