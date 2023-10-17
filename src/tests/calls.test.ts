@@ -61,8 +61,8 @@ describe('Calls', async () => {
         params = {
           filters: [
             { key: 'id', value: 1 },
-            { key: 'id', value: 2 },
-          ],
+            { key: 'id', value: 2 }
+          ]
         };
 
         const searchParams = generateListURLSearchParams(params);
@@ -74,8 +74,8 @@ describe('Calls', async () => {
         params = {
           filters: [
             { key: 'name', value: 'My', operator: 'start' },
-            { key: 'name', value: 'Name', operator: 'contains' },
-          ],
+            { key: 'name', value: 'Name', operator: 'contains' }
+          ]
         };
 
         const searchParams = generateListURLSearchParams(params);
@@ -87,8 +87,8 @@ describe('Calls', async () => {
         params = {
           filters: [
             { key: 'name', value: 'Name', operator: 'contains' },
-            { key: 'location', value: 'City', operator: 'contains' },
-          ],
+            { key: 'location', value: 'City', operator: 'contains' }
+          ]
         };
 
         const searchParams = generateListURLSearchParams(params);
@@ -99,7 +99,7 @@ describe('Calls', async () => {
 
       test('Should append operator if only one filter', () => {
         params = {
-          filters: [{ key: 'name', value: 'Name', operator: 'contains' }],
+          filters: [{ key: 'name', value: 'Name', operator: 'contains' }]
         };
 
         const searchParams = generateListURLSearchParams(params);

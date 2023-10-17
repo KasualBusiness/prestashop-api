@@ -20,7 +20,7 @@ export class Custom<Response> {
     const response = await customCall<Response>({
       method: 'GET',
       path: `/${this.endpoint}`,
-      params,
+      params
     });
 
     return response;
@@ -40,7 +40,7 @@ export class Custom<Response> {
     const response = await customCall<Response>({
       method: 'GET',
       path: `/${this.endpoint}${id ? `/${id}` : ''}`,
-      params,
+      params
     });
 
     return response;
@@ -61,7 +61,7 @@ export class Custom<Response> {
       method: 'POST',
       path: `/${this.endpoint}`,
       body,
-      params,
+      params
     });
 
     return response;
@@ -83,7 +83,7 @@ export class Custom<Response> {
       method: 'PUT',
       path: `/${this.endpoint}${id ? `/${id}` : ''}`,
       body,
-      params,
+      params
     });
 
     return response;
@@ -103,7 +103,7 @@ export class Custom<Response> {
     const response = await customCall<Response, Body>({
       method: 'DELETE',
       path: `/${this.endpoint}${id ? `/${id}` : ''}`,
-      params,
+      params
     });
 
     return response;

@@ -30,7 +30,7 @@ export class Images {
       const response: AxiosResponse = await call({
         method: 'POST',
         path: `/images/${type}/${itemId}`,
-        body: formData,
+        body: formData
       }).catch((error) => {
         return error.response;
       });
@@ -46,7 +46,7 @@ export class Images {
         method: 'POST',
         path: `/images/${type}/${itemId}`,
         body: formData,
-        headers: formData.getHeaders(),
+        headers: formData.getHeaders()
       }).catch((error) => {
         return error.response;
       });
@@ -73,7 +73,7 @@ export class Images {
     const response = await customCall<ArrayBuffer>({
       method: 'GET',
       path: `/images/${type}/${itemId}/${imageId}`,
-      responseType: 'arraybuffer',
+      responseType: 'arraybuffer'
     });
 
     return response;
@@ -96,7 +96,7 @@ export class Images {
   ): Promise<PrestashopAPIDeleteResponse | undefined> => {
     const response = await customCall<PrestashopAPIDeleteResponse>({
       method: 'DELETE',
-      path: `/images/${type}/${itemId}/${imageId}`,
+      path: `/images/${type}/${itemId}/${imageId}`
     });
 
     return response;
