@@ -157,6 +157,7 @@ export type Category = {
   position: string;
   date_add: string;
   date_upd: string;
+  level_depth: string;
   name: PrestashopMultiLanguageString;
   link_rewrite: PrestashopMultiLanguageString;
   description: PrestashopMultiLanguageString;

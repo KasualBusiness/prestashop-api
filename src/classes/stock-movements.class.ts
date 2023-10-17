@@ -4,11 +4,11 @@ import {
   GetParams,
   ListParams,
   PostParams,
-  PutParams,
+  PutParams
 } from '../types/global.type';
 import {
   PrestashopAPIResponse,
-  StockMovementsResponse,
+  StockMovementsResponse
 } from '../types/calls.type';
 import { customCall } from '../utils/calls';
 
@@ -25,12 +25,12 @@ export class StockMovements {
     const response = await customCall<Partial<StockMovementsResponse>>({
       method: 'GET',
       path: '/stock_mvt',
-      params,
+      params
     });
 
     return {
       data: response?.stock_movements || [],
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -48,19 +48,19 @@ export class StockMovements {
     const response = await customCall<StockMovementsResponse>({
       method: 'GET',
       path: `/stock_mvt/${id}`,
-      params,
+      params
     });
 
     if (response?.stock_movements && response?.stock_movements.length > 0) {
       return {
         data: response?.stock_movements[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -79,19 +79,19 @@ export class StockMovements {
       method: 'POST',
       path: '/stock_mvt',
       body: { stock_mvt: body },
-      params,
+      params
     });
 
     if (response?.stock_movements && response?.stock_movements.length > 0) {
       return {
         data: response?.stock_movements[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -112,19 +112,19 @@ export class StockMovements {
       method: 'PUT',
       path: `/stock_mvt/${id}`,
       body: { stock_mvt: body },
-      params,
+      params
     });
 
     if (response?.stock_movements && response?.stock_movements.length > 0) {
       return {
         data: response?.stock_movements[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 
@@ -142,19 +142,19 @@ export class StockMovements {
     const response = await customCall<StockMovementsResponse>({
       method: 'DELETE',
       path: `/stock_mvt/${id}`,
-      params,
+      params
     });
 
     if (response?.stock_movements && response?.stock_movements.length > 0) {
       return {
         data: response?.stock_movements[0] || [],
-        errors: response?.errors,
+        errors: response?.errors
       };
     }
 
     return {
       data: undefined,
-      errors: response?.errors,
+      errors: response?.errors
     };
   };
 }
