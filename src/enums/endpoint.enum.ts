@@ -73,5 +73,5 @@ export enum Endpoint {
   warehouseProductLocations = 'warehouse_product_locations',
   warehouses = 'warehouses',
   weightRanges = 'weight_ranges',
-  zones = 'zones',
+  zones = 'zones'
 }

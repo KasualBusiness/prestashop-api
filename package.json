@@ -44,19 +44,19 @@
   "author": "Kasual Business",
   "license": "MIT",
   "devDependencies": {
-    "@types/qs": "^6.9.7",
-    "@typescript-eslint/eslint-plugin": "^5.59.8",
-    "@typescript-eslint/parser": "^5.57.0",
-    "eslint": "^8.43.0",
-    "eslint-config-prettier": "^8.8.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "nock": "^13.3.1",
-    "prettier": "2.8.7",
-    "typescript": "^5.0.2",
-    "vitest": "^0.29.8"
+    "@types/qs": "^6.9.8",
+    "@typescript-eslint/eslint-plugin": "^6.8.0",
+    "@typescript-eslint/parser": "^6.8.0",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "nock": "^13.3.4",
+    "prettier": "^3.0.3",
+    "typescript": "^5.2.2",
+    "vitest": "^0.34.6"
   },
   "dependencies": {
-    "axios": "^1.4.0",
+    "axios": "^1.5.1",
     "qs": "^6.11.2",
     "xmlbuilder2": "^3.1.1"
   }

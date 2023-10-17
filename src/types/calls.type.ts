@@ -2,9 +2,15 @@ import type {
   Method,
   ParamsSerializerOptions,
   RawAxiosRequestHeaders,
-  ResponseType,
+  ResponseType
 } from 'axios';
-import { Customer, Stock, StockMovement } from './prestashop.type';
+import {
+  Category,
+  Customer,
+  Product,
+  Stock,
+  StockMovement
+} from './prestashop.type';
 import { Endpoint } from '../enums/endpoint.enum';
 
 export type CallParams = {
@@ -36,6 +42,17 @@ export type PrestashopAPIDeleteResponse = {
 export type LoginResponse = {
   success: boolean;
   customer?: Partial<Customer>;
+};
+
+export type SearchParams = {
+  value: string;
+  languageId: string | number;
+};
+
+export type SearchResponse = {
+  products?: Partial<Product>[];
+  categories?: Partial<Category>[];
+  errors?: unknown[];
 };
 
 export type StockMovementsResponse = {

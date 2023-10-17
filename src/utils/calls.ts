@@ -11,14 +11,14 @@ import {
   ListParams,
   PostParams,
   PutParams,
-  isCustomGetParams,
+  isCustomGetParams
 } from '../types/global.type';
 import { Endpoint } from '../enums/endpoint.enum';
 import {
   CallParams,
   PrestashopAPIDeleteResponse,
   PrestashopAPIResponse,
-  PrestashopErrorResponse,
+  PrestashopErrorResponse
 } from '../types/calls.type';
 import { config } from '../config/index';
 
@@ -201,7 +201,7 @@ export const call = async <T>({
   params,
   body,
   headers,
-  paramsSerializer,
+  paramsSerializer
 }: CallParams) => {
   const { url, key } = config;
 
@@ -211,11 +211,11 @@ export const call = async <T>({
     params: {
       ...params,
       ws_key: key,
-      output_format: 'JSON',
+      output_format: 'JSON'
     },
     paramsSerializer,
     data: body,
-    headers,
+    headers
   }).catch((error: AxiosError<PrestashopErrorResponse<T[]>>) => {
     return error;
   });
@@ -242,8 +242,8 @@ export const listCall = async <T>(
         const searchParams = generateListURLSearchParams(params);
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
-      },
-    },
+      }
+    }
   });
 
   if (isAxiosError(response)) {
@@ -251,13 +251,13 @@ export const listCall = async <T>(
       data: response.response?.data
         ? response.response?.data[endpoint]
         : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
   return {
     data: response.data ? response.data[endpoint] : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 /**
@@ -279,8 +279,8 @@ export const findCall = async <T>(
         const searchParams = generateListURLSearchParams(params);
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
-      },
-    },
+      }
+    }
   });
 
   if (isAxiosError(response)) {
@@ -291,7 +291,7 @@ export const findCall = async <T>(
         response.response?.data[endpoint].length > 0
           ? response.response.data[endpoint][0]
           : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
@@ -302,7 +302,7 @@ export const findCall = async <T>(
       response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -326,8 +326,8 @@ export const getCall = async <T>(
     path: `/${endpoint}/${id}`,
     paramsSerializer: {
       serialize: (params) =>
-        `${qs.stringify(params)}&${searchParams.toString()}`,
-    },
+        `${qs.stringify(params)}&${searchParams.toString()}`
+    }
   });
 
   if (isAxiosError(response)) {
@@ -338,7 +338,7 @@ export const getCall = async <T>(
         response.response?.data[endpoint].length > 0
           ? response.response.data[endpoint][0]
           : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
@@ -349,7 +349,7 @@ export const getCall = async <T>(
       response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -365,7 +365,7 @@ export const getSchemaCall = async <T>(
   const response = await call<T>({
     method: 'GET',
     path: `/${endpoint}`,
-    params: { schema: 'blank', display: 'full' },
+    params: { schema: 'blank', display: 'full' }
   });
 
   if (isAxiosError(response)) {
@@ -376,7 +376,7 @@ export const getSchemaCall = async <T>(
         response.response?.data[endpoint].length > 0
           ? response.response.data[endpoint][0]
           : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
@@ -387,7 +387,7 @@ export const getSchemaCall = async <T>(
       response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -405,7 +405,7 @@ export const postCall = async <T>(
   params: PostParams | undefined = undefined
 ): Promise<PrestashopAPIResponse<T>> => {
   const xml = create({ prestashop: { [endpoint]: body } }).end({
-    prettyPrint: true,
+    prettyPrint: true
   });
 
   const searchParams = generateURLSearchParams(params);
@@ -416,8 +416,8 @@ export const postCall = async <T>(
     body: xml,
     paramsSerializer: {
       serialize: (params) =>
-        `${qs.stringify(params)}&${searchParams.toString()}`,
-    },
+        `${qs.stringify(params)}&${searchParams.toString()}`
+    }
   });
 
   if (isAxiosError(response)) {
@@ -428,7 +428,7 @@ export const postCall = async <T>(
         response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
@@ -439,7 +439,7 @@ export const postCall = async <T>(
       response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -463,20 +463,20 @@ export const deleteCall = async (
     path: `/${endpoint}/${id}`,
     paramsSerializer: {
       serialize: (params) =>
-        `${qs.stringify(params)}&${searchParams.toString()}`,
-    },
+        `${qs.stringify(params)}&${searchParams.toString()}`
+    }
   });
 
   if (isAxiosError(response)) {
     return {
       success: false,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
   return {
     success: true,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -495,7 +495,7 @@ export const putCall = async <T>(
   params: PutParams<T> | undefined = undefined
 ): Promise<PrestashopAPIResponse<T>> => {
   const xml = create({ prestashop: { [endpoint]: body } }).end({
-    prettyPrint: true,
+    prettyPrint: true
   });
 
   const searchParams = generateURLSearchParams(params);
@@ -506,8 +506,8 @@ export const putCall = async <T>(
     body: xml,
     paramsSerializer: {
       serialize: (params) =>
-        `${qs.stringify(params)}&${searchParams.toString()}`,
-    },
+        `${qs.stringify(params)}&${searchParams.toString()}`
+    }
   });
 
   if (isAxiosError(response)) {
@@ -518,7 +518,7 @@ export const putCall = async <T>(
         response.response?.data[endpoint].length > 0
           ? response.response?.data[endpoint][0]
           : undefined,
-      errors: response.response?.data.errors,
+      errors: response.response?.data.errors
     };
   }
 
@@ -529,7 +529,7 @@ export const putCall = async <T>(
       response.data[endpoint].length > 0
         ? response.data[endpoint][0]
         : undefined,
-    errors: undefined,
+    errors: undefined
   };
 };
 
@@ -549,7 +549,7 @@ const customCallAction = async <T>({
   params,
   body,
   paramsSerializer,
-  responseType,
+  responseType
 }: CallParams) => {
   const { url, key } = config;
 
@@ -559,11 +559,11 @@ const customCallAction = async <T>({
     params: {
       ...params,
       ws_key: key,
-      output_format: 'JSON',
+      output_format: 'JSON'
     },
     paramsSerializer,
     data: body,
-    responseType,
+    responseType
   }).catch((error: AxiosError<T>) => {
     return error;
   });
@@ -583,7 +583,7 @@ export const customCall = async <Response, Body = unknown>({
   path,
   body,
   params,
-  responseType,
+  responseType
 }: {
   method: Method;
   path: string;
@@ -607,7 +607,7 @@ export const customCall = async <Response, Body = unknown>({
   if (!isInstanceOfFormData && !isCustomGetParams(params) && !params?.json) {
     newBody = body
       ? create({ prestashop: body }).end({
-          prettyPrint: true,
+          prettyPrint: true
         })
       : undefined;
   }
@@ -631,9 +631,9 @@ export const customCall = async <Response, Body = unknown>({
         }
 
         return `${qs.stringify(serializeParams)}&${searchParams.toString()}`;
-      },
+      }
     },
-    responseType,
+    responseType
   });
 
   if (isAxiosError(response)) {

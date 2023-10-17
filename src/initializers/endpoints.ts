@@ -63,9 +63,16 @@ import {
   Warehouse,
   WarehouseProductLocation,
   WeightRange,
-  Zone,
+  Zone
 } from '../types/prestashop.type';
-import { Base, Custom, Images, StockMovements, Stocks } from '../classes';
+import {
+  Base,
+  Custom,
+  Images,
+  Search,
+  StockMovements,
+  Stocks
+} from '../classes';
 
 /**
  * Initiliaze and export all endpoints.
@@ -132,6 +139,7 @@ export const productSuppliers = new Base<ProductSupplier>(
   Endpoint.productSuppliers
 );
 export const products = new Base<Product>(Endpoint.products);
+export const search = new Search();
 export const shopGroups = new Base<ShopGroup>(Endpoint.shopGroups);
 export const shopUrls = new Base<ShopUrl>(Endpoint.shopUrls);
 export const shops = new Base<Shop>(Endpoint.shops);
