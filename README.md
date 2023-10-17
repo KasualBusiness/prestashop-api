@@ -718,6 +718,12 @@ Operator can be `'start'`, `'end'`, `'contains'` and `'strict'`.
 | `update` | id, body, PutParams | Update a product by id |
 | `delete` | id, DeleteParams    | Delete a product by id |
 
+#### search
+
+| Name   | Parameters        | Description                       |
+| :----- | :---------------- | :-------------------------------- |
+| `list` | value, languageId | Search in products and categories |
+
 #### shopGroups
 
 | Name     | Parameters          | Description               |
