@@ -9,7 +9,7 @@ import {
   mockProductsOnlyIDEquals1,
   mockProductsOnlyNameContainsOra,
   mockProductsIdDesc,
-  MockCustomProduct,
+  MockCustomProduct
 } from './mocks';
 
 describe('Base', async () => {
@@ -49,7 +49,7 @@ describe('Base', async () => {
 
     test('Should filter on id', async () => {
       const { data } = await products.list({
-        filters: [{ key: 'id', value: 1 }],
+        filters: [{ key: 'id', value: 1 }]
       });
 
       expect(data).toStrictEqual(mockProductsOnlyIDEquals1);
@@ -57,7 +57,7 @@ describe('Base', async () => {
 
     test('Should filter on name containing "ora"', async () => {
       const { data } = await products.list({
-        filters: [{ key: 'name', value: 'ora', operator: 'contains' }],
+        filters: [{ key: 'name', value: 'ora', operator: 'contains' }]
       });
 
       expect(data).toStrictEqual(mockProductsOnlyNameContainsOra);
@@ -65,7 +65,7 @@ describe('Base', async () => {
 
     test('Should sort by id DESC', async () => {
       const { data } = await products.list({
-        sort: ['id_DESC'],
+        sort: ['id_DESC']
       });
 
       expect(data).toStrictEqual(mockProductsIdDesc);
@@ -73,7 +73,7 @@ describe('Base', async () => {
 
     test('Should limit to 10 items', async () => {
       const { data } = await products.list({
-        limit: 10,
+        limit: 10
       });
 
       expect(data?.length).toStrictEqual(10);
@@ -82,7 +82,7 @@ describe('Base', async () => {
     describe('custom type', () => {
       test('Should accept custom filters', async () => {
         const response = await products.list<MockCustomProduct>({
-          filters: [{ key: 'custom_key', value: 'my_value' }],
+          filters: [{ key: 'custom_key', value: 'my_value' }]
         });
 
         expect(response.data).not.toBe(undefined);

@@ -4,7 +4,7 @@ import {
   GetParams,
   PostParams,
   PutParams,
-  DeleteParams,
+  DeleteParams
 } from '../types/global.type';
 import {
   listCall,
@@ -13,15 +13,15 @@ import {
   putCall,
   deleteCall,
   getSchemaCall,
-  findCall,
+  findCall
 } from '../utils/calls';
 import {
   PrestashopAPIDeleteResponse,
-  PrestashopAPIResponse,
+  PrestashopAPIResponse
 } from '../types/calls.type';
 import {
   handleBodyCreateUpdateAssociations,
-  handleCreateUpdateMultiLanguagesFields,
+  handleCreateUpdateMultiLanguagesFields
 } from '../utils/handlers';
 import { KEYS_TO_DELETE_WHEN_UPDATING } from '../utils/consts';
 
@@ -124,7 +124,7 @@ export class Base<T> {
       // Pre-merge key deletation, some keys block the update of an item
       const listOfKeysToExclude = [
         ...keysToDelete,
-        ...KEYS_TO_DELETE_WHEN_UPDATING,
+        ...KEYS_TO_DELETE_WHEN_UPDATING
       ];
 
       listOfKeysToExclude.forEach(
