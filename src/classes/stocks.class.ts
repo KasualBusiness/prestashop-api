@@ -32,7 +32,7 @@ export class Stocks {
   };
 
   /**
-   * Returns first item from list from endpoint.
+   * Returns first stock from endpoint.
    *
    * @param params
    * @returns
