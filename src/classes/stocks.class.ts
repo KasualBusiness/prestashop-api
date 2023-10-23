@@ -32,6 +32,34 @@ export class Stocks {
   };
 
   /**
+   * Returns first item from list from endpoint.
+   *
+   * @param params
+   * @returns
+   */
+  find = async (
+    params: ListParams<Stock> | undefined = { display: 'full' }
+  ): Promise<PrestashopAPIResponse<Stock>> => {
+    const response = await customCall<Partial<StocksResponse>>({
+      method: 'GET',
+      path: '/stock',
+      params
+    });
+
+    if (response?.stocks && response.stocks.length > 0) {
+      return {
+        data: response.stocks[0],
+        errors: response.errors
+      };
+    }
+
+    return {
+      data: undefined,
+      errors: response?.errors
+    };
+  };
+
+  /**
    * Get a single stock by id.
    *
    * @param id
