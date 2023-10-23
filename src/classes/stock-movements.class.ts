@@ -35,6 +35,34 @@ export class StockMovements {
   };
 
   /**
+   * Returns first stock movement from endpoint.
+   *
+   * @param params
+   * @returns
+   */
+  find = async (
+    params: ListParams<StockMovement> | undefined = { display: 'full' }
+  ): Promise<PrestashopAPIResponse<StockMovement>> => {
+    const response = await customCall<Partial<StockMovementsResponse>>({
+      method: 'GET',
+      path: '/stock_mvt',
+      params
+    });
+
+    if (response?.stock_movements && response.stock_movements.length > 0) {
+      return {
+        data: response.stock_movements[0],
+        errors: response.errors
+      };
+    }
+
+    return {
+      data: undefined,
+      errors: response?.errors
+    };
+  };
+
+  /**
    * Get a single stock movement by id.
    *
    * @param id
