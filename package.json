@@ -44,6 +44,7 @@
   "author": "Kasual Business",
   "license": "MIT",
   "devDependencies": {
+    "@types/node": "^20.10.4",
     "@types/qs": "^6.9.8",
     "@typescript-eslint/eslint-plugin": "^6.8.0",
     "@typescript-eslint/parser": "^6.8.0",
