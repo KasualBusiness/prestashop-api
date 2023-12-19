@@ -839,6 +839,8 @@ export type Product = {
   id_default_combination: string | number;
   id_tax_rules_group: string;
   position_in_category: string | null;
+  manufacturer_name: boolean | null;
+  quantity: string | null;
   type: string;
   id_shop_default: string;
   supplier_reference: string;
